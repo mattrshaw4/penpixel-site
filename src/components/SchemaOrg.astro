@@ -1,0 +1,25 @@
+---
+// Base entity schema. This is the machine-readable "source of truth" for the
+// brand. Data is fully controlled (from consts.ts) — no user input is ever
+// interpolated here, so set:html on a JSON.stringify is safe.
+import { SITE } from '../consts';
+
+const schema = {
+  '@context': 'https://schema.org',
+  '@type': 'ProfessionalService',
+  '@id': `${SITE.url}/#organization`,
+  name: SITE.name,
+  url: SITE.url,
+  description: SITE.description,
+  founder: { '@type': 'Person', name: SITE.founder },
+  areaServed: { '@type': 'Country', name: 'United States' },
+  address: {
+    '@type': 'PostalAddress',
+    addressLocality: SITE.locality,
+    addressRegion: SITE.region,
+    addressCountry: SITE.country,
+  },
+  sameAs: [...SITE.sameAs],
+};
+---
+<script type="application/ld+json" set:html={JSON.stringify(schema)} is:inline />

@@ -1,0 +1,36 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import { SITE } from '../consts';
+---
+<BaseLayout
+  title="Penpixel Creative | AEO & AI Search Optimization for B2B SaaS"
+  description="We rearchitect B2B SaaS digital estates to be cited, trusted, and recommended by AI agents. Get the diagnosis."
+>
+  <main class="mx-auto max-w-5xl px-6 py-24">
+    <p class="font-mono text-sm uppercase tracking-[0.2em] text-impact">The Invisible Loss</p>
+
+    <h1 class="mt-4 text-5xl md:text-6xl">
+      Stop Renting Your Visibility.<br />Own Your AI Share of Voice.
+    </h1>
+
+    <p class="mt-6 max-w-2xl text-lg text-canvas/80">
+      Traditional SEO asks how to rank. We ask how your brand becomes the answer —
+      and how AI agents complete the transaction.
+    </p>
+
+    <div class="mt-10 flex flex-wrap gap-4">
+      <a
+        href="/services/ai-search-readiness-audits"
+        class="bg-impact px-6 py-3 font-display font-bold text-canvas transition-opacity hover:opacity-90"
+      >Get the Diagnosis</a>
+      <a
+        href={SITE.booking}
+        class="border border-canvas/30 px-6 py-3 font-display font-bold text-canvas transition-colors hover:border-impact"
+      >Book a call</a>
+    </div>
+
+    <p class="mt-20 font-mono text-xs text-canvas/40">
+      // Scaffold home. Full content migrates per the migration map.
+    </p>
+  </main>
+</BaseLayout>

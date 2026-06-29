@@ -1,0 +1,23 @@
+# Penpixel Creative — redirect map (Cloudflare Pages)
+# Format: <source> <destination> <status>
+# All permanent (301), single hop, pointing at the final HTTPS URL.
+
+# --- Services ---
+/services                          /services/ai-search-readiness-audits   301
+/services/monthly-retainers        /services/entity-management            301
+/services/entity-managment         /services/entity-management            301
+/services/content-strategy         /services/brand-and-visual-authority   301
+
+# --- Case studies: standardized under /case-studies/ ---
+/tag-case-study                    /case-studies/the-alexander-group       301
+/dt-heritage-case-study            /case-studies/dt-heritage               301
+/joveo-strategic-partnership       /case-studies/joveo                     301
+/veterinary-migration-recovery     /case-studies/veterinary-migration      301
+/rpo-indexation                    /case-studies/rpo-indexation            301
+/logistics-entity-building         /case-studies/logistics                 301
+/results                           /case-studies/dt-heritage               301
+/psg-global-solutions-case-study   /case-studies/rpo-indexation            301
+/amazon-entregapro-entity-building /case-studies/logistics                 301
+
+# --- Broken URL cleanup ---
+/blog/content-writing-services     /blog                                   301

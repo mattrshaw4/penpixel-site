@@ -1,0 +1,46 @@
+---
+// Self-hosted fonts (no third-party CDN request — keeps the CSP tight and
+// avoids leaking visitor data to Google Fonts).
+import '@fontsource/blinker/400.css';
+import '@fontsource/blinker/700.css';
+import '@fontsource-variable/geist';
+import '@fontsource-variable/geist-mono';
+import '../styles/global.css';
+
+import { SITE } from '../consts';
+import SchemaOrg from '../components/SchemaOrg.astro';
+
+interface Props {
+  title: string;
+  description: string;
+  noindex?: boolean;
+  canonical?: string;
+}
+
+const { title, description, noindex = false, canonical } = Astro.props;
+const canonicalURL = canonical ?? new URL(Astro.url.pathname, Astro.site).href;
+---
+<!doctype html>
+<html lang="en-US">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>{title}</title>
+    <meta name="description" content={description} />
+    <link rel="canonical" href={canonicalURL} />
+    {noindex && <meta name="robots" content="noindex, nofollow" />}
+
+    <!-- Open Graph / social -->
+    <meta property="og:type" content="website" />
+    <meta property="og:title" content={title} />
+    <meta property="og:description" content={description} />
+    <meta property="og:url" content={canonicalURL} />
+    <meta property="og:site_name" content={SITE.name} />
+    <meta name="twitter:card" content="summary_large_image" />
+
+    <SchemaOrg />
+  </head>
+  <body>
+    <slot />
+  </body>
+</html>

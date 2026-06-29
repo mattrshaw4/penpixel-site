@@ -1,0 +1,43 @@
+@import "tailwindcss";
+
+/* ===========================================================================
+   Penpixel Creative — design tokens (from the Official Brand Specification)
+   Color is FUNCTIONAL, not decorative. Magenta = impact only.
+   =========================================================================== */
+@theme {
+  /* Color logic */
+  --color-authority: #000000; /* Rich Black  — strategy/authority backgrounds */
+  --color-canvas:    #ffffff; /* Clean White — readability */
+  --color-impact:    #bf00bf; /* Magenta     — IMPACT ONLY: revenue gap, CTA */
+  --color-infra:     #44739a; /* Deep Blue   — system infrastructure / existing tech */
+  --color-success:   #74a788; /* Muted Green — growth metrics / success states */
+  --color-ai:        #833eb4; /* Purple      — technical nuance / AI logic */
+
+  /* Type stack */
+  --font-display: "Blinker", system-ui, sans-serif;             /* H1–H3 */
+  --font-body:    "Geist Variable", system-ui, sans-serif;       /* body / technical */
+  --font-mono:    "Geist Mono Variable", ui-monospace, monospace; /* data / machine readouts */
+}
+
+:root { color-scheme: dark; }
+
+body {
+  background-color: var(--color-authority);
+  color: var(--color-canvas);
+  font-family: var(--font-body);
+  -webkit-font-smoothing: antialiased;
+  text-rendering: optimizeLegibility;
+}
+
+h1, h2, h3 { font-family: var(--font-display); font-weight: 700; line-height: 1.05; }
+code, pre, kbd, samp { font-family: var(--font-mono); }
+
+/* Accessibility quality floor */
+:focus-visible { outline: 2px solid var(--color-impact); outline-offset: 2px; }
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after {
+    animation-duration: .01ms !important;
+    transition-duration: .01ms !important;
+    scroll-behavior: auto !important;
+  }
+}
