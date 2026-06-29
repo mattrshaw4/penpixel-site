@@ -1,0 +1,60 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import { SITE } from '../consts';
+---
+<BaseLayout
+  title="About Penpixel Creative | Strategic AI Search Infrastructure"
+  description="We build the infrastructure AI agents trust. Veteran SaaS strategists providing the diagnostic clarity to own your AI share of voice."
+>
+  <main>
+    <section class="mx-auto max-w-6xl px-6 pt-20 pb-16 md:pt-28">
+      <p class="font-mono text-sm uppercase tracking-[0.2em] text-impact">// about</p>
+      <h1 class="mt-5 max-w-4xl text-5xl md:text-6xl">We Build the Infrastructure That AI Agents Trust.</h1>
+      <p class="mt-6 max-w-2xl text-lg text-canvas/80">
+        Penpixel Creative is a small team of veteran SaaS strategists. We started in SEO.
+        We're not stuck there.
+      </p>
+    </section>
+
+    <section class="border-t border-white/10">
+      <div class="mx-auto max-w-6xl px-6 py-20">
+        <h2 class="max-w-3xl text-3xl md:text-4xl">Visibility is a commodity. Authority is the asset.</h2>
+        <div class="mt-8 grid gap-8 md:grid-cols-2">
+          <p class="text-canvas/70">Anyone can be visible. Ranking for a keyword means little when an AI assistant is the one deciding what to recommend. The question that matters now is whether a model trusts your brand enough to put it in the answer.</p>
+          <p class="text-canvas/70">That trust is built in the architecture — clean, server-rendered HTML, structured data, and a consistent entity across the entire web. It's engineering work, not marketing copy. That's the work we do.</p>
+        </div>
+      </div>
+    </section>
+
+    <section class="border-t border-white/10">
+      <div class="mx-auto max-w-6xl px-6 py-20">
+        <p class="font-mono text-sm uppercase tracking-[0.2em] text-canvas/50">// the approach</p>
+        <h2 class="mt-5 max-w-3xl text-3xl md:text-4xl">We diagnose before we prescribe.</h2>
+        <p class="mt-6 max-w-2xl text-canvas/70">
+          No retainer-first pitch, no guesswork. Every engagement starts with a diagnosis:
+          a precise read of where your brand is invisible or misread by AI systems, and a
+          prioritized plan to fix it. You see the problem before you commit to the solution.
+        </p>
+      </div>
+    </section>
+
+    <section class="border-t border-white/10">
+      <div class="mx-auto max-w-6xl px-6 py-20">
+        <p class="font-mono text-sm uppercase tracking-[0.2em] text-canvas/50">// founder</p>
+        <h2 class="mt-5 text-3xl md:text-4xl">{SITE.founder}</h2>
+        <p class="mt-6 max-w-2xl text-canvas/70">
+          Founder and principal, based in {SITE.locality}, {SITE.region}. Penpixel Creative
+          was built on a simple conviction: the brands that win the next decade of search
+          will be the ones machines can read, trust, and recommend without friction.
+        </p>
+      </div>
+    </section>
+
+    <section class="border-t border-white/10">
+      <div class="mx-auto max-w-6xl px-6 py-24">
+        <h2 class="max-w-3xl text-4xl md:text-5xl">See where you stand.</h2>
+        <a href="/contact" class="mt-8 inline-block bg-impact px-8 py-4 font-display text-lg font-bold text-canvas transition-opacity hover:opacity-90">Get the Diagnosis</a>
+      </div>
+    </section>
+  </main>
+</BaseLayout>

@@ -9,6 +9,8 @@ import '../styles/global.css';
 
 import { SITE } from '../consts';
 import SchemaOrg from '../components/SchemaOrg.astro';
+import Header from '../components/Header.astro';
+import Footer from '../components/Footer.astro';
 
 interface Props {
   title: string;
@@ -41,6 +43,8 @@ const canonicalURL = canonical ?? new URL(Astro.url.pathname, Astro.site).href;
     <SchemaOrg />
   </head>
   <body>
+    <Header />
     <slot />
+    <Footer />
   </body>
 </html>

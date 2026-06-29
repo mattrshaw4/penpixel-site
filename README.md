@@ -65,7 +65,27 @@ Headers are set at the edge in `public/_headers` and reviewed against OWASP Top 
 - The contact-form handler (Cloudflare Worker + Turnstile) is a later phase; its
   inputs must be validated server-side.
 
+## Dependency advisories (npm audit)
+
+`npm install` reports ~7 advisories. They are reviewed and intentionally left as-is:
+
+- **6 of 7 are dev-only.** They live in the `yaml` parser under `@astrojs/check`
+  (the `npm run check` type-checker). It never ships and never runs in a visitor's
+  browser; the issue is a DoS when parsing maliciously nested YAML on your own
+  machine. To zero them out you can remove `@astrojs/check` from devDependencies
+  (you lose `npm run check` type-checking) — optional.
+- **1 of 7 is a "high" in Astro/esbuild** whose triggers are `define:vars` in
+  scripts, Server Islands, dynamic slot names, untrusted spread-prop names, SSR
+  error pages, and a Windows-only dev-server file read. This is a static,
+  prerendered, Linux-built site that uses none of them — not exploitable here.
+
+Do **not** run `npm audit fix --force`: it forces Astro 7 (a breaking major) to
+patch issues that don't apply, and risks the Tailwind-build incompatibility we
+pinned away from. Plain `npm audit fix` is a no-op here. Treat the Astro major
+upgrade as a separate, tested change later.
+
 ## What is NOT built yet
-This is the scaffold: structure, brand tokens, machine layer, redirect map, and a
-home stub. Page content (services, case studies, blog, contact form) migrates next,
-per `penpixel-migration-map.md`.
+This is the scaffold plus the four core pages (home, about, services index,
+contact). Still to migrate: the four service detail pages, the six case studies,
+the 32 blog posts, and the contact intake form (Cloudflare Worker + Turnstile).
+See `penpixel-migration-map.md`.

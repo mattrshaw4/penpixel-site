@@ -1,0 +1,28 @@
+---
+import { SITE, NAV } from '../consts';
+const path = Astro.url.pathname;
+const isActive = (href: string) => path === href || path.startsWith(href + '/');
+---
+<header class="sticky top-0 z-50 border-b border-white/10 bg-authority/95 backdrop-blur">
+  <div class="mx-auto flex max-w-6xl items-center justify-between gap-4 px-6 py-4">
+    <a href="/" class="font-display text-xl font-bold tracking-tight text-canvas">
+      Penpixel <span class="text-canvas/50">Creative</span>
+    </a>
+    <nav class="flex items-center gap-6 text-sm" aria-label="Primary">
+      {NAV.map((item) => (
+        <a
+          href={item.href}
+          aria-current={isActive(item.href) ? 'page' : undefined}
+          class:list={[
+            'hidden font-body transition-colors hover:text-canvas sm:inline',
+            isActive(item.href) ? 'text-canvas' : 'text-canvas/60',
+          ]}
+        >{item.label}</a>
+      ))}
+      <a
+        href="/contact"
+        class="bg-impact px-4 py-2 font-display text-sm font-bold text-canvas transition-opacity hover:opacity-90"
+      >Get the Diagnosis</a>
+    </nav>
+  </div>
+</header>

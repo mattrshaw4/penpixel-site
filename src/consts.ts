@@ -8,6 +8,7 @@ export const SITE = {
   locality: 'Houston',
   region: 'TX',
   country: 'US',
+  email: 'hello@penpixelcreative.com', // PLACEHOLDER — confirm the real inbox
   // Entity corroboration — keep in sync with the live profiles (entity hardening).
   sameAs: [
     'https://www.linkedin.com/company/penpixel-creative',
@@ -17,3 +18,9 @@ export const SITE = {
   // Google Appointment Scheduling (Workspace). Replace with the real booking URL.
   booking: 'https://calendar.app.google/REPLACE_WITH_APPOINTMENT_PAGE',
 } as const;
+
+export const NAV = [
+  { label: 'About', href: '/about' },
+  { label: 'Services', href: '/services' },
+  { label: 'Contact', href: '/contact' },
+] as const;

@@ -1,0 +1,77 @@
+---
+import BaseLayout from '../../layouts/BaseLayout.astro';
+
+const services = [
+  {
+    tag: 'DIAGNOSIS',
+    color: 'text-impact',
+    accent: 'border-impact/60',
+    title: 'AI Search Readiness Audit',
+    lede: 'The starting point. Diagnosing your SaaS visibility.',
+    body: 'A precise read of where AI systems can\u2019t see, can\u2019t parse, or don\u2019t trust your brand \u2014 with a prioritized plan to fix it. You see the problem before you commit to anything else.',
+  },
+  {
+    tag: 'AUTHORITY',
+    color: 'text-infra',
+    accent: 'border-infra/60',
+    title: 'Entity Management',
+    lede: 'Defensive brand authority for SaaS.',
+    body: 'Conflicting data across the web makes models distrust or hallucinate your brand. We synchronize your entity \u2014 name, claims, relationships \u2014 into one consistent signal the machines can rely on.',
+  },
+  {
+    tag: 'REMEDIATION',
+    color: 'text-ai',
+    accent: 'border-ai/60',
+    title: 'Strategic Implementation',
+    lede: 'Technical remediation.',
+    body: 'The engineering: server-rendered HTML, structured data, and machine-readable architecture that lets agents extract and cite your content without friction.',
+  },
+  {
+    tag: 'TRUST',
+    color: 'text-success',
+    accent: 'border-success/60',
+    title: 'Brand & Visual Authority',
+    lede: 'Multimodal trust for B2B.',
+    body: 'Authority isn\u2019t only text. We align the visual and multimodal signals so your brand reads as credible to both the people evaluating you and the models representing you.',
+  },
+];
+---
+<BaseLayout
+  title="Services | AI Search & AEO for B2B SaaS | Penpixel Creative"
+  description="Four services that make your B2B SaaS brand the answer AI agents recommend: readiness audit, entity management, strategic implementation, and brand authority."
+>
+  <main>
+    <section class="mx-auto max-w-6xl px-6 pt-20 pb-16 md:pt-28">
+      <p class="font-mono text-sm uppercase tracking-[0.2em] text-impact">// services</p>
+      <h1 class="mt-5 max-w-4xl text-5xl md:text-6xl">Make your brand the answer.</h1>
+      <p class="mt-6 max-w-2xl text-lg text-canvas/80">
+        The work moves in one direction: diagnose what&rsquo;s broken, fix the architecture,
+        and harden the authority that makes AI systems trust you. It always starts with
+        the diagnosis.
+      </p>
+    </section>
+
+    <section class="border-t border-white/10">
+      <div class="mx-auto max-w-6xl px-6 py-16">
+        <div class="grid gap-6 md:grid-cols-2">
+          {services.map((s) => (
+            <article class:list={['border-l-2 bg-white/[0.02] p-7', s.accent]}>
+              <p class:list={['font-mono text-xs uppercase tracking-[0.2em]', s.color]}>{s.tag}</p>
+              <h2 class="mt-3 text-2xl">{s.title}</h2>
+              <p class="mt-2 font-body text-canvas/90">{s.lede}</p>
+              <p class="mt-3 text-canvas/65">{s.body}</p>
+            </article>
+          ))}
+        </div>
+        <p class="mt-6 font-mono text-xs text-canvas/40">// detailed service pages are the next build phase</p>
+      </div>
+    </section>
+
+    <section class="border-t border-white/10">
+      <div class="mx-auto max-w-6xl px-6 py-24">
+        <h2 class="max-w-3xl text-4xl md:text-5xl">Not sure where you stand? That&rsquo;s what the diagnosis is for.</h2>
+        <a href="/contact" class="mt-8 inline-block bg-impact px-8 py-4 font-display text-lg font-bold text-canvas transition-opacity hover:opacity-90">Get the Diagnosis</a>
+      </div>
+    </section>
+  </main>
+</BaseLayout>

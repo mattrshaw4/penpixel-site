@@ -1,0 +1,26 @@
+---
+import { SITE, NAV } from '../consts';
+const year = new Date().getFullYear();
+---
+<footer class="mt-24 border-t border-white/10">
+  <div class="mx-auto max-w-6xl px-6 py-12">
+    <div class="flex flex-wrap items-start justify-between gap-8">
+      <div>
+        <p class="font-display text-lg font-bold text-canvas">Penpixel Creative</p>
+        <p class="mt-2 max-w-xs font-body text-sm text-canvas/60">
+          AEO &amp; AI search optimization for B2B SaaS. Based in {SITE.locality}, {SITE.region}.
+        </p>
+      </div>
+      <nav class="flex flex-col gap-2 text-sm" aria-label="Footer">
+        {NAV.map((item) => (
+          <a href={item.href} class="font-body text-canvas/60 transition-colors hover:text-canvas">{item.label}</a>
+        ))}
+        <a href={`mailto:${SITE.email}`} class="font-body text-canvas/60 transition-colors hover:text-canvas">{SITE.email}</a>
+      </nav>
+    </div>
+    <p class="mt-10 font-mono text-xs text-canvas/40">
+      // make your brand the answer, not the afterthought
+    </p>
+    <p class="mt-2 font-mono text-xs text-canvas/30">&copy; {year} Penpixel Creative</p>
+  </div>
+</footer>
