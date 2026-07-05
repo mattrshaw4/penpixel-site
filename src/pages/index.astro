@@ -1,34 +1,48 @@
 ---
 import BaseLayout from '../layouts/BaseLayout.astro';
-import { SITE } from '../consts';
 
-const services = [
-  { tag: 'DIAGNOSIS', color: 'text-impact', title: 'AI Search Readiness Audit', desc: 'Where your brand is invisible, misread, or losing share in AI-driven discovery — and the prioritized fix.' },
-  { tag: 'AUTHORITY', color: 'text-infra', title: 'Entity Management', desc: 'Synchronize your data across the web so models stop hallucinating or distrusting your brand.' },
-  { tag: 'REMEDIATION', color: 'text-ai', title: 'Strategic Implementation', desc: 'Server-rendered HTML, structured data, machine-readable architecture. The technical fix.' },
-  { tag: 'TRUST', color: 'text-success', title: 'Brand & Visual Authority', desc: 'Multimodal signals so the brand reads as credible to both people and machines.' },
+const stages = [
+  {
+    stage: 'STAGE 1: THE DIAGNOSIS',
+    color: 'text-impact',
+    accent: 'border-impact/60',
+    title: 'AI Search & Machine-First Audits',
+    desc: 'We identify exactly why your brand is missing from AI answers and where your site architecture fails machine-first consumption tests.',
+  },
+  {
+    stage: 'STAGE 2: THE IMPLEMENTATION',
+    color: 'text-ai',
+    accent: 'border-ai/60',
+    title: 'Full-Stack AI Readiness',
+    desc: 'We execute the technical, visual, and entity-level fixes required to make your brand a high-confidence, buyable data source.',
+  },
 ];
 
 const results = [
   { metric: '92.1%', label: 'AI citation growth', client: 'DT Heritage' },
-  { metric: '1,500%', label: 'organic surge', client: 'Logistics entity build' },
+  { metric: '1,500%', label: 'surge in agentic traffic', client: 'Logistics entity build' },
   { metric: '44%', label: 'organic surge via identity recovery', client: 'The Alexander Group' },
 ];
 ---
 <BaseLayout
   title="Penpixel Creative | AEO & AI Search Optimization for B2B SaaS"
-  description="We rearchitect B2B SaaS digital estates to be cited, trusted, and recommended by AI agents. Get the diagnosis."
+  description="We transform B2B SaaS architecture into high-confidence data sources that AI agents trust, cite, and recommend. Get the diagnosis."
 >
   <main>
     <!-- Hero -->
     <section class="mx-auto max-w-6xl px-6 pt-20 pb-24 md:pt-28">
       <p class="font-mono text-sm uppercase tracking-[0.2em] text-impact">// the invisible loss</p>
       <h1 class="mt-5 max-w-4xl text-5xl md:text-6xl">
-        Stop Renting Your Visibility.<br />Own Your AI Share of Voice.
+        Stop Building for Humans.<br />Start Building for Machines.
       </h1>
       <p class="mt-6 max-w-2xl text-lg text-canvas/80">
-        Traditional SEO asks how to rank. We ask how your brand becomes the answer —
-        and how AI agents complete the transaction.
+        If your site isn&rsquo;t structured for machine-first consumption, your brand has a
+        100% agent abandonment rate.
+      </p>
+      <p class="mt-4 max-w-2xl text-lg text-canvas/80">
+        Penpixel Creative transforms B2B SaaS architecture into high-confidence data sources
+        that AI agents trust, cite, and recommend. We don&rsquo;t just help you get seen; we
+        ensure you are buyable.
       </p>
       <div class="mt-10 flex flex-wrap gap-4">
         <a href="/contact" class="bg-impact px-6 py-3 font-display font-bold text-canvas transition-opacity hover:opacity-90">Get the Diagnosis</a>
@@ -49,21 +63,21 @@ const results = [
       </div>
     </section>
 
-    <!-- What we do -->
+    <!-- Our process -->
     <section class="border-t border-white/10">
       <div class="mx-auto max-w-6xl px-6 py-20">
-        <p class="font-mono text-sm uppercase tracking-[0.2em] text-canvas/50">// what we do</p>
-        <h2 class="mt-5 text-3xl md:text-4xl">Four moves that make you the answer.</h2>
-        <div class="mt-10 grid gap-px overflow-hidden border border-white/10 bg-white/10 sm:grid-cols-2">
-          {services.map((s) => (
-            <div class="bg-authority p-7">
-              <p class:list={['font-mono text-xs uppercase tracking-[0.2em]', s.color]}>{s.tag}</p>
-              <h3 class="mt-3 text-xl">{s.title}</h3>
-              <p class="mt-2 text-canvas/70">{s.desc}</p>
-            </div>
+        <p class="font-mono text-sm uppercase tracking-[0.2em] text-canvas/50">// our process</p>
+        <h2 class="mt-5 text-3xl md:text-4xl">From audit to execution.</h2>
+        <div class="mt-10 grid gap-6 md:grid-cols-2">
+          {stages.map((s) => (
+            <article class:list={['border-l-2 bg-white/[0.02] p-7', s.accent]}>
+              <p class:list={['font-mono text-xs uppercase tracking-[0.2em]', s.color]}>{s.stage}</p>
+              <h3 class="mt-3 text-2xl">{s.title}</h3>
+              <p class="mt-3 text-canvas/70">{s.desc}</p>
+            </article>
           ))}
         </div>
-        <a href="/services" class="mt-8 inline-block font-mono text-sm text-impact hover:underline">See all services →</a>
+        <a href="/services" class="mt-8 inline-block font-mono text-sm text-impact hover:underline">See how it works →</a>
       </div>
     </section>
 
@@ -89,7 +103,10 @@ const results = [
       <div class="mx-auto max-w-6xl px-6 py-24">
         <h2 class="max-w-3xl text-4xl md:text-5xl">Find out what the agents see when they look for you.</h2>
         <p class="mt-5 max-w-2xl text-lg text-canvas/70">It starts with the diagnosis: a clear read on where you're invisible, and what to fix first.</p>
-        <a href="/contact" class="mt-8 inline-block bg-impact px-8 py-4 font-display text-lg font-bold text-canvas transition-opacity hover:opacity-90">Get the Diagnosis</a>
+        <div class="mt-8 flex flex-wrap gap-4">
+          <a href="/contact" class="bg-impact px-8 py-4 font-display text-lg font-bold text-canvas transition-opacity hover:opacity-90">Get the Diagnosis</a>
+          <a href="/services" class="border border-white/30 px-8 py-4 font-display text-lg font-bold text-canvas transition-colors hover:border-impact">See how it works</a>
+        </div>
       </div>
     </section>
   </main>
