@@ -45,6 +45,34 @@ src/
    It is a burner send-domain with no content, so a blanket redirect is correct.
 4. `_redirects` and `_headers` deploy automatically with the site — no DNS action needed.
 
+### Zone onboarding: AI crawler settings (do these the day the zone is created)
+
+Cloudflare now blocks AI crawlers at the edge via WAF rules — a dashboard
+setting can silently override our welcoming robots.txt (the file says "come
+in"; the edge 403s before the crawler reads it). Since Sept 15, 2026, new
+domains onboard with block-leaning defaults. We are deliberately open. At
+nameserver cutover:
+
+1. During onboarding, when the AI-crawler prompt appears: choose **Allow** —
+   do not click through the default.
+2. Security Settings → AI bot policies: set **Search, Agent, and Training**
+   all to **"Do not block"** explicitly. (Do not rely on the "block only on
+   ad pages" default sparing us because we run no ads — set it.)
+3. **Decline Cloudflare's managed robots.txt.** It intercepts /robots.txt
+   requests and prepends its own directives on top of ours.
+4. Leave **AI Labyrinth, Bot Fight Mode, and AI Crawl Control blocks OFF**.
+5. Verify from outside — trust the test, not the dashboard:
+
+curl -A "GPTBot" https://www.penpixelcreative.com/ -I
+curl -A "ClaudeBot" https://www.penpixelcreative.com/ -I
+curl -A "PerplexityBot" https://www.penpixelcreative.com/ -I
+
+Expect 200s, not 403s.
+
+Note: post-Sept-15, blocking "Training" also blocks multi-purpose crawlers
+(Googlebot, Applebot, BingBot) — i.e., blocks Google Search. Not our config,
+but a diagnosable failure mode worth checking in client audits.
+
 ## Fonts
 Self-hosted via Fontsource (`@fontsource/blinker`, `@fontsource-variable/geist`,
 `@fontsource-variable/geist-mono`). No Google Fonts request — tighter CSP, no
