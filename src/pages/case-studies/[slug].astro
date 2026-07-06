@@ -1,0 +1,144 @@
+---
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import { SITE } from '../../consts';
+import { caseStudies } from '../../data/case-studies';
+
+export function getStaticPaths() {
+  return caseStudies.map((cs) => ({ params: { slug: cs.slug }, props: { cs } }));
+}
+const { cs } = Astro.props;
+
+// Article JSON-LD — controlled data from the data file, no user input.
+const schema = {
+  '@context': 'https://schema.org',
+  '@type': 'Article',
+  headline: cs.headline,
+  description: cs.metaDescription,
+  url: `${SITE.url}/case-studies/${cs.slug}`,
+  author: { '@id': `${SITE.url}/#organization` },
+  publisher: { '@id': `${SITE.url}/#organization` },
+  about: { '@type': 'Thing', name: cs.client },
+};
+---
+<BaseLayout title={cs.metaTitle} description={cs.metaDescription}>
+  <script type="application/ld+json" set:html={JSON.stringify(schema)} is:inline />
+  <main>
+    <section class="mx-auto max-w-6xl px-6 pt-20 pb-16 md:pt-28">
+      <p class="font-mono text-sm uppercase tracking-[0.2em] text-impact">// {cs.eyebrow}</p>
+      <p class="mt-4 font-mono text-sm text-canvas/50">Client: <span class="text-canvas/80">{cs.client}</span></p>
+      <h1 class="mt-4 max-w-4xl text-4xl md:text-6xl">{cs.headline}</h1>
+      <p class="mt-6 max-w-2xl text-lg text-canvas/80">{cs.sub}</p>
+    </section>
+
+    <section class="border-t border-white/10">
+      <div class="mx-auto max-w-6xl px-6 py-16">
+        <h2 class="text-3xl md:text-4xl">The Challenge</h2>
+        <p class="mt-6 max-w-3xl text-canvas/70">{cs.challengeIntro}</p>
+        <div class="mt-8 grid gap-6 md:grid-cols-3">
+          {cs.challenges.map((c) => (
+            <article class="border-l-2 border-impact/60 bg-white/[0.02] p-6">
+              <h3 class="text-lg">{c.k}</h3>
+              <p class="mt-2 text-sm text-canvas/65">{c.v}</p>
+            </article>
+          ))}
+        </div>
+      </div>
+    </section>
+
+    <section class="border-t border-white/10">
+      <div class="mx-auto max-w-6xl px-6 py-16">
+        <h2 class="text-3xl md:text-4xl">{cs.strategyTitle}</h2>
+        <p class="mt-6 max-w-3xl text-canvas/70">{cs.strategyIntro}</p>
+        <div class="mt-8 grid gap-6 sm:grid-cols-2">
+          {cs.strategy.map((s) => (
+            <article class="border-l-2 border-ai/60 bg-white/[0.02] p-6">
+              <h3 class="text-lg">{s.k}</h3>
+              <p class="mt-2 text-sm text-canvas/65">{s.v}</p>
+            </article>
+          ))}
+        </div>
+      </div>
+    </section>
+
+    {cs.regions && (
+      <section class="border-t border-white/10">
+        <div class="mx-auto max-w-6xl px-6 py-16">
+          <h2 class="text-3xl md:text-4xl">{cs.impactTitle}</h2>
+          <div class="mt-8 grid gap-6 md:grid-cols-2">
+            {cs.regions.map((r) => (
+              <article class="border border-white/15 bg-white/[0.02] p-7">
+                <p class="font-mono text-xs uppercase tracking-[0.2em] text-canvas/50">{r.flag}</p>
+                <h3 class="mt-2 text-xl">{r.title}</h3>
+                <div class="mt-5 grid grid-cols-2 gap-4">
+                  {r.stats.map((st) => (
+                    <div>
+                      <p class="font-mono text-3xl font-bold text-success">{st.value}</p>
+                      <p class="mt-1 text-xs text-canvas/60">{st.label}</p>
+                    </div>
+                  ))}
+                </div>
+                <p class="mt-5 text-sm text-canvas/65">{r.note}</p>
+              </article>
+            ))}
+          </div>
+        </div>
+      </section>
+    )}
+
+    {!cs.regions && (
+      <section class="border-t border-white/10">
+        <div class="mx-auto max-w-6xl px-6 py-16">
+          <h2 class="text-3xl md:text-4xl">{cs.impactTitle}</h2>
+          <div class="mt-8 grid gap-8 sm:grid-cols-2">
+            {cs.impacts.map((i) => (
+              <div class="border-t-2 border-success/60 pt-5">
+                <p class="font-mono text-4xl font-bold text-canvas">{i.value}</p>
+                <p class="mt-2 font-display font-bold text-canvas">{i.k}</p>
+                <p class="mt-1 text-sm text-canvas/65">{i.v}</p>
+              </div>
+            ))}
+          </div>
+        </div>
+      </section>
+    )}
+
+    <section class="border-t border-white/10">
+      <div class="mx-auto max-w-6xl px-6 py-16">
+        <div class="grid items-start gap-10 md:grid-cols-3">
+          <blockquote class="md:col-span-2">
+            <p class="font-display text-2xl font-bold leading-snug text-canvas md:text-3xl">&ldquo;{cs.quote}&rdquo;</p>
+          </blockquote>
+          <aside class="border border-white/15 bg-white/[0.02] p-6">
+            <p class="font-mono text-xs uppercase tracking-[0.2em] text-canvas/50">{cs.sidebarTitle}</p>
+            <dl class="mt-4 space-y-5">
+              {cs.sidebar.map((s) => (
+                <div>
+                  <dt class="font-mono text-2xl font-bold text-success">{s.value}</dt>
+                  <dd class="mt-1 text-xs text-canvas/60">{s.label}</dd>
+                </div>
+              ))}
+            </dl>
+          </aside>
+        </div>
+        {cs.outro && (
+          <div class="mt-12 border-l-2 border-infra/60 bg-white/[0.02] p-6">
+            <h3 class="text-xl">{cs.outro.title}</h3>
+            <p class="mt-2 text-sm text-canvas/65">{cs.outro.body}</p>
+          </div>
+        )}
+      </div>
+    </section>
+
+    <section class="border-t border-white/10">
+      <div class="mx-auto max-w-6xl px-6 py-24">
+        <p class="font-mono text-sm uppercase tracking-[0.2em] text-impact">// {cs.ctaEyebrow}</p>
+        <h2 class="mt-5 max-w-3xl text-4xl md:text-5xl">{cs.ctaTitle}</h2>
+        <p class="mt-5 max-w-2xl text-lg text-canvas/70">{cs.ctaBody}</p>
+        <div class="mt-8 flex flex-wrap gap-4">
+          <a href="/contact" class="bg-impact px-8 py-4 font-display text-lg font-bold text-canvas transition-opacity hover:opacity-90">{cs.ctaLabel}</a>
+          <a href="/case-studies" class="border border-white/30 px-8 py-4 font-display text-lg font-bold text-canvas transition-colors hover:border-impact">All case studies</a>
+        </div>
+      </div>
+    </section>
+  </main>
+</BaseLayout>

@@ -1,0 +1,43 @@
+---
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import { caseStudies } from '../../data/case-studies';
+---
+<BaseLayout
+  title="Case Studies | Proven AI Search Results | Penpixel Creative"
+  description="Real impact for real leaders: 92.1% AI citation growth, 1,500% organic surges, enterprise migrations. See how machine-first architecture performs."
+>
+  <main>
+    <section class="mx-auto max-w-6xl px-6 pt-20 pb-16 md:pt-28">
+      <p class="font-mono text-sm uppercase tracking-[0.2em] text-success">// proven results</p>
+      <h1 class="mt-5 max-w-4xl text-5xl md:text-6xl">The work shows up in the numbers.</h1>
+      <p class="mt-6 max-w-2xl text-lg text-canvas/80">
+        From global enterprise estates to legacy archives: how machine-first architecture
+        converts invisibility into cited authority.
+      </p>
+    </section>
+
+    <section class="border-t border-white/10">
+      <div class="mx-auto max-w-6xl px-6 py-16">
+        <div class="grid gap-6 md:grid-cols-2">
+          {caseStudies.map((cs) => (
+            <a href={`/case-studies/${cs.slug}`} class="group block border-l-2 border-success/60 bg-white/[0.02] p-7 transition-colors hover:bg-white/[0.05]">
+              <p class="font-mono text-xs uppercase tracking-[0.2em] text-canvas/50">// {cs.eyebrow}</p>
+              <p class="mt-4 font-mono text-4xl font-bold text-success">{cs.homeMetric.value}</p>
+              <p class="mt-1 text-sm text-canvas/70">{cs.homeMetric.label}</p>
+              <h2 class="mt-4 text-xl">{cs.headline}</h2>
+              <p class="mt-2 font-mono text-xs uppercase tracking-wider text-canvas/40">{cs.client}</p>
+              <p class="mt-4 font-mono text-sm text-impact opacity-0 transition-opacity group-hover:opacity-100">Read the case study →</p>
+            </a>
+          ))}
+        </div>
+      </div>
+    </section>
+
+    <section class="border-t border-white/10">
+      <div class="mx-auto max-w-6xl px-6 py-24">
+        <h2 class="max-w-3xl text-4xl md:text-5xl">Your numbers could be next.</h2>
+        <a href="/contact" class="mt-8 inline-block bg-impact px-8 py-4 font-display text-lg font-bold text-canvas transition-opacity hover:opacity-90">Get the Diagnosis</a>
+      </div>
+    </section>
+  </main>
+</BaseLayout>

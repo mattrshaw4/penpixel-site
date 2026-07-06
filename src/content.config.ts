@@ -13,16 +13,6 @@ const blog = defineCollection({
   }),
 });
 
-// Case studies, standardized under /case-studies/<slug>.
-const caseStudies = defineCollection({
-  loader: glob({ pattern: '**/*.md', base: './src/content/case-studies' }),
-  schema: z.object({
-    title: z.string(),
-    description: z.string(),
-    client: z.string(),
-    result: z.string(), // headline outcome, e.g. "92.1% AI citation growth"
-    pubDate: z.coerce.date(),
-  }),
-});
+// Case studies live in src/data/case-studies.ts (structured data + [slug].astro renderer).
 
-export const collections = { blog, caseStudies };
+export const collections = { blog };
