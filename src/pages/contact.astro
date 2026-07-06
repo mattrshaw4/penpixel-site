@@ -1,7 +1,6 @@
 ---
 import BaseLayout from '../layouts/BaseLayout.astro';
 import { SITE } from '../consts';
-const diagnosisMailto = `mailto:${SITE.email}?subject=AI-Search%20Diagnosis%20request`;
 ---
 <BaseLayout
   title="Contact Penpixel Creative | Initialize Your AI-Search Diagnosis"
@@ -11,44 +10,82 @@ const diagnosisMailto = `mailto:${SITE.email}?subject=AI-Search%20Diagnosis%20re
     <section class="mx-auto max-w-6xl px-6 pt-20 pb-16 md:pt-28">
       <p class="font-mono text-sm uppercase tracking-[0.2em] text-impact">// initialize diagnosis</p>
       <h1 class="mt-5 max-w-4xl text-5xl md:text-6xl">Start with the diagnosis.</h1>
-      <p class="mt-6 max-w-2xl text-lg text-canvas/80">
-        Two ways in, depending on where you are.
-      </p>
+      <p class="mt-6 max-w-2xl text-lg text-canvas/80">Two ways in, depending on where you are.</p>
     </section>
 
     <section class="border-t border-white/10">
-      <div class="mx-auto grid max-w-6xl gap-px overflow-hidden border border-white/10 bg-white/10 px-0 sm:grid-cols-2">
-        <div class="bg-authority p-8">
+      <div class="mx-auto grid max-w-6xl gap-12 px-6 py-16 md:grid-cols-5">
+        <!-- The form: primary path -->
+        <div class="md:col-span-3">
           <p class="font-mono text-xs uppercase tracking-[0.2em] text-impact">// ready to start</p>
-          <h2 class="mt-3 text-2xl">Get the diagnosis</h2>
-          <p class="mt-3 text-canvas/70">
-            You already know AI search is leaving you out and you want the read on why.
-            Send us your brand and your site, and we&rsquo;ll come back with where you stand.
-          </p>
-          <a href={diagnosisMailto} class="mt-6 inline-block bg-impact px-6 py-3 font-display font-bold text-canvas transition-opacity hover:opacity-90">Request the diagnosis</a>
-        </div>
-        <div class="bg-authority p-8">
-          <p class="font-mono text-xs uppercase tracking-[0.2em] text-canvas/50">// need more detail</p>
-          <h2 class="mt-3 text-2xl">Book a call</h2>
-          <p class="mt-3 text-canvas/70">
-            Want to understand the approach before committing? Book a short call and we&rsquo;ll
-            walk through how it works and whether it fits.
-          </p>
-          <a href={SITE.booking} target="_blank" rel="noopener noreferrer" class="mt-6 inline-block border border-white/30 px-6 py-3 font-display font-bold text-canvas transition-colors hover:border-impact">Book a call</a>
-        </div>
-      </div>
-    </section>
+          <h2 class="mt-3 text-2xl">Request the diagnosis</h2>
+          <p class="mt-3 text-canvas/70">Tell us who you are and where it hurts. We&rsquo;ll come back with next steps — no automated drip, a real reply.</p>
 
-    <section class="border-t border-white/10">
-      <div class="mx-auto max-w-6xl px-6 py-16">
-        <p class="font-mono text-sm uppercase tracking-[0.2em] text-canvas/50">// direct</p>
-        <p class="mt-4 text-canvas/70">
-          Prefer email? Reach us at
-          <a href={`mailto:${SITE.email}`} class="text-impact hover:underline">{SITE.email}</a>.
-          Based in {SITE.locality}, {SITE.region}.
-        </p>
-        <p class="mt-6 font-mono text-xs text-canvas/40">// a full intake form is the next build phase</p>
+          <form id="diagnosis-form" method="post" action="/api/contact" class="mt-8 grid gap-5" novalidate>
+            <div class="grid gap-5 sm:grid-cols-2">
+              <label class="block">
+                <span class="font-mono text-xs uppercase tracking-[0.2em] text-canvas/50">Name *</span>
+                <input name="name" type="text" required maxlength="100" autocomplete="name"
+                  class="mt-2 w-full border border-white/20 bg-white/[0.03] px-4 py-3 text-canvas placeholder:text-canvas/30 focus:border-impact focus:outline-none" placeholder="Your name" />
+              </label>
+              <label class="block">
+                <span class="font-mono text-xs uppercase tracking-[0.2em] text-canvas/50">Work email *</span>
+                <input name="email" type="email" required maxlength="254" autocomplete="email"
+                  class="mt-2 w-full border border-white/20 bg-white/[0.03] px-4 py-3 text-canvas placeholder:text-canvas/30 focus:border-impact focus:outline-none" placeholder="you@company.com" />
+              </label>
+            </div>
+            <div class="grid gap-5 sm:grid-cols-2">
+              <label class="block">
+                <span class="font-mono text-xs uppercase tracking-[0.2em] text-canvas/50">Company</span>
+                <input name="company" type="text" maxlength="150" autocomplete="organization"
+                  class="mt-2 w-full border border-white/20 bg-white/[0.03] px-4 py-3 text-canvas placeholder:text-canvas/30 focus:border-impact focus:outline-none" placeholder="Company" />
+              </label>
+              <label class="block">
+                <span class="font-mono text-xs uppercase tracking-[0.2em] text-canvas/50">Website</span>
+                <input name="website" type="url" maxlength="200" autocomplete="url"
+                  class="mt-2 w-full border border-white/20 bg-white/[0.03] px-4 py-3 text-canvas placeholder:text-canvas/30 focus:border-impact focus:outline-none" placeholder="https://" />
+              </label>
+            </div>
+            <label class="block">
+              <span class="font-mono text-xs uppercase tracking-[0.2em] text-canvas/50">What&rsquo;s the problem? *</span>
+              <textarea name="message" required maxlength="5000" rows="5"
+                class="mt-2 w-full border border-white/20 bg-white/[0.03] px-4 py-3 text-canvas placeholder:text-canvas/30 focus:border-impact focus:outline-none" placeholder="e.g. We rank on Google but never appear in ChatGPT or Perplexity answers."></textarea>
+            </label>
+
+            <!-- Honeypot: hidden from humans, irresistible to bots. -->
+            <div class="hidden" aria-hidden="true">
+              <label>Leave this field empty<input name="company_website_hp" type="text" tabindex="-1" autocomplete="off" /></label>
+            </div>
+
+            <!-- Turnstile widget: verified server-side; this is the bot gate. -->
+            <div class="cf-turnstile" data-sitekey={SITE.turnstileSiteKey} data-theme="dark"></div>
+
+            <div class="flex flex-wrap items-center gap-5">
+              <button type="submit" class="bg-impact px-8 py-4 font-display text-lg font-bold text-canvas transition-opacity hover:opacity-90 disabled:opacity-40">Request the diagnosis</button>
+              <p id="form-status" role="status" aria-live="polite" class="font-mono text-sm text-canvas/60"></p>
+            </div>
+          </form>
+        </div>
+
+        <!-- Booking: secondary path -->
+        <aside class="md:col-span-2">
+          <div class="border border-white/15 bg-white/[0.02] p-8">
+            <p class="font-mono text-xs uppercase tracking-[0.2em] text-canvas/50">// need more detail</p>
+            <h2 class="mt-3 text-2xl">Book a call</h2>
+            <p class="mt-3 text-canvas/70">Want to understand the approach before committing? Book a short call and we&rsquo;ll walk through how it works and whether it fits.</p>
+            <a href={SITE.booking} target="_blank" rel="noopener noreferrer" class="mt-6 inline-block border border-white/30 px-6 py-3 font-display font-bold text-canvas transition-colors hover:border-impact">Book a call</a>
+          </div>
+          <p class="mt-6 text-sm text-canvas/60">
+            Prefer email? <a href={`mailto:${SITE.email}`} class="text-impact hover:underline">{SITE.email}</a><br />
+            Based in {SITE.locality}, {SITE.region}.
+          </p>
+        </aside>
       </div>
     </section>
   </main>
+
+  <!-- Turnstile loader (external, from Cloudflare — allowed in CSP) -->
+  <script is:inline src="https://challenges.cloudflare.com/turnstile/v0/api.js" async defer></script>
+
+  <script is:inline src="/js/contact-form.js" defer></script>
 </BaseLayout>
