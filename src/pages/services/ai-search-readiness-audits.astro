@@ -1,0 +1,95 @@
+---
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import ServiceSchema from '../../components/ServiceSchema.astro';
+
+const pillars = [
+  { n: '01', title: 'Technical Infrastructure', sub: '(Extractive Efficiency)', lede: 'Can machines buy from you?', body: 'We optimize your Schema markup, site architecture, and UCP alignment so that AI bots not only index your site — they also understand your product catalog and signup flows.' },
+  { n: '02', title: 'Information Gain', sub: '(Content Authority)', lede: 'AI rewards unique, high-value data.', body: 'We audit your content for "Information Gain," identifying where your library is stale and where you need to inject fresh, authoritative answers into the Knowledge Graph.' },
+  { n: '03', title: 'Entity Integrity', sub: '(Visual & Verbal Trust)', lede: 'Consistency is the primary trust signal for AI.', body: 'We forensically audit your visual and verbal identity across the web. If your brand looks or sounds inconsistent, you lose the trust vote.' },
+];
+const engines = ['ChatGPT', 'Claude', 'Perplexity', 'Google AI Mode', 'Gemini'];
+---
+<BaseLayout
+  title="AI Search Readiness Audit | Diagnosing Your SaaS Visibility Gap"
+  description="Expose why AI agents ignore your brand. Our forensic audit identifies technical friction, entity inconsistencies, and extractive efficiency gaps. Get the diagnosis."
+>
+  <ServiceSchema
+    name="AI Search Readiness Audit"
+    description="Forensic audit identifying technical friction, entity inconsistencies, and extractive efficiency gaps preventing AI citation."
+    path="/services/ai-search-readiness-audits"
+  />
+  <main>
+    <section class="mx-auto max-w-6xl px-6 pt-20 pb-16 md:pt-28">
+      <p class="font-mono text-sm uppercase tracking-[0.2em] text-impact">// source cited: the knowledge graph</p>
+      <h1 class="mt-5 max-w-4xl text-5xl md:text-6xl">The Diagnosis: Why Agents Are Ignoring Your Brand.</h1>
+      <p class="mt-6 max-w-2xl text-lg text-canvas/80">
+        Traditional audits look for crawl errors. We look for Extractive Efficiency. We stress-test
+        your digital entity against ChatGPT, Claude, Perplexity, and Gemini to identify the structural
+        friction preventing you from owning your market&rsquo;s Share of Voice.
+      </p>
+      <a href="/contact" class="mt-10 inline-block bg-impact px-6 py-3 font-display font-bold text-canvas transition-opacity hover:opacity-90">Book Your Introductory Call</a>
+    </section>
+
+    <section class="border-t border-white/10">
+      <div class="mx-auto max-w-6xl px-6 py-20">
+        <h2 class="max-w-3xl text-3xl md:text-4xl">Visibility vs. Availability</h2>
+        <p class="mt-6 max-w-2xl text-canvas/70">Messy technical setups trigger &ldquo;low confidence&rdquo; scores from AI models. We test your brand against the systems your buyers actually ask:</p>
+        <div class="mt-8 flex flex-wrap gap-3">
+          {engines.map((e) => (
+            <span class="border border-infra/60 px-4 py-2 font-mono text-sm text-canvas/80">{e}</span>
+          ))}
+        </div>
+        <p class="mt-8 font-display text-2xl font-bold text-canvas">If they can&rsquo;t understand you, they won&rsquo;t recommend you.</p>
+      </div>
+    </section>
+
+    <section class="border-t border-white/10">
+      <div class="mx-auto max-w-6xl px-6 py-20">
+        <h2 class="text-3xl md:text-4xl">The 3-Pillar Audit</h2>
+        <p class="mt-6 max-w-2xl text-canvas/70">We don&rsquo;t guess. We inspect the three critical layers of your digital ecosystem to determine precisely where your authority is breaking down.</p>
+        <div class="mt-10 grid gap-6 md:grid-cols-3">
+          {pillars.map((p) => (
+            <article class="border-l-2 border-ai/60 bg-white/[0.02] p-7">
+              <p class="font-mono text-xs text-canvas/40">{p.n}</p>
+              <h3 class="mt-3 text-xl">{p.title}</h3>
+              <p class="font-mono text-xs text-ai">{p.sub}</p>
+              <p class="mt-3 font-body text-canvas/90">{p.lede}</p>
+              <p class="mt-2 text-sm text-canvas/65">{p.body}</p>
+            </article>
+          ))}
+        </div>
+      </div>
+    </section>
+
+    <section class="border-t border-white/10">
+      <div class="mx-auto max-w-6xl px-6 py-20">
+        <h2 class="text-3xl md:text-4xl">Strategic Engagement Models</h2>
+        <p class="mt-6 max-w-2xl text-canvas/70">Specialized intervention for teams that already have execution capacity.</p>
+        <div class="mt-10 grid gap-6 md:grid-cols-2">
+          <article class="border-l-2 border-impact/60 bg-white/[0.02] p-7">
+            <p class="font-mono text-xs uppercase tracking-[0.2em] text-impact">status: recommended</p>
+            <h3 class="mt-3 text-2xl">The Full Ecosystem Audit</h3>
+            <p class="mt-3 text-canvas/70">The definitive architectural blueprint for total market authority.</p>
+          </article>
+          <article class="border-l-2 border-infra/60 bg-white/[0.02] p-7">
+            <h3 class="text-2xl">Targeted Diagnostics</h3>
+            <p class="mt-3 text-canvas/70">Already have a dev team? Standalone audits to plug specific gaps:</p>
+            <ul class="mt-4 space-y-3 text-sm text-canvas/70">
+              <li><span class="font-display font-bold text-canvas">Technical Infrastructure only</span> — liquidate deep architectural debt and fix extractive efficiency.</li>
+              <li><span class="font-display font-bold text-canvas">Content Authority only</span> — optimize your library for high information gain and AI citation.</li>
+              <li><span class="font-display font-bold text-canvas">Entity Integrity only</span> — harden brand signals to eliminate hallucinations and model distrust.</li>
+            </ul>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <section class="border-t border-white/10">
+      <div class="mx-auto max-w-6xl px-6 py-24">
+        <h2 class="max-w-3xl text-4xl md:text-5xl">You Can&rsquo;t Fix What You Can&rsquo;t See.</h2>
+        <p class="mt-5 max-w-2xl text-lg text-canvas/70">Traditional rankings are irrelevant if AI agents ignore you. Expose the technical barriers destroying your pipeline today.</p>
+        <a href="/contact" class="mt-8 inline-block bg-impact px-8 py-4 font-display text-lg font-bold text-canvas transition-opacity hover:opacity-90">Get the Diagnosis</a>
+      </div>
+    </section>
+  </main>
+</BaseLayout>

@@ -1,0 +1,117 @@
+---
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import ServiceSchema from '../../components/ServiceSchema.astro';
+
+const pillars = [
+  { n: '01', title: 'Technical Defense', sub: '(Protecting the Infrastructure)', lede: 'Monitor infrastructure to ensure bots never face extraction friction.', items: [
+    ['Infrastructure Monitoring', 'Prevent bot friction and technical crawl errors daily.'],
+    ['Optimize Schema', 'Update structured data to reflect real-time business changes.'],
+    ['API Maintenance', 'Ensure seamless handshakes for autonomous agent transactions.'],
+  ]},
+  { n: '02', title: 'Content Freshness', sub: '(Feeding the Knowledge Graph)', lede: 'Inject high-information-gain data to force continued AI citation.', items: [
+    ['Inject Information Gain', 'Feed proprietary SME data to force continued citations.'],
+    ['Restructure Assets', 'Convert static documentation into machine-readable "liquid" HTML.'],
+    ['Semantic Clustering', 'Reinforce topical authority to prevent competitor displacement.'],
+  ]},
+  { n: '03', title: 'Sentiment Monitoring', sub: '(Watching the Narrative)', lede: 'Audit mentions to eliminate hallucinations and protect brand trust.', items: [
+    ['Entity Audits', 'Scan cross-platform mentions to ensure factual brand accuracy.'],
+    ['Hallucination Repair', 'Correct model errors that misrepresent your product capabilities.'],
+    ['Signal Hardening', 'Synchronize off-site trust signals to protect model confidence.'],
+  ]},
+];
+
+const tiers = [
+  { icon: '🛡', name: 'Defense', tag: 'The Baseline', desc: 'Maintain technical health and ensure brand data remains accurate.', focus: 'Maintenance & Protection', accent: 'border-infra/60' },
+  { icon: '📈', name: 'Growth', tag: 'The Standard', desc: 'Aggressively publish answers to displace competitors in AI results.', focus: 'Expansion & Ranking', accent: 'border-success/60' },
+  { icon: '👑', name: 'Dominance', tag: 'The Premium', desc: 'Own the narrative with maximum content volume and PR.', focus: 'Leadership & Authority', accent: 'border-impact/60' },
+];
+---
+<BaseLayout
+  title="AI Entity Management | Defensive Brand Authority for SaaS"
+  description="Protect your brand from AI hallucinations and data decay. We provide active entity management to ensure your SaaS brand remains the definitive source of truth."
+>
+  <ServiceSchema
+    name="Entity Management"
+    description="Active entity management protecting SaaS brands from AI hallucinations and data decay across the web."
+    path="/services/entity-management"
+  />
+  <main>
+    <section class="mx-auto max-w-6xl px-6 pt-20 pb-16 md:pt-28">
+      <p class="font-mono text-sm uppercase tracking-[0.2em] text-impact">// source cited: the signal layer</p>
+      <h1 class="mt-5 max-w-4xl text-5xl md:text-6xl">Visibility is Leased, Not Owned.</h1>
+      <p class="mt-6 max-w-2xl text-lg text-canvas/80">
+        AI models retrain constantly. Silence is a signal of decay. If your data nodes drift, your
+        &ldquo;Confidence Score&rdquo; collapses. We manage your digital entity to ensure total market authority.
+      </p>
+      <a href="/contact" class="mt-10 inline-block bg-impact px-6 py-3 font-display font-bold text-canvas transition-opacity hover:opacity-90">Secure Your Position</a>
+    </section>
+
+    <section class="border-t border-white/10">
+      <div class="mx-auto max-w-6xl px-6 py-20">
+        <h2 class="max-w-3xl text-3xl md:text-4xl">Why Brands Disappear from Search.</h2>
+        <div class="mt-8 grid gap-8 md:grid-cols-2">
+          <p class="text-canvas/70">AI models lose confidence in brands with conflicting signals. Silence allows competitors to displace you as the &ldquo;Source of Truth.&rdquo;</p>
+          <p class="text-canvas/70">The answer is active reinforcement of your technical, verbal, and visual signals — continuously, not once.</p>
+        </div>
+        <div class="mt-12 grid gap-6 md:grid-cols-3">
+          {pillars.map((p) => (
+            <article class="border-l-2 border-infra/60 bg-white/[0.02] p-7">
+              <p class="font-mono text-xs text-canvas/40">{p.n}</p>
+              <h3 class="mt-3 text-xl">{p.title}</h3>
+              <p class="font-mono text-xs text-infra">{p.sub}</p>
+              <p class="mt-3 text-sm text-canvas/90">{p.lede}</p>
+              <ul class="mt-4 space-y-2 text-sm text-canvas/65">
+                {p.items.map(([k, v]) => (
+                  <li><span class="font-display font-bold text-canvas/90">{k}:</span> {v}</li>
+                ))}
+              </ul>
+            </article>
+          ))}
+        </div>
+      </div>
+    </section>
+
+    <section class="border-t border-white/10">
+      <div class="mx-auto max-w-6xl px-6 py-20">
+        <h2 class="max-w-3xl text-3xl md:text-4xl">We Don&rsquo;t Send Timesheets. We Send Intelligence.</h2>
+        <div class="mt-8 grid items-start gap-10 md:grid-cols-2">
+          <div>
+            <p class="text-canvas/70">Most agencies send you a list of tasks they completed. We send you a Monthly Visibility Report.</p>
+            <p class="mt-4 text-canvas/70">You pay for measurable outcomes, not agency billable hours. Monthly reports quantify your &ldquo;Share of Model&rdquo; and sentiment — strategic clarity to justify your budget in the boardroom.</p>
+          </div>
+          <div class="border border-white/15 bg-white/[0.02] p-6 font-mono text-sm">
+            <p class="flex items-center justify-between text-xs uppercase tracking-[0.2em] text-canvas/50">Monthly Visibility Report <span class="text-success">● live tracking</span></p>
+            <p class="mt-6 flex items-baseline justify-between text-canvas/80">Share of Voice <span class="text-2xl font-bold text-canvas">34.2% <span class="text-sm text-success">▲ +4.5% vs comp</span></span></p>
+            <p class="mt-4 flex items-baseline justify-between text-canvas/80">Sentiment Score <span class="text-2xl font-bold text-canvas">9.8/10 <span class="text-sm text-success">● positive signal</span></span></p>
+            <p class="mt-6 text-xs uppercase tracking-[0.2em] text-canvas/40">authority trajectory ↗</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="border-t border-white/10">
+      <div class="mx-auto max-w-6xl px-6 py-20">
+        <h2 class="text-3xl md:text-4xl">Choose Your Aggression Level</h2>
+        <div class="mt-10 grid gap-6 md:grid-cols-3">
+          {tiers.map((t) => (
+            <article class:list={['border-l-2 bg-white/[0.02] p-7', t.accent]}>
+              <p class="text-2xl" aria-hidden="true">{t.icon}</p>
+              <h3 class="mt-3 text-2xl">{t.name}</h3>
+              <p class="font-mono text-xs uppercase tracking-[0.2em] text-canvas/50">{t.tag}</p>
+              <p class="mt-3 text-sm text-canvas/70">{t.desc}</p>
+              <p class="mt-4 font-mono text-xs text-canvas/50">Primary focus: <span class="text-canvas/80">{t.focus}</span></p>
+            </article>
+          ))}
+        </div>
+      </div>
+    </section>
+
+    <section class="border-t border-white/10">
+      <div class="mx-auto max-w-6xl px-6 py-24">
+        <h2 class="max-w-3xl text-4xl md:text-5xl">Protect Your Territory.</h2>
+        <p class="mt-5 max-w-2xl text-lg text-canvas/70">Competitors are fighting for your answers. Don&rsquo;t let them. Secure your market share with active entity management.</p>
+        <a href="/contact" class="mt-8 inline-block bg-impact px-8 py-4 font-display text-lg font-bold text-canvas transition-opacity hover:opacity-90">Get the Diagnosis</a>
+      </div>
+    </section>
+  </main>
+</BaseLayout>

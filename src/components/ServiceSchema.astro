@@ -1,0 +1,17 @@
+---
+// Service JSON-LD. Controlled data only — no user input interpolated.
+import { SITE } from '../consts';
+interface Props { name: string; description: string; path: string; }
+const { name, description, path } = Astro.props;
+const schema = {
+  '@context': 'https://schema.org',
+  '@type': 'Service',
+  name,
+  description,
+  url: `${SITE.url}${path}`,
+  serviceType: 'AI Search Optimization',
+  provider: { '@id': `${SITE.url}/#organization` },
+  areaServed: { '@type': 'Country', name: 'United States' },
+};
+---
+<script type="application/ld+json" set:html={JSON.stringify(schema)} is:inline />

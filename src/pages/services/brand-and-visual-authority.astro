@@ -1,0 +1,111 @@
+---
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import ServiceSchema from '../../components/ServiceSchema.astro';
+
+const builds = [
+  { n: '01', title: 'Visual Identity Engineering', lede: 'More than a logo.', body: 'Systems signaling enterprise-grade authority to both humans and machines.' },
+  { n: '02', title: 'Multimedia Branding', lede: 'Assets for the modern web.', body: 'Recognizable wrappers for content discovered via video and audio.' },
+  { n: '03', title: 'Cross-Platform Alignment', lede: 'The "Entity" check.', body: 'Forensic audits ensuring visual fingerprints match perfectly across the web.' },
+  { n: '04', title: 'Public Sentiment & PR', lede: 'Managing the narrative.', body: 'Securing placements that verify your authority within the knowledge graph.' },
+];
+
+const deliverables = [
+  { title: 'The Brand Kit', desc: 'An optimized library of assets ready for machine deployment.' },
+  { title: 'The Guidelines', desc: 'Strict rules ensuring internal teams never break visual consistency.' },
+  { title: 'The Multimedia Suite', desc: 'Templates for high-signal video, audio, and social content.' },
+];
+---
+<BaseLayout
+  title="AI Brand & Visual Authority | Multimodal Trust for B2B SaaS"
+  description="Don't let weak visual signals destroy your AI credibility. We engineer brand systems that signal enterprise-grade authority to multimodal AI agents and humans."
+>
+  <ServiceSchema
+    name="Brand & Visual Authority"
+    description="Brand systems engineered to signal enterprise-grade authority to multimodal AI agents and human buyers."
+    path="/services/brand-and-visual-authority"
+  />
+  <main>
+    <section class="mx-auto max-w-6xl px-6 pt-20 pb-16 md:pt-28">
+      <p class="font-mono text-sm uppercase tracking-[0.2em] text-impact">// source cited: the trust layer</p>
+      <h1 class="mt-5 max-w-4xl text-5xl md:text-6xl">Your Brand Identity is a Trust Signal.</h1>
+      <p class="mt-6 max-w-2xl text-lg text-canvas/80">
+        Multimodal AI analyzes images and layout to determine legitimacy. If you don&rsquo;t look
+        the part, you lose the citation. Align your visual signals to secure AI-driven discovery.
+      </p>
+      <a href="/contact" class="mt-10 inline-block bg-impact px-6 py-3 font-display font-bold text-canvas transition-opacity hover:opacity-90">Audit My Visual Signals</a>
+    </section>
+
+    <section class="border-t border-white/10">
+      <div class="mx-auto max-w-6xl px-6 py-20">
+        <h2 class="max-w-3xl text-3xl md:text-4xl">&ldquo;Pretty&rdquo; is Optional. &ldquo;Consistent&rdquo; is Mandatory.</h2>
+        <div class="mt-8 grid items-start gap-10 md:grid-cols-2">
+          <div>
+            <p class="text-canvas/70">Most agencies treat design as decoration. We treat it as data. Large Language Models and search engines look for patterns. If your logo, color palette, and visual assets vary between your website, your LinkedIn profile, and industry directories, the AI gets confused about who you are.</p>
+            <p class="mt-4 font-display text-xl font-bold text-canvas">Confusion kills authority.</p>
+            <p class="mt-4 text-canvas/70">We align your visual and verbal identity so that every time an AI &ldquo;sees&rdquo; your brand, it reinforces your entity confidence score.</p>
+          </div>
+          <div class="border border-white/15 bg-white/[0.02] p-6 font-mono text-sm">
+            <p class="text-xs uppercase tracking-[0.2em] text-canvas/50">Entity Signal Pattern <span class="text-success">// verified</span></p>
+            <p class="mt-6 text-canvas/80">PRIMARY_MARK.SVG<br /><span class="text-canvas/50">W:50px / H:50px</span></p>
+            <p class="mt-4 text-canvas/80">HEX: <span class="text-impact">#BF00BF</span><br />HEX: #000000</p>
+            <p class="mt-4 text-canvas/80">Aa <span class="text-canvas/50">FONT: BLINKER / WGH: 700</span><br /><span class="text-canvas/50">BODY: GEIST / MONO: GEIST MONO</span></p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="border-t border-white/10">
+      <div class="mx-auto max-w-6xl px-6 py-20">
+        <h2 class="text-3xl md:text-4xl">Engineering Visual Trust</h2>
+        <p class="mt-6 max-w-2xl text-canvas/70">We build market-ready brand systems that signal &ldquo;Enterprise Quality&rdquo; to both humans and machines.</p>
+        <div class="mt-10 grid gap-6 sm:grid-cols-2">
+          {builds.map((b) => (
+            <article class="border-l-2 border-success/60 bg-white/[0.02] p-7">
+              <p class="font-mono text-xs text-canvas/40">{b.n}</p>
+              <h3 class="mt-3 text-xl">{b.title}</h3>
+              <p class="mt-2 font-body text-canvas/90">{b.lede}</p>
+              <p class="mt-2 text-sm text-canvas/65">{b.body}</p>
+            </article>
+          ))}
+        </div>
+      </div>
+    </section>
+
+    <section class="border-t border-white/10">
+      <div class="mx-auto max-w-6xl px-6 py-20">
+        <p class="font-mono text-sm uppercase tracking-[0.2em] text-canvas/50">// the leadership</p>
+        <h2 class="mt-5 max-w-3xl text-3xl md:text-4xl">Led by a Creative Director, Not an SEO.</h2>
+        <p class="mt-6 max-w-2xl text-canvas/70">
+          We bring veteran B2B leadership to the technical search game. At Penpixel, our design
+          division is led by <a href="/about" class="text-impact hover:underline">Tony Moles</a>,
+          a veteran Creative Director with deep experience in high-level B2B agency environments.
+          Fortune 500-level creative direction for AI-search readiness.
+        </p>
+        <p class="mt-6 font-display text-2xl font-bold text-canvas">&ldquo;We make you look like you deserve to be there.&rdquo;</p>
+        <!-- TODO: add Tony Moles portrait asset (self-hosted, not Squarespace CDN) -->
+      </div>
+    </section>
+
+    <section class="border-t border-white/10">
+      <div class="mx-auto max-w-6xl px-6 py-20">
+        <h2 class="text-3xl md:text-4xl">What We Build.</h2>
+        <div class="mt-10 grid gap-6 md:grid-cols-3">
+          {deliverables.map((d) => (
+            <article class="border-t-2 border-success/60 pt-5">
+              <h3 class="text-xl">{d.title}</h3>
+              <p class="mt-2 text-sm text-canvas/65">{d.desc}</p>
+            </article>
+          ))}
+        </div>
+      </div>
+    </section>
+
+    <section class="border-t border-white/10">
+      <div class="mx-auto max-w-6xl px-6 py-24">
+        <h2 class="max-w-3xl text-4xl md:text-5xl">Look Like the Leader You Are.</h2>
+        <p class="mt-5 max-w-2xl text-lg text-canvas/70">Weak visual identity undermines your hard-won technical SEO. Build a brand that AI tools trust instantly.</p>
+        <a href="/contact" class="mt-8 inline-block bg-impact px-8 py-4 font-display text-lg font-bold text-canvas transition-opacity hover:opacity-90">Build Your Authority</a>
+      </div>
+    </section>
+  </main>
+</BaseLayout>

@@ -1,0 +1,114 @@
+---
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import ServiceSchema from '../../components/ServiceSchema.astro';
+
+const layers = [
+  { n: '01', title: 'Technical Infrastructure', sub: '(The Foundation)', lede: 'Ensure machines find, parse, and recommend your technical architecture.', items: [
+    ['Remediation', 'Eliminating crawl errors and JS bottlenecks that hide product data.'],
+    ['Performance', 'Optimizing for Core Web Vitals to pass machine trust-tests.'],
+    ['Schema', 'Building the structured code that feeds the Knowledge Graph.'],
+  ]},
+  { n: '02', title: 'Content Operations', sub: '(The Answers)', lede: 'Restructure your content library for high-velocity Answer Engine Optimization.', items: [
+    ['AEO', 'Restructuring libraries for direct Answer Engine Optimization.'],
+    ['Liquidity', 'Converting "solid" content into "liquid" structured HTML for ingestion.'],
+    ['Distributing', 'Distributing authority content to high-signal platforms.'],
+  ]},
+  { n: '03', title: 'Brand & Visual Alignment', sub: '(The Trust)', lede: 'Engineer design systems that pass the multimodal AI trust-test.', items: [
+    ['Visual Trust', 'Design systems that signal "Enterprise Quality" to multimodal AI.'],
+    ['Consistency', 'Eliminating conflicting data nodes that cause AI hallucinations.'],
+    ['Reputation', 'Managing the off-site PR signals that validate your authority.'],
+  ]},
+];
+---
+<BaseLayout
+  title="Strategic AI Search Implementation | Technical Remediation for SaaS"
+  description="Liquidate architectural debt and bridge the machine-readability gap. We deploy the technical, verbal, and visual infrastructure required for AI citation dominance."
+>
+  <ServiceSchema
+    name="Strategic Implementation"
+    description="Technical remediation deploying the machine-readable infrastructure required for AI citation: schema, performance, content operations, and brand alignment."
+    path="/services/strategic-implementation"
+  />
+  <main>
+    <section class="mx-auto max-w-6xl px-6 pt-20 pb-16 md:pt-28">
+      <p class="font-mono text-sm uppercase tracking-[0.2em] text-impact">// source cited: the execution layer</p>
+      <h1 class="mt-5 max-w-4xl text-5xl md:text-6xl">Move From Diagnosis to Dominance.</h1>
+      <p class="mt-6 max-w-2xl text-lg text-canvas/80">
+        <strong class="text-canvas">A roadmap is only as good as the team that executes it.</strong>
+        Strategy without infrastructure is just a slower way to lose market share. We liquidate the
+        architectural debt causing your 100% agent abandonment rate — measurable increases in
+        conversion volume by reducing machine-processing friction.
+      </p>
+      <a href="/contact" class="mt-10 inline-block bg-impact px-6 py-3 font-display font-bold text-canvas transition-opacity hover:opacity-90">Discuss Your Roadmap</a>
+    </section>
+
+    <section class="border-t border-white/10">
+      <div class="mx-auto max-w-6xl px-6 py-20">
+        <h2 class="max-w-3xl text-3xl md:text-4xl">You Have a Marketing Team. But Do They Speak &ldquo;Machine&rdquo;?</h2>
+        <div class="mt-8 grid gap-8 md:grid-cols-3">
+          <p class="text-canvas/70">Internal teams excel at human persuasion but lack machine-readability skillsets.</p>
+          <p class="text-canvas/70">We don&rsquo;t replace your team; we force-multiply their output.</p>
+          <p class="text-canvas/70">We handle the specialized infrastructure so you can run the business.</p>
+        </div>
+      </div>
+    </section>
+
+    <section class="border-t border-white/10">
+      <div class="mx-auto max-w-6xl px-6 py-20">
+        <h2 class="max-w-3xl text-3xl md:text-4xl">Technical Remediation Across the Digital Estate</h2>
+        <p class="mt-6 max-w-2xl text-canvas/70">We execute the recommendations from your AI-Search Readiness Audit across the three critical layers of your digital entity.</p>
+        <div class="mt-10 grid gap-6 md:grid-cols-3">
+          {layers.map((l) => (
+            <article class="border-l-2 border-ai/60 bg-white/[0.02] p-7">
+              <p class="font-mono text-xs text-canvas/40">{l.n}</p>
+              <h3 class="mt-3 text-xl">{l.title}</h3>
+              <p class="font-mono text-xs text-ai">{l.sub}</p>
+              <p class="mt-3 text-sm text-canvas/90">{l.lede}</p>
+              <ul class="mt-4 space-y-2 text-sm text-canvas/65">
+                {l.items.map(([k, v]) => (
+                  <li><span class="font-display font-bold text-canvas/90">{k}:</span> {v}</li>
+                ))}
+              </ul>
+            </article>
+          ))}
+        </div>
+      </div>
+    </section>
+
+    <section class="border-t border-white/10">
+      <div class="mx-auto max-w-6xl px-6 py-20">
+        <h2 class="text-3xl md:text-4xl">Choose Your Deployment Speed.</h2>
+        <div class="mt-10 grid gap-6 md:grid-cols-2">
+          <article class="border-l-2 border-impact/60 bg-white/[0.02] p-7">
+            <p class="font-mono text-xs uppercase tracking-[0.2em] text-canvas/50">model a</p>
+            <h3 class="mt-3 text-2xl">The 30-Day Sprint <span class="font-mono text-sm text-canvas/50">(project-based)</span></h3>
+            <p class="mt-3 text-canvas/70">Solve one high-impact bottleneck — like Schema or SSR — immediately.</p>
+            <ul class="mt-4 space-y-1 font-mono text-sm text-canvas/65">
+              <li>▸ Fix Schema Architecture</li>
+              <li>▸ Entity Synchronization</li>
+              <li>▸ Optimize Knowledge Graph</li>
+            </ul>
+          </article>
+          <article class="border-l-2 border-success/60 bg-white/[0.02] p-7">
+            <p class="font-mono text-xs uppercase tracking-[0.2em] text-canvas/50">model b</p>
+            <h3 class="mt-3 text-2xl">The Fractional Partner</h3>
+            <p class="mt-3 text-canvas/70">Continuous MFO operations acting as your specialized &ldquo;AI-Search Department.&rdquo;</p>
+            <ul class="mt-4 space-y-1 font-mono text-sm text-canvas/65">
+              <li>▸ Monthly Implementation</li>
+              <li>▸ Monitoring Changes</li>
+              <li>▸ Internal Team Alignment</li>
+            </ul>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <section class="border-t border-white/10">
+      <div class="mx-auto max-w-6xl px-6 py-24">
+        <h2 class="max-w-3xl text-4xl md:text-5xl">Turn Data Into Dominance.</h2>
+        <p class="mt-5 max-w-2xl text-lg text-canvas/70"><strong class="text-canvas">You know what&rsquo;s broken. Now let&rsquo;s fix it.</strong> Liquidate your technical debt and capture high-converting AI traffic.</p>
+        <a href="/contact" class="mt-8 inline-block bg-impact px-8 py-4 font-display text-lg font-bold text-canvas transition-opacity hover:opacity-90">Schedule Implementation Call</a>
+      </div>
+    </section>
+  </main>
+</BaseLayout>
