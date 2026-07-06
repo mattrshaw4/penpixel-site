@@ -5,8 +5,9 @@ const isActive = (href: string) => path === href || path.startsWith(href + '/');
 ---
 <header class="sticky top-0 z-50 border-b border-white/10 bg-authority/95 backdrop-blur">
   <div class="mx-auto flex max-w-6xl items-center justify-between gap-4 px-6 py-4">
-    <a href="/" class="font-display text-xl font-bold tracking-tight text-canvas">
-      Penpixel <span class="text-canvas/50">Creative</span>
+    <a href="/" class="flex items-center gap-3 font-display text-xl font-bold tracking-tight text-canvas">
+      <img src="/images/penpixel-icon.webp" alt="" width="28" height="28" loading="eager" />
+      <span>Penpixel <span class="text-canvas/50">Creative</span></span>
     </a>
     <nav class="flex items-center gap-6 text-sm" aria-label="Primary">
       {NAV.map((item) => (

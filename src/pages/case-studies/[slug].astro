@@ -26,6 +26,11 @@ const schema = {
     <section class="mx-auto max-w-6xl px-6 pt-20 pb-16 md:pt-28">
       <p class="font-mono text-sm uppercase tracking-[0.2em] text-impact">// {cs.eyebrow}</p>
       <p class="mt-4 font-mono text-sm text-canvas/50">Client: <span class="text-canvas/80">{cs.client}</span></p>
+      {cs.logo && (
+        <div class="mt-6 inline-block bg-canvas px-6 py-4">
+          <img src={cs.logo.src} alt={cs.logo.alt} width={cs.logo.w} height={cs.logo.h} loading="lazy" />
+        </div>
+      )}
       <h1 class="mt-4 max-w-4xl text-4xl md:text-6xl">{cs.headline}</h1>
       <p class="mt-6 max-w-2xl text-lg text-canvas/80">{cs.sub}</p>
     </section>

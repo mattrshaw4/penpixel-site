@@ -2,6 +2,7 @@
 // Slugs MUST match public/_redirects destinations exactly.
 export interface CaseStudy {
   slug: string;
+  logo?: { src: string; alt: string; w: number; h: number };
   eyebrow: string;
   client: string;
   headline: string;
@@ -30,6 +31,7 @@ export interface CaseStudy {
 export const caseStudies: CaseStudy[] = [
   {
     slug: 'dt-heritage',
+    logo: { src: '/images/logo-dt-heritage.webp', alt: 'DT Heritage logo', w: 200, h: 74 },
     eyebrow: 'Ongoing Entity Management',
     client: 'DT Heritage',
     headline: 'Securing 69% AI Share of Voice through Ongoing Authority',
@@ -59,6 +61,7 @@ export const caseStudies: CaseStudy[] = [
     quote: 'We don\u2019t just update their brand; we manage their legacy. By providing ongoing Entity Management, we ensure that DT Heritage stays ahead of the AI gatekeepers.',
     sidebarTitle: 'Authority Metrics',
     sidebar: [
+      { value: '92.1%', label: 'AI citation growth over the engagement period.' },
       { value: '69%', label: 'AI Share of Voice: consistently cited as the definitive authority in ChatGPT and Perplexity.' },
       { value: 'Fortress', label: 'Ongoing protection of digital brand integrity across all international channels.' },
       { value: 'Elite', label: 'Content and visual alignment with world-class institutional standards.' },
@@ -109,6 +112,7 @@ export const caseStudies: CaseStudy[] = [
   },
   {
     slug: 'joveo',
+    logo: { src: '/images/logo-joveo.webp', alt: 'Joveo logo', w: 160, h: 62 },
     eyebrow: 'Strategic Partnership',
     client: 'Joveo',
     headline: 'The Joveo Strategic Partnership',
