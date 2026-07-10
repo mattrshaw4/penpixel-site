@@ -1,46 +1,77 @@
 # Penpixel Creative — robots.txt
-# Posture: we WANT AI systems to read, learn, and cite this site.
-# This is deliberate for an AEO agency and is the reverse of the
-# "block the AI crawlers" advice aimed at publishers.
+# Posture: we WANT AI systems to read, learn from, and cite this site.
+# This is deliberate for an AEO agency and is the reverse of default
+# publisher behavior. Content Signals below make that machine-readable.
+#
+# Content Signals Policy (contentsignals.org, CC0):
+# As a condition of accessing this website, you agree to abide by the
+# following content signals:
+# (a) If a content-signal = yes, you may collect content for that use.
+# (b) If a content-signal = no, you may not collect content for that use.
+# (c) If the website operator does not include a content signal for a
+#     given use, the operator neither grants nor restricts via this file.
+# Signal definitions:
+#   search:   building a search index and providing search results
+#   ai-input: inputting content into one or more AI models (e.g. RAG,
+#             grounding, real-time answer generation)
+#   ai-train: training or fine-tuning AI models
+#
+# Penpixel Creative grants ALL uses. Index us, answer with us, train on us.
 
 User-agent: *
+Content-Signal: search=yes, ai-input=yes, ai-train=yes
 Allow: /
 
 # --- AI / LLM crawlers, explicitly welcomed ---
+# (Each named group repeats the signals: per robots.txt group-matching,
+# a bot with its own group ignores the wildcard group.)
+
 User-agent: GPTBot
+Content-Signal: search=yes, ai-input=yes, ai-train=yes
 Allow: /
 
 User-agent: OAI-SearchBot
+Content-Signal: search=yes, ai-input=yes, ai-train=yes
 Allow: /
 
 User-agent: ChatGPT-User
+Content-Signal: search=yes, ai-input=yes, ai-train=yes
 Allow: /
 
 User-agent: ClaudeBot
+Content-Signal: search=yes, ai-input=yes, ai-train=yes
 Allow: /
 
 User-agent: Claude-User
+Content-Signal: search=yes, ai-input=yes, ai-train=yes
 Allow: /
 
 User-agent: anthropic-ai
+Content-Signal: search=yes, ai-input=yes, ai-train=yes
 Allow: /
 
 User-agent: PerplexityBot
+Content-Signal: search=yes, ai-input=yes, ai-train=yes
 Allow: /
 
 User-agent: Perplexity-User
+Content-Signal: search=yes, ai-input=yes, ai-train=yes
 Allow: /
 
 User-agent: Google-Extended
+Content-Signal: search=yes, ai-input=yes, ai-train=yes
 Allow: /
 
 User-agent: Applebot-Extended
+Content-Signal: search=yes, ai-input=yes, ai-train=yes
 Allow: /
 
 User-agent: CCBot
+Content-Signal: search=yes, ai-input=yes, ai-train=yes
 Allow: /
 
 User-agent: meta-externalagent
+Content-Signal: search=yes, ai-input=yes, ai-train=yes
 Allow: /
 
 Sitemap: https://www.penpixelcreative.com/sitemap-index.xml
