@@ -21,3 +21,12 @@
 
 # --- Broken URL cleanup ---
 /blog/content-writing-services     /blog                                   301
+
+# --- Cut blog posts (triage Bucket C, approved): old-ICP content-marketing era ---
+/blog/can-i-automate-marketing                 /blog   301
+/blog/month-of-content                         /blog   301
+/blog/4-step-framework-for-smarter-marketing   /blog   301
+/blog/fast-content-marketing-wins              /blog   301
+/blog/content-strategy-myths                   /blog   301
+/blog/posting-every-day-wont-save-your-business /blog  301
+/blog/smarter-marketing-for-more-sales         /blog   301

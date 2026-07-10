@@ -1,0 +1,38 @@
+---
+import { getCollection } from 'astro:content';
+import BaseLayout from '../../layouts/BaseLayout.astro';
+
+export async function getStaticPaths({ paginate }) {
+  const posts = (await getCollection('blog', ({ data }) => !data.draft))
+    .sort((a, b) => b.data.pubDate.valueOf() - a.data.pubDate.valueOf());
+  return paginate(posts, { pageSize: 10 });
+}
+const { page } = Astro.props;
+const fmt = (dt) => dt.toLocaleDateString('en-US', { year: 'numeric', month: 'short', day: 'numeric' });
+---
+<BaseLayout
+  title="Insights | AEO & AI Search for B2B SaaS | Penpixel Creative"
+  description="Machine-first architecture, entity management, and AI search readiness for B2B SaaS. The engine room of the answer era."
+>
+  <main class="mx-auto max-w-4xl px-6 pt-20 pb-24 md:pt-28">
+    <p class="font-mono text-sm uppercase tracking-[0.2em] text-impact">// insights</p>
+    <h1 class="mt-5 text-5xl md:text-6xl">The engine room of the answer era.</h1>
+    <p class="mt-6 max-w-2xl text-lg text-canvas/80">Machine-first architecture, entity management, and what it takes to be the brand AI systems cite.</p>
+
+    <div class="mt-12 divide-y divide-white/10 border-t border-white/10">
+      {page.data.map((post) => (
+        <a href={`/blog/${post.id}`} class="group block py-8">
+          <p class="font-mono text-xs uppercase tracking-wider text-canvas/40">{fmt(post.data.pubDate)}</p>
+          <h2 class="mt-2 text-2xl transition-colors group-hover:text-impact">{post.data.title}</h2>
+          <p class="mt-2 text-canvas/65">{post.data.description}</p>
+        </a>
+      ))}
+    </div>
+
+    <nav class="mt-12 flex items-center justify-between font-mono text-sm" aria-label="Pagination">
+      {page.url.prev ? <a href={page.url.prev} class="text-impact hover:underline">← Newer</a> : <span />}
+      <span class="text-canvas/40">Page {page.currentPage} of {page.lastPage}</span>
+      {page.url.next ? <a href={page.url.next} class="text-impact hover:underline">Older →</a> : <span />}
+    </nav>
+  </main>
+</BaseLayout>
