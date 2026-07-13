@@ -18,7 +18,7 @@ export const SITE = {
   // Turnstile SITE key (public — ships to the browser; the SECRET stays in env vars).
   // This is Cloudflare's official always-pass TEST key. Replace with the real
   // sitekey from dashboard > Turnstile before launch.
-  turnstileSiteKey: '1x00000000000000000000AA',
+  turnstileSiteKey: '0x4AAAAAAD1Knj2iUYRLjGCU',
   // Google Appointment Scheduling (Workspace). Replace with the real booking URL.
   booking: 'https://calendar.google.com/calendar/appointments/schedules/AcZssZ1SmU2qriNzKKunIEhV1CS2eRgeupqZTsN7ooWv5K9Y-LWAcBv2M0Hc1tKOdrNcgmHGbAm4YL2W?gv=true',
 } as const;
