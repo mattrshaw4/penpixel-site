@@ -1,0 +1,20 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+---
+<BaseLayout
+  title="Page Not Found | Penpixel Creative"
+  description="This page doesn't exist. If you followed a link here, it's out of date — try the homepage or search."
+>
+  <main class="mx-auto flex min-h-[60vh] max-w-3xl flex-col justify-center px-6 py-24">
+    <p class="font-mono text-sm uppercase tracking-[0.2em] text-impact">// 404</p>
+    <h1 class="mt-5 text-4xl md:text-5xl">This page doesn&rsquo;t exist.</h1>
+    <p class="mt-6 max-w-xl text-lg text-canvas/70">
+      Neither do broken citations, unresolved entities, or dead links machines
+      can't verify. If you followed a link here, it's out of date.
+    </p>
+    <div class="mt-10 flex flex-wrap gap-4">
+      <a href="/" class="bg-impact px-6 py-3 font-display font-bold text-canvas transition-opacity hover:opacity-90">Back to Home</a>
+      <a href="/blog" class="border border-white/30 px-6 py-3 font-display font-bold text-canvas transition-colors hover:border-impact">Read the Insights</a>
+    </div>
+  </main>
+</BaseLayout>
