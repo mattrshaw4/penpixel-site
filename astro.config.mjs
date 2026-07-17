@@ -5,7 +5,7 @@ import tailwindcss from '@tailwindcss/vite';
 
 // https://astro.build/config
 export default defineConfig({
-  site: 'https://www.penpixelcreative.com',
+  site: 'https://penpixelcreative.com',
   integrations: [sitemap()],
   vite: { plugins: [tailwindcss()] },
   // Keep CSS in external files so the Content-Security-Policy can stay tight

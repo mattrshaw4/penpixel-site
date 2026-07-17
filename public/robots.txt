@@ -74,4 +74,4 @@ User-agent: meta-externalagent
 Content-Signal: search=yes, ai-input=yes, ai-train=yes
 Allow: /
 
-Sitemap: https://www.penpixelcreative.com/sitemap-index.xml
+Sitemap: https://penpixelcreative.com/sitemap-index.xml

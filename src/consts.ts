@@ -1,7 +1,7 @@
 // Central site configuration. No secrets here — this file ships to the client.
 export const SITE = {
   name: 'Penpixel Creative', // always two words, capital P and C
-  url: 'https://www.penpixelcreative.com',
+  url: 'https://penpixelcreative.com',
   description:
     'AEO & AI search optimization for B2B SaaS. We rearchitect your digital estate to be cited, trusted, and recommended by AI agents.',
   founder: 'Deven Bhagwandin',

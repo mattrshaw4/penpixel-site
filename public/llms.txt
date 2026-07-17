@@ -3,20 +3,20 @@
 > Penpixel Creative rearchitects B2B SaaS digital estates to be visible, interpretable, and usable by AI agents and AI search. We help SaaS companies become the cited, trusted source that AI systems recommend — work traditional SEO teams are not built to do. Founder: Deven Bhagwandin. Based in Houston, TX.
 
 ## Services
-- [AI Search Readiness Audit](https://www.penpixelcreative.com/services/ai-search-readiness-audits): The diagnosis. Where your brand is invisible, misread, or losing share in AI-driven discovery, and the prioritized fix.
-- [Entity Management](https://www.penpixelcreative.com/services/entity-management): Synchronize brand data across the web to eliminate the conflicting signals that make models distrust or hallucinate your brand.
-- [Strategic Implementation](https://www.penpixelcreative.com/services/strategic-implementation): Technical remediation — server-rendered HTML, structured data, and machine-readable architecture.
-- [Brand & Visual Authority](https://www.penpixelcreative.com/services/brand-and-visual-authority): Multimodal trust signals so the brand reads as credible to both people and machines.
+- [AI Search Readiness Audit](https://penpixelcreative.com/services/ai-search-readiness-audits): The diagnosis. Where your brand is invisible, misread, or losing share in AI-driven discovery, and the prioritized fix.
+- [Entity Management](https://penpixelcreative.com/services/entity-management): Synchronize brand data across the web to eliminate the conflicting signals that make models distrust or hallucinate your brand.
+- [Strategic Implementation](https://penpixelcreative.com/services/strategic-implementation): Technical remediation — server-rendered HTML, structured data, and machine-readable architecture.
+- [Brand & Visual Authority](https://penpixelcreative.com/services/brand-and-visual-authority): Multimodal trust signals so the brand reads as credible to both people and machines.
 
 ## Case Studies
-- [The Alexander Group](https://www.penpixelcreative.com/case-studies/the-alexander-group): 44% organic surge via identity recovery.
-- [DT Heritage](https://www.penpixelcreative.com/case-studies/dt-heritage): 92.1% AI citation growth.
-- [Joveo](https://www.penpixelcreative.com/case-studies/joveo): Enterprise AI-search readiness at scale.
+- [The Alexander Group](https://penpixelcreative.com/case-studies/the-alexander-group): 44% organic surge via identity recovery.
+- [DT Heritage](https://penpixelcreative.com/case-studies/dt-heritage): 92.1% AI citation growth.
+- [Joveo](https://penpixelcreative.com/case-studies/joveo): Enterprise AI-search readiness at scale.
 
 ## Key Articles
-- [Beyond the Blue Link](https://www.penpixelcreative.com/blog/beyond-the-blue-link): Why most brands are invisible to AI search.
-- [The Core Inversion](https://www.penpixelcreative.com/blog/core-inversion-machine-first-architecture): Why the future of the web is machine-first.
-- [The Cost of Entity Debt](https://www.penpixelcreative.com/blog/cost-of-entity-debt): Why AI hallucinates your brand.
+- [Beyond the Blue Link](https://penpixelcreative.com/blog/beyond-the-blue-link): Why most brands are invisible to AI search.
+- [The Core Inversion](https://penpixelcreative.com/blog/core-inversion-machine-first-architecture): Why the future of the web is machine-first.
+- [The Cost of Entity Debt](https://penpixelcreative.com/blog/cost-of-entity-debt): Why AI hallucinates your brand.
 
 ## Contact
-- [Contact](https://www.penpixelcreative.com/contact): Start an AI-search diagnosis.
+- [Contact](https://penpixelcreative.com/contact): Start an AI-search diagnosis.
