@@ -14,7 +14,7 @@ const schema = {
   '@type': 'Article',
   headline: cs.headline,
   description: cs.metaDescription,
-  url: `${SITE.url}/case-studies/${cs.slug}`,
+  url: `${SITE.url}/case-studies/${cs.slug}/`,
   author: { '@id': `${SITE.url}/#organization` },
   publisher: { '@id': `${SITE.url}/#organization` },
   about: { '@type': 'Thing', name: cs.client },
