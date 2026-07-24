@@ -31,3 +31,9 @@
 /blog/posting-every-day-wont-save-your-business /blog  301
 /blog/smarter-marketing-for-more-sales         /blog   301
 /sitemap.xml /sitemap-index.xml 301
+# --- Deven audit: remaining legacy 404s ---
+/banfield-pet-hospital-case-study    /case-studies/veterinary-migration      301
+/results/joveo-ai-search-visibility  /case-studies/joveo                     301
+/services/post-audit-support         /services/strategic-implementation      301
+/industries/fractional-c-suite       /services/ai-search-readiness-audits    301
+/industries/executive-coaches        /services/ai-search-readiness-audits    301
