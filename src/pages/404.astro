@@ -12,9 +12,11 @@ import BaseLayout from '../layouts/BaseLayout.astro';
       Neither do broken citations, unresolved entities, or dead links machines
       can't verify. If you followed a link here, it's out of date.
     </p>
+    <div id="suggested-pages" hidden></div>
     <div class="mt-10 flex flex-wrap gap-4">
       <a href="/" class="bg-impact px-6 py-3 font-display font-bold text-canvas transition-opacity hover:opacity-90">Back to Home</a>
       <a href="/blog" class="border border-white/30 px-6 py-3 font-display font-bold text-canvas transition-colors hover:border-impact">Read the Insights</a>
     </div>
   </main>
+  <script src="/js/404-suggestions.js" defer></script>
 </BaseLayout>
