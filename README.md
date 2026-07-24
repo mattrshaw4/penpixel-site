@@ -7,8 +7,10 @@ AI systems — the site is a working example of the thing Penpixel sells.
 ## Status: live in production
 
 **https://penpixelcreative.com** — migrated off Squarespace, DNS fully cut over
-to Cloudflare, contact form sending real email, 26-post blog (25 migrated, 1
-outstanding — see below).
+to Cloudflare, contact form sending real email, 25-post blog (24 migrated, 1
+outstanding — see below). FAQPage schema live on all 4 service pages, and
+every migrated blog post carries 2-4 contextual internal links to related
+posts and case studies (an SEO/AEO audit finding — previously zero).
 
 Squarespace is intentionally still active during a stability-watching window
 before cancellation. See "Open items" at the bottom of this file for what's
@@ -51,8 +53,12 @@ src/
     Footer.astro
     SchemaOrg.astro        Organization JSON-LD
     ServiceSchema.astro    Service JSON-LD (reused across the 4 service pages)
-  data/case-studies.ts  Case study content — NOT a content collection, a typed data file
-  content/blog/          Markdown blog posts (25 files)
+    FAQSection.astro       FAQ accordion + FAQPage JSON-LD from one shared data
+                           source (reused across the 4 service pages)
+  data/
+    case-studies.ts        Case study content — NOT a content collection, a typed data file
+    service-faqs.ts        FAQ content for the 4 service pages, paired with FAQSection.astro
+  content/blog/          Markdown blog posts (24 files)
   content.config.ts     Blog collection schema (title/metaTitle/description/pubDate)
   pages/
     index.astro                          Home
@@ -155,18 +161,49 @@ Local dev with the function: `npm run build && npx wrangler pages dev dist`
 (uses `.env` — see `.env.example`; Cloudflare's public test keys always pass
 and are safe for local dev).
 
-## Blog migration status: 25 of 26 posts
+## Blog migration status: 24 of 25 posts
 
 Bucket A (12) and Bucket B (12) are migrated — converted from source, internal
 links rewritten to new-site URLs, titles trimmed to ≤60 chars, descriptions to
 ≤160, `BlogPosting` JSON-LD on every post. The 7 Bucket C posts (old-ICP
 content-marketing pieces) were deliberately cut, each with a 301 in
-`_redirects` to `/blog`.
+`_redirects` to `/blog`. Every migrated post also carries 2-4 contextual
+internal links to related posts and case studies (an SEO/AEO audit finding —
+previously zero, verified by scanning all post bodies for `/blog/` and
+`/case-studies/` links).
 
-**`20-year-seo-loop` is missing.** It was live on the site when the original
-triage was built but is absent from the WordPress export used for the rest of
-the migration. Either source the original text and migrate it properly, or
-drop it from the triage permanently and add a 301 redirect for its old URL.
+**`20-year-seo-loop` is still missing** — same root cause as before: it was
+live on the site when the original triage was built but is absent from the
+WordPress export used for the rest of the migration. The one place it was
+still linked internally
+(`financial-risk-treating-ai-agents-like-human-visitors.md`, which pointed to
+it as a live dead link) has been repointed to an existing post, so there's no
+broken link in production anymore. But the actual migration decision is still
+open: source the original text and migrate it properly, or drop it
+permanently and add a 301 in `_redirects` for its old URL — currently
+unmapped, so `/blog/20-year-seo-loop/` still 404s if anything external still
+links to it.
+
+## FAQ schema (service pages)
+
+Each of the 4 service pages renders `<FAQSection faqs={...} />` just above its
+closing CTA section. The component (`src/components/FAQSection.astro`) builds
+the visible accordion (native `<details>`/`<summary>`, no JS required) and the
+`FAQPage` JSON-LD from the same `faqs` array — one source of truth, so the
+schema can never drift from what a visitor actually reads. Content lives in
+`src/data/service-faqs.ts`, one named export per page (`auditFaqs`,
+`brandFaqs`, `entityFaqs`, `implementationFaqs`), following the same
+"typed data file, not a content collection" pattern as `case-studies.ts`.
+
+JSON-LD is emitted via
+`set:html={JSON.stringify(faqSchema).replace(/</g, '\\u003c')}` — the escape
+is defense-in-depth against a future FAQ answer accidentally containing the
+literal string `</script>` and breaking out of the tag. Not currently
+exploitable (content is static, not user input), but costs nothing to guard
+against.
+
+To add an FAQ to a new page: add a `FAQItem[]` export to `service-faqs.ts`,
+import it, and drop `<FAQSection faqs={...} />` above that page's CTA section.
 
 ## Case studies: data file, not a content collection
 
@@ -211,7 +248,9 @@ Tailwind build. Plain `npm audit fix` is a no-op here.
 
 ## Open items (as of this writing)
 
-- [ ] `20-year-seo-loop` blog post — source text needed, or drop + redirect
+- [ ] `20-year-seo-loop` blog post — source text needed, or drop + add the
+      301 (dangling internal link to it has been fixed; the redirect for its
+      old URL itself is not yet in `_redirects`)
 - [ ] Analytics — nothing wired anywhere (no GA4, GTM, or Cloudflare Web
       Analytics). A scan caught this; worth a two-minute fix.
 - [ ] Schema.org founder field lists only Deven — deliberate for now, revisit
