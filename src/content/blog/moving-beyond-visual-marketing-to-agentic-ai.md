@@ -90,7 +90,7 @@ To align with the trajectory of agentic commerce, you must shift focus from visu
 
 - **Reallocate to the Lower Funnel**: Move beyond "what is" content. Prioritize proprietary, expert-level data that defines your specific solution and satisfies E-E-A-T benchmarks. This involves understanding the underlying intent of your ICP.
 - **Establish Entity Consensus**: Ensure your brand's EEAT is reflected across essential third-party databases, industry publications, and technical schema, making your website the "source of truth" for your proprietary information.
-- **Optimize for Tool-Use Reliability**: Structure your data so agents can interact with it as a protocol. This ensures your brand is the path of highest confidence for autonomous recommendations.
+- **Optimize for Tool-Use Reliability**: Structure your data so agents can interact with it as a protocol. This ensures your brand is the path of highest confidence for autonomous recommendations. [A global RPO enterprise learned this the hard way](/case-studies/rpo-indexation): a client-side rendering "JavaScript Blackout" locked agents out entirely until it was resolved.
 
 By evolving these models now, leaders move from a reactive state of chasing prompts to a proactive position of owning the signals that drive autonomous revenue.
 

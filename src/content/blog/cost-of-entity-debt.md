@@ -19,7 +19,7 @@ Now, we are facing a new, more dangerous liability in AI search: **Entity Debt.*
 Entity Debt occurs when legacy SEO signals, outdated PR mentions, and fragmented brand data are so structurally dominant that they drown out your current authority. AI models (LLMs) are trained on massive datasets of "legacy" internet data. If your brand has evolved, but your digital footprint is anchored in 2019, the AI will prioritize the older, more "vetted" data over your current reality.
 
 ### Why LLMs Struggle with Brand Evolution
-- **Signal Weight:** AI systems look for consensus across the web. If 1,000 pages say you are "Company A" and only 50 pages (your new site) say you are "Company B," the machine defaults to the majority.
+- **Signal Weight:** AI systems look for [consensus across the web](/blog/contextual-signals-ai-search-authority). If 1,000 pages say you are "Company A" and only 50 pages (your new site) say you are "Company B," the machine defaults to the majority.
 - **Lack of Explicit Structure:** Without clear technical signposting (like Schema markup), AI is forced to "guess" which information is the most current.
 - **Training Cutoffs:** While models are getting better at real-time search, their core understanding of "who you are" is often baked into their initial training weights.
 
@@ -43,7 +43,9 @@ To understand if your brand is at risk, you must evaluate your presence across t
 3. **Signal Consistency:** Do your LinkedIn profiles, PR mentions, and technical metadata all point to the same "Core Thesis"?
 
 ## Closing the Gap: From Legacy Debt to AI Clarity
-The risk to your brand isn’t just "being wrong" in a chat interface; it’s becoming invisible to the next generation of buyers who rely on generated answers to make decisions.
+The risk to your brand isn’t just "being wrong" in a chat interface; it’s becoming invisible to the next generation of buyers who rely on generated answers to make decisions. If you’re already seeing hallucinations like the one above, start with [fixing your brand’s entity recognition](/blog/how-to-fix-your-brand-entity-recognition-in-ai) directly.
+
+This isn’t theoretical. [The Alexander Group closed this exact gap](/case-studies/the-alexander-group), eliminating the "Identity Dilution" behind their AI invisibility and driving a 44% organic growth surge in the process.
 
 You cannot fix Entity Debt by simply publishing more content. In fact, adding more unstructured content to a fragmented system often worsens the problem by introducing "noise" into the machine’s interpretation.
 

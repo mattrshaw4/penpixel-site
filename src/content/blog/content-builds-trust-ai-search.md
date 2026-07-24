@@ -52,7 +52,7 @@ Here’s how to cover the questions buyers and AI tools demand:
 
 **3. Make ROI Impossible to Miss**
 
-- Refresh case studies to highlight measurable outcomes: money saved, time reduced, risk avoided.
+- Refresh case studies to highlight measurable outcomes: money saved, time reduced, risk avoided. [DT Heritage's 92.1% AI citation growth](/case-studies/dt-heritage) is the kind of hard number that does this well.
 - Add ROI calculators or benchmarks that buyers can test themselves.
 
 **4. Be Transparent About Challenges**
@@ -67,7 +67,7 @@ They’re the budget, compliance, and ROI questions your buyers have to answer i
 
 If your content doesn’t cover them, AI tools (and buyers) assume you don’t have the answers, and they’ll look elsewhere.
 
-*To see how this plays out in real audits, read* ***Turning Case Studies into AI-Friendly Assets That Win Executive Buyers****.*
+*To see how this plays out in real audits, read* [***Turn Case Studies Into AI-Friendly Assets***](/blog/ai-friendly-case-studies)*.*
 
 ## The Bottom Line: Trust Is the New Visibility Signal
 Trust in AI search isn’t built on flashy headlines. It’s built on transparency.

@@ -15,7 +15,7 @@ Your current website is bleeding traffic because search engine behavior has fund
 
 **Extractive Efficiency Deployment** — Penpixel Creative specializes in re-engineering your digital estate for Extractive Efficiency, making your business transactable to autonomous AI models.
 
-For twenty-five years, [B2B SaaS companies have built digital storefronts under a single assumption](/blog/20-year-seo-loop): your visitor is a human who reads copy, scrolls grids, and manually fills out form fields.
+For twenty-five years, [B2B SaaS companies have built digital storefronts under a single assumption](/blog/core-inversion-machine-first-architecture): your visitor is a human who reads copy, scrolls grids, and manually fills out form fields.
 
 That assumption is now a financial liability.
 
@@ -62,7 +62,7 @@ Traditional digital agencies are fundamentally unbuilt for machine optimization.
 
 At **Penpixel Creative**, we approach this as an architectural necessity. We re-engineer your B2B SaaS digital estate for **Extractive Efficiency**—ensuring your pricing models, documentation, and product tiers are immediately accessible, interpretable, and usable by autonomous AI models.
 
-We liquidate your legacy technical debt and move your value proposition directly into the machine interfaces where purchasing decisions are made. We don't just optimize your web pages; we make your entire business transactable to machines.
+We liquidate your legacy technical debt and move your value proposition directly into the machine interfaces where purchasing decisions are made. We don't just optimize your web pages; we make your entire business transactable to machines. [A global RPO enterprise's "JavaScript Blackout"](/case-studies/rpo-indexation) is exactly the kind of abandonment-driving technical debt we resolve, restoring indexation via a 30-day sprint.
 
 ### Stop Guesstimating Your Machine Visibility
 

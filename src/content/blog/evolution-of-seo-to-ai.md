@@ -70,7 +70,7 @@ During the pandemic, all of this accelerated. Remote work exploded. So did ecomm
 
 This is where we are now, and it's a dramatic shift.
 
-Search isn't just a list of links anymore. It's a synthesized answer, pulled from content across the web and delivered by AI tools.
+Search isn't just a list of links anymore. It's a synthesized answer, pulled from content across the web and delivered by AI tools, part of what we call [the core inversion](/blog/core-inversion-machine-first-architecture) of the web itself.
 
 Traditional SEO is still essential. But it's no longer enough.
 
@@ -112,7 +112,7 @@ They summarize. They synthesize. They exclude.
 
 And they're learning based on repetition.
 
-If your brand name isn't consistently cited across web pages, bios, and third-party sites, you'll be left out of the conversation, even if your content is technically sound.
+If your brand name isn't consistently cited across web pages, bios, and third-party sites, [you'll be left out of the conversation entirely](/blog/why-brand-missing-from-ai-search), even if your content is technically sound.
 
 This is why your content strategy, not just your content, matters more than ever.
 
@@ -130,7 +130,7 @@ We'll review:
 - Schema markup and structured data
 - Your site's "readability" for AI tools
 
-We've helped agencies and B2B firms reposition their sites for the next era of search—and it starts with clarity.
+We've helped agencies and B2B firms reposition their sites for the next era of search—and it starts with clarity. One [logistics client saw organic traffic surge 1,500%](/case-studies/logistics) after exactly this kind of repositioning.
 
 ## Final Thoughts: The Next Era of SEO Belongs to the Strategic
 

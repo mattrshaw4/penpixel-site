@@ -1,6 +1,8 @@
 ---
 import BaseLayout from '../../layouts/BaseLayout.astro';
 import ServiceSchema from '../../components/ServiceSchema.astro';
+import FAQSection from '../../components/FAQSection.astro';
+import { entityFaqs } from '../../data/service-faqs';
 
 const pillars = [
   { n: '01', title: 'Technical Defense', sub: '(Protecting the Infrastructure)', lede: 'Monitor infrastructure to ensure bots never face extraction friction.', items: [
@@ -105,6 +107,8 @@ const tiers = [
         </div>
       </div>
     </section>
+
+    <FAQSection faqs={entityFaqs} />
 
     <section class="border-t border-white/10">
       <div class="mx-auto max-w-6xl px-6 py-24">

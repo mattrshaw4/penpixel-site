@@ -63,7 +63,7 @@ When an audit uncovers **missing Share of Voice**, the roadmap usually includes:
 **Publish Authoritative Assets**
 
 - Case studies, benchmarks, and original data.
-- AI tools prefer citing measurable, fact-based resources.
+- AI tools prefer citing measurable, fact-based resources. [Recovering 1,000+ de-indexed location pages](/case-studies/veterinary-migration) is the kind of specific, auditable result that qualifies.
 
 **Reinforce Entity Signals**
 

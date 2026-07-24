@@ -48,7 +48,7 @@ If your audit reveals these gaps, here’s how to fix them:
 
 - **Add ROI Pages or Calculators:** Buyers love clear cost-benefit logic. That could be a pricing comparison, a total cost of ownership calculator, or a simple breakdown of time and money saved.
 - **Include Compliance & Risk FAQs:** Don’t bury compliance or safety information in fine print. Call it out directly on service or product pages, whether it’s data privacy, financial regulations, industry certifications, or environmental standards, and mark it up with schema for visibility.
-- **Refresh Case Studies or Proof Points:** Reframe them around measurable outcomes: problem → solution → results. In software, that might be time-to-value. In professional services, it could be cost reduction or efficiency gains. In consumer brands, it could be product durability or sustainability benefits.
+- **Refresh Case Studies or Proof Points:** Reframe them around measurable outcomes: problem → solution → results. In software, that might be time-to-value. In professional services, it could be cost reduction or efficiency gains. In consumer brands, it could be product durability or sustainability benefits. [DT Heritage's 92.1% AI citation growth](/case-studies/dt-heritage) is the kind of hard number worth leading with.
 - **Address Objections Directly:** Write content about the risks your buyers are already weighing, whether it’s implementation hurdles, downtime, budget pushback, or ethical concerns. Transparency builds trust, both with buyers and with AI tools.
 
 ## Your Next Question (Answered)

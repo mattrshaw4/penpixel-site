@@ -85,7 +85,7 @@ Citation-ready content doesn’t just get you mentioned in AI search results. It
 - Strengthens buyer trust.
 - Prevents competitors from dominating every answer.
 
-This isn’t guesswork. Our [AI-Search Readiness Audit](/services/ai-search-readiness-audits) shows you **who’s getting cited, why, and what to do about it.**
+This isn’t guesswork. Our [AI-Search Readiness Audit](/services/ai-search-readiness-audits) shows you **who’s getting cited, why, and what to do about it.** [DT Heritage saw 92.1% AI citation growth](/case-studies/dt-heritage) once their content was rebuilt this way.
 
 Next up, we’ll show you how those insights turn into action: [**How an AI-Search Readiness Audit Uncovers Visibility Gaps You Can’t See in Google Analytics**](/blog/how-ai-search-readiness-audit-works).
 

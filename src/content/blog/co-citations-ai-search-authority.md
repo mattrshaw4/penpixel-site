@@ -21,7 +21,7 @@ Examples:
 To AI tools, these associations act like connective tissue: *“This brand is relevant to this topic.”*
 
 ## Why Co-Citations Matter More Than Backlinks
-AI doesn’t just scan for blue hyperlinks. It [maps relationships between brands](https://developers.google.com/search/docs/fundamentals/how-search-works), concepts, and authority sources.
+AI doesn’t just scan for blue hyperlinks. It [maps relationships between brands](https://developers.google.com/search/docs/fundamentals/how-search-works), concepts, and authority sources, which is really just one piece of the [broader contextual signal framework](/blog/contextual-signals-ai-search-authority) AI uses to weigh who's trustworthy.
 
 That means:
 
@@ -46,7 +46,7 @@ That means:
 
 Yes — but the weighting has shifted. Backlinks still play a role in Google rankings, but AI-driven search considers the broader context. A mix of **strong links + strategic co-citations** is the new authority play.
 
-Next, read: **Why AI Tools Love Snippet-Friendly Content**
+Next, read: [**Building Blocks of Citation-Ready AI Content**](/blog/how-to-create-citation-ready-content-for-ai-search)
 
 ## The Bottom Line: Mentions Build Authority in AI Search
 AI hasn’t killed link building — but it has elevated co-citations.
@@ -55,4 +55,6 @@ If your brand name isn’t being mentioned alongside your industry’s core topi
 
 Stop thinking only in terms of backlinks.
 
-Start thinking in terms of [**visibility campaigns**](/services/content-strategy) designed to pair your brand and keywords in the places AI already trusts.
+Start thinking in terms of [**visibility campaigns**](/services/brand-and-visual-authority) designed to pair your brand and keywords in the places AI already trusts.
+
+It works: [The Alexander Group](/case-studies/the-alexander-group) drove a 44% organic growth surge once their brand signals stopped contradicting each other across the web.

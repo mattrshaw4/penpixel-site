@@ -85,7 +85,7 @@ Revenue is secured by replacing UI-based checkouts with protocol-ready infrastru
 
 Awareness is won through factual, structured fragments. However, the bottom of the funnel belongs to those who have transitioned from human-centric design to machine-ready protocols.
 
-If an AI agent visited your website today to complete a transaction on behalf of a high-value customer, would it find a functional endpoint or a brick wall?
+If an AI agent visited your website today to complete a transaction on behalf of a high-value customer, would it find a functional endpoint or a brick wall? [Joveo scaled exactly this kind of AI-search readiness](/case-studies/joveo) across a global enterprise footprint.
 
 **Is your brand interpretable by autonomous agents?**
 
