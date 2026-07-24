@@ -125,7 +125,7 @@ Why? Because:
 - Your site lacks the structured data that feeds knowledge graphs
 - Your competitors have simply done more to show up, so AI defaults to recommending them
 
-This isn't a reflection of your *value*. It's a reflection of your *visibility*.
+This isn't a reflection of your *value*. It's a reflection of your *visibility*. [One logistics client fixed exactly that gap](/case-studies/logistics) and saw organic traffic surge 1,500%.
 
 If your name isn't part of the existing dataset, or your site isn't structured in a way AI understands, you'll get skipped, even if you're the better choice.
 

@@ -111,7 +111,7 @@ These include:
 - AI models gathering data
 - Scrapers used for competitive analysis
 
-If your Agentic AI CDN layer can't tell the difference between a human and a bot, it might make poor decisions.
+If your Agentic AI CDN layer can't tell the difference between a human and a bot, it might make poor decisions — the same failure mode we cover in [treating AI agents like human visitors](/blog/financial-risk-treating-ai-agents-like-human-visitors).
 
 For example:
 
@@ -219,7 +219,7 @@ And **design systems that serve people, not just algorithms.**
 
 Because in the end, the best digital experiences aren't just efficient, they're empathetic. They reflect the values of the people they're built for. And as AI continues to evolve, the challenge will be to ensure that our technologies don't just think, they care.
 
-Whether you're a developer, marketer, business owner, or curious observer, understanding the implications of Agentic AI CDN layers will help you navigate the future of digital engagement with clarity and confidence.
+Whether you're a developer, marketer, business owner, or curious observer, understanding the implications of Agentic AI CDN layers will help you navigate the future of digital engagement with clarity and confidence. We saw the cost of getting this wrong firsthand: [a global RPO enterprise's "JavaScript Blackout"](/case-studies/rpo-indexation) locked bots out entirely until it was resolved.
 
 The tools are powerful. The possibilities are vast. But the responsibility is ours.
 

@@ -42,7 +42,7 @@ Here is the blunt truth of the AI era: Starting now with 10% understanding is in
 
 You cannot think your way to AI visibility in a boardroom. You have to give the LLMs a reason to cite you *today* so you can see how they react. When you move now, even with a baseline strategy, you gain the ability to:
 
-1. **Adjust the Signal:** You see exactly how AI currently categorizes your brand entity versus your intended positioning.
+1. [**Adjust the Signal**](/blog/how-ai-search-readiness-audit-works)**:** You see exactly how AI currently categorizes your brand entity versus your intended positioning.
 2. [**Refine the Entity**](/blog/how-to-fix-your-brand-entity-recognition-in-ai)**:** You identify and fix "hallucinations" before they become the system’s default truth.
 3. **Strengthen the Citation:** You build the technical and structural reinforcement that forces the machine to trust your brand over legacy noise.
 
@@ -64,6 +64,6 @@ Stop waiting to feel certain. Certainty is a byproduct of action, not a prerequi
 
 **The first step is clarity.**
 
-An [**AI-Search Readiness Audit**](/services/ai-search-readiness-audits) is the fastest way to move from "waiting for proof" to "building authority." It provides the diagnostic baseline you need to see where your signal is failing and how to fix it before the cement hardens.
+An [**AI-Search Readiness Audit**](/services/ai-search-readiness-audits) is the fastest way to move from "waiting for proof" to "building authority." It provides the diagnostic baseline you need to see where your signal is failing and how to fix it before the cement hardens. [A 1,000+ location veterinary brand](/case-studies/veterinary-migration) recovered de-indexed pages and lifted applications 10% in 30 days by moving early instead of waiting.
 
 The window is open. Let’s get to work.

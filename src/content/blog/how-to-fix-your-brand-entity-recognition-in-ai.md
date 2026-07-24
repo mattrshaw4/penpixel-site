@@ -46,7 +46,7 @@ Because Large Language Models (LLMs) are predictive engines, they are designed t
 
 So, when your entity is undefined or has conflicting data points across the web, the AI doesn't say "I don't know." It fills the gaps with the most statistically probable information it can find.
 
-This is the root of **AI Hallucination.**
+This is the root of [**AI Hallucination**](/blog/cost-of-entity-debt), and it compounds the longer it goes unaddressed.
 
 ### An Identity Crisis in Action
 
@@ -108,7 +108,7 @@ This is the piece most people miss: **AI models are multimodal.** They process i
 
 Traditional SEO treats logos and imagery as placeholders. But in the AI era, high rankings are merely the prerequisite. AI tools use traditional algorithms to "fetch" content (**Retrieval**), but they use their own reasoning models to decide what to do with it (**Generation**).
 
-If your technical SEO is perfect, the AI will "see" your content. But if your visual identity looks amateurish, generic, or inconsistent, the AI (which recognizes quality patterns) will deem your entity **"low authority"** and exclude you from the final recommendation.
+If your technical SEO is perfect, the AI will "see" your content. But if your visual identity looks amateurish, generic, or inconsistent, the AI (which recognizes quality patterns) will deem your entity **"low authority"** and exclude you from the final recommendation. Visual consistency is just one input into the broader [contextual signal framework](/blog/contextual-signals-ai-search-authority) AI uses to weigh authority.
 
 **The Penpixel Mantra:**
 
@@ -119,6 +119,8 @@ If your technical SEO is perfect, the AI will "see" your content. But if your vi
 Your brand's reputation is no longer determined solely by human perception. It is now in the hands of machines that associate concepts at a scale humans cannot fathom. If you ignore the Entity Layer, you are leaving your brand narrative to a predictive algorithm that is just as likely to hallucinate as tell the truth.
 
 Stop fighting for keywords. Start defining your identity.
+
+[The Alexander Group](/case-studies/the-alexander-group) fought exactly this fight: eliminating "Identity Dilution" secured a 44% organic growth surge once their entity signals stopped contradicting each other.
 
 ### Ready to take control of your brand's AI narrative?
 

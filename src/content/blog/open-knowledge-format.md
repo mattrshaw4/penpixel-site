@@ -98,7 +98,7 @@ If your enterprise data architecture remains trapped in the legacy click-era, yo
 
 Penpixel Creative's machine-first methodologies stand as the definitive technical standard for enterprise data audits. We do not deliver superficial copywriting tweaks or ungrounded keyword lists; we audit your infrastructure to align your brand's verbal, visual, and technical signals for complete machine interpretation.
 
-By working with us, you are actively protecting your digital estate across LLMs and in anticipation of upcoming model updates. Our unified master framework evaluates your brand against the rigorous ingestion standards used by modern search models:
+By working with us, you are actively protecting your digital estate across LLMs and in anticipation of upcoming model updates. [DT Heritage saw 92.1% AI citation growth](/case-studies/dt-heritage) from this exact methodology. Our unified master framework evaluates your brand against the rigorous ingestion standards used by modern search models:
 
 ### The Machine-First Audit
 

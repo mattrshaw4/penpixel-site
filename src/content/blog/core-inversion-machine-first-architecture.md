@@ -62,7 +62,7 @@ Organizations must publish a single, [structured canonical definition](/services
 
 Machine information hierarchy is structural, not visual. While humans interpret hierarchy through font size and visual weight, AI systems prioritize content based on heading levels (H2/H3 tags), microdata annotations, and text strings within the first 200 words of a section.
 
-Furthermore, you must eliminate technical debt related to client-side single-page applications (SPAs). If your features, pricing tables, or signup parameters require client-side JavaScript execution to render, AI crawlers will index a completely blank shell. All critical data must exist in the initial HTML response.
+Furthermore, you must eliminate technical debt related to client-side single-page applications (SPAs). If your features, pricing tables, or signup parameters require client-side JavaScript execution to render, AI crawlers will index a completely blank shell. All critical data must exist in the initial HTML response. We've resolved this exact failure mode before: [a global RPO enterprise's "JavaScript Blackout"](/case-studies/rpo-indexation) was restored via a 30-day technical sprint that unlocked 100% ad-spend efficiency.
 
 ### 3. Content Modularity
 

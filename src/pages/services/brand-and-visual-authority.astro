@@ -1,6 +1,8 @@
 ---
 import BaseLayout from '../../layouts/BaseLayout.astro';
 import ServiceSchema from '../../components/ServiceSchema.astro';
+import FAQSection from '../../components/FAQSection.astro';
+import { brandFaqs } from '../../data/service-faqs';
 
 const builds = [
   { n: '01', title: 'Visual Identity Engineering', lede: 'More than a logo.', body: 'Systems signaling enterprise-grade authority to both humans and machines.' },
@@ -101,6 +103,8 @@ const deliverables = [
         </div>
       </div>
     </section>
+
+    <FAQSection faqs={brandFaqs} />
 
     <section class="border-t border-white/10">
       <div class="mx-auto max-w-6xl px-6 py-24">

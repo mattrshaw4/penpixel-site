@@ -41,7 +41,7 @@ This isn’t hypothetical. It’s what happens when your content isn’t structu
 - AI-generated summaries are increasingly treated as trusted sources. A large-scale experiment found that [**citations (even when incorrect) boost trust in AI results**](https://arxiv.org/abs/2504.06435), while uncertainty labels can actually *erode* trust.
 - Users today may trust generative AI over traditional search results, especially when a citation is provided.
 
-Visibility gives your brand the edge; invisibility costs you leads and credibility.
+Visibility gives your brand the edge; invisibility costs you leads and credibility. [If AI isn't recommending you](/blog/does-ai-recommend-you), your clients likely won't be either.
 
 ## What’s the Next Move?
 Your brand doesn’t need a secret version of your website for AI agents. Here’s what works:
@@ -74,4 +74,4 @@ Our AI‑Search Readiness Audit starts by asking the same two vital questions:
 
 If the answer is no, [our audit](/services/ai-search-readiness-audits) shows you exactly where and how to fix the gaps.
 
-You’re not invisible, just not yet citation-ready, but you can change that.
+You’re not invisible, just not yet citation-ready, but you can change that. [One logistics client went from invisible to a 1,500% organic surge](/case-studies/logistics) once the underlying entity problems were fixed.

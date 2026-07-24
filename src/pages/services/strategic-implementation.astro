@@ -1,6 +1,8 @@
 ---
 import BaseLayout from '../../layouts/BaseLayout.astro';
 import ServiceSchema from '../../components/ServiceSchema.astro';
+import FAQSection from '../../components/FAQSection.astro';
+import { implementationFaqs } from '../../data/service-faqs';
 
 const layers = [
   { n: '01', title: 'Technical Infrastructure', sub: '(The Foundation)', lede: 'Ensure machines find, parse, and recommend your technical architecture.', items: [
@@ -102,6 +104,8 @@ const layers = [
         </div>
       </div>
     </section>
+
+    <FAQSection faqs={implementationFaqs} />
 
     <section class="border-t border-white/10">
       <div class="mx-auto max-w-6xl px-6 py-24">

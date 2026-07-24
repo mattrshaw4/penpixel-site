@@ -61,8 +61,10 @@ Negative inbound optimization helps you:
 
 The brands that embrace this shift will be the ones AI tools trust and the ones buyers remember.
 
+[The Alexander Group](/case-studies/the-alexander-group) sharpened exactly this kind of positioning clarity, and it drove a 44% organic growth surge.
+
 Ready to sharpen how your brand shows up in AI-driven search?
 
-Our Content Strategy services help you define your positioning clearly and ensure that AI tools accurately repeat it.
+Our entity management services help you define your positioning clearly and ensure that AI tools accurately repeat it.
 
-[Explore our Content Strategy services](/services/content-strategy) now.
+[Explore our Entity Management services](/services/entity-management) now.

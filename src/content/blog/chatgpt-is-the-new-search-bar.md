@@ -31,7 +31,7 @@ That means the same place customers discover you could be the place they transac
 **Implication:** Page-one rankings no longer guarantee visibility. If AI assistants don’t surface your brand, you’re not even in the conversation.
 
 ## Why AI Assistants Win Over Google
-Why are users shifting away from search engines?
+This is [the core inversion](/blog/core-inversion-machine-first-architecture) playing out in real time: why are users shifting away from search engines?
 
 Because AI assistants deliver what Google can’t: fast, synthesized, personalized answers.
 
@@ -57,7 +57,7 @@ What matters now:
 **Implication:** SEO is now just one piece of a larger discipline: [AI-Search Readiness](/services/ai-search-readiness-audits).
 
 ## Content Strategy for AI-Search Readiness
-How do you build [content that AI tools can actually cite](/services/content-strategy)?
+How do you build [content that AI tools can actually cite](/services/strategic-implementation)?
 
 - **Lead with answers.** Place the summary at the top, followed by the details.
 - **Decision-support content.** Help users make choices, not just consume facts.
@@ -71,12 +71,12 @@ To prepare:
 
 1. **Audit your visibility.** Do ChatGPT, Gemini, or Perplexity cite you today?
 2. **Identify gaps.** Weak author bios, thin authority signals, or missing structured content all hurt visibility.
-3. **Build your roadmap.** [Map out a 30/60/90-day plan](/services/monthly-retainers) to strengthen your authority and AI readiness.
+3. **Build your roadmap.** [Map out a 30/60/90-day plan](/services/entity-management) to strengthen your authority and AI readiness.
 
 ## What This Means for Your Brand
 
 OpenAI’s own research confirms the shift: AI assistants are where people now search, evaluate, and increasingly buy. If you’re still only optimizing for Google, you’re already behind.
 
-The brands that win tomorrow will be the ones that AI tools recognize as authoritative today.
+The brands that win tomorrow will be the ones that AI tools recognize as authoritative today. One [logistics client saw a 1,500% organic surge](/case-studies/logistics) after fixing exactly this kind of invisibility.
 
 🟣 That’s why we built the [**AI-Search Readiness Audit**](/services/ai-search-readiness-audits). It shows you where you stand, where you’re weak, and what to fix first so your brand isn’t left invisible in the AI era.

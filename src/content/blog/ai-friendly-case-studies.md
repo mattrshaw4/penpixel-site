@@ -59,7 +59,7 @@ To make case studies AI-friendly and executive-ready, you need four things:
 ## Why This Works for Executive Buyers
 Executives value risk reduction and measurable ROI.
 
-A case study that says “Client X saved $250,000 and cut downtime by 40%” speaks volumes.
+A case study that says “Client X saved $250,000 and cut downtime by 40%” speaks volumes, which is exactly why [DT Heritage's case study leads with 92.1% AI citation growth](/case-studies/dt-heritage) instead of a vague success story.
 
 And when AI tools surface those numbers in their answers, your credibility compounds.
 
