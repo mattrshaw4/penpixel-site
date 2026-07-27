@@ -246,17 +246,7 @@ unusual. Secrets live only in Cloudflare env vars, never in this repo.
 Do **not** run `npm audit fix --force` — it forces Astro 7, breaking the
 Tailwind build. Plain `npm audit fix` is a no-op here.
 
-## Open items (as of this writing)
 
-- [ ] `20-year-seo-loop` blog post — source text needed, or drop + add the
-      301 (dangling internal link to it has been fixed; the redirect for its
-      old URL itself is not yet in `_redirects`)
-- [ ] Analytics — nothing wired anywhere (no GA4, GTM, or Cloudflare Web
-      Analytics). A scan caught this; worth a two-minute fix.
-- [ ] Schema.org founder field lists only Deven — deliberate for now, revisit
-      if team/co-founder representation should change
-- [ ] Google Search Console + Bing Webmaster submission — on hold, not started
-- [ ] Full manual mobile QA pass beyond the nav fix
 - [ ] The Alexander Group case study — logo asset + usage permission pending
 - [ ] `.co` → `.com` redirect — confirm it actually exists
 - [ ] Squarespace cancellation — deliberately on hold during the stability-
