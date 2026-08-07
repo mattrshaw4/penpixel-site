@@ -247,8 +247,4 @@ Do **not** run `npm audit fix --force`: it forces Astro 7, breaking the
 Tailwind build. Plain `npm audit fix` is a no-op here.
 
 
-- [ ] The Alexander Group case study: logo asset + usage permission pending
-- [ ] `.co` → `.com` redirect: confirm it actually exists
-- [ ] Squarespace cancellation: deliberately on hold during the stability-
-      watching window; do not cancel until email + traffic have been stable
-      for a few days to two weeks post-cutover
+
