@@ -1,4 +1,4 @@
-# Penpixel Creative — redirect map (Cloudflare Pages)
+# Penpixel Creative: redirect map (Cloudflare Pages)
 # Format: <source> <destination> <status>
 # All permanent (301), single hop, pointing at the final HTTPS URL.
 

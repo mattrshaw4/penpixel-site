@@ -1,4 +1,4 @@
-# Penpixel Creative — robots.txt
+# Penpixel Creative: robots.txt
 # Posture: we WANT AI systems to read, learn from, and cite this site.
 # This is deliberate for an AEO agency and is the reverse of default
 # publisher behavior. Content Signals below make that machine-readable.

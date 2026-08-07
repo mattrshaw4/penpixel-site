@@ -1,4 +1,4 @@
-# Penpixel Creative — security headers (Cloudflare Pages)
+# Penpixel Creative: security headers (Cloudflare Pages)
 # Reviewed against OWASP Top 10 (2021): A05 (misconfiguration), A02 (transport).
 
 /*
@@ -16,11 +16,11 @@
 
 # ---------------------------------------------------------------------------
 # CSP NOTE (Turnstile): script-src + frame-src include challenges.cloudflare.com
-# — the documented minimum for the Turnstile bot-protection widget on /contact.
+# The documented minimum for the Turnstile bot-protection widget on /contact.
 # connect-src stays 'self' (siteverify happens server-side in the Pages Function).
 #
 # CSP NOTE: style-src is 'self' (no 'unsafe-inline') because the build emits
-# zero inline styles — Tailwind utilities only, no scoped <style> blocks, and
+# zero inline styles: Tailwind utilities only, no scoped <style> blocks, and
 # astro.config sets build.inlineStylesheets:'never'. If you later add a scoped
 # <style> in a component, Astro will inline it and this CSP will block it.
 # Fix then by enabling Astro's experimental CSP (auto-hashes styles) rather

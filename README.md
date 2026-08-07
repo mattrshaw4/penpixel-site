@@ -1,16 +1,16 @@
-# Penpixel Creative — Website
+# Penpixel Creative: Website
 
 Static site built with **Astro 5** + **Tailwind CSS 4**, deployed on **Cloudflare
 Pages**. Server-rendered HTML, minimal JavaScript, built to be read and cited by
-AI systems — the site is a working example of the thing Penpixel sells.
+AI systems. The site is a working example of the thing Penpixel Creative sells.
 
 ## Status: live in production
 
-**https://penpixelcreative.com** — migrated off Squarespace, DNS fully cut over
+**https://penpixelcreative.com**: migrated off Squarespace, DNS fully cut over
 to Cloudflare, contact form sending real email, 25-post blog (24 migrated, 1
-outstanding — see below). FAQPage schema live on all 4 service pages, and
+outstanding, see below). FAQPage schema live on all 4 service pages, and
 every migrated blog post carries 2-4 contextual internal links to related
-posts and case studies (an SEO/AEO audit finding — previously zero).
+posts and case studies (an SEO/AEO audit finding, previously zero).
 
 Squarespace is intentionally still active during a stability-watching window
 before cancellation. See "Open items" at the bottom of this file for what's
@@ -18,7 +18,7 @@ still outstanding.
 
 ## Requirements
 - Node.js **22.12.0+** (see `.nvmrc`)
-- Do **not** upgrade to Astro 6/7 — their rolldown-based Vite breaks
+- Do **not** upgrade to Astro 6/7: their rolldown-based Vite breaks
   `@tailwindcss/vite`. Pinned to `^5.13.0`.
 
 ## Local development
@@ -35,16 +35,16 @@ npm run check      # type + Astro diagnostics
 functions/
   api/contact.js       Cloudflare Pages Function: contact form handler
 public/
-  robots.txt           Content-Signal directives — explicitly welcomes AI crawlers
+  robots.txt           Content-Signal directives, explicitly welcomes AI crawlers
   llms.txt              Curated site map for LLMs (llmstxt.org)
   _redirects            Cloudflare 301 map (legacy Squarespace URLs -> new URLs)
-  _headers              Security headers (CSP, HSTS, etc.) — OWASP-reviewed
+  _headers              Security headers (CSP, HSTS, etc.), OWASP-reviewed
   images/                Self-hosted photos, logos, blog diagrams (no external CDN)
   js/
     contact-form.js      External script (CSP: no inline JS)
     mobile-nav.js         External script for the mobile menu toggle
 src/
-  consts.ts             Site config + entity data (SITE.url, email, booking — no secrets)
+  consts.ts             Site config + entity data (SITE.url, email, booking, no secrets)
   astro.config.mjs      `site:` must match SITE.url exactly (canonical URL, used in sitemap)
   styles/global.css     Brand tokens (color + type) via Tailwind @theme, + blog article typography
   layouts/BaseLayout.astro   head, meta, OG, fonts, Organization schema
@@ -56,7 +56,7 @@ src/
     FAQSection.astro       FAQ accordion + FAQPage JSON-LD from one shared data
                            source (reused across the 4 service pages)
   data/
-    case-studies.ts        Case study content — NOT a content collection, a typed data file
+    case-studies.ts        Case study content, NOT a content collection: a typed data file
     service-faqs.ts        FAQ content for the 4 service pages, paired with FAQSection.astro
   content/blog/          Markdown blog posts (24 files)
   content.config.ts     Blog collection schema (title/metaTitle/description/pubDate)
@@ -67,7 +67,7 @@ src/
     services/index.astro + 4 detail pages
     case-studies/index.astro + [slug].astro   Dynamic renderer reading data/case-studies.ts
     blog/[...page].astro + [slug].astro       Paginated index + post renderer
-    404.astro                            Custom 404 — required so Cloudflare Pages
+    404.astro                            Custom 404, required so Cloudflare Pages
                                           returns a real 404 instead of silently
                                           serving the homepage with a 200
 ```
@@ -75,7 +75,7 @@ src/
 ## Deploy
 Auto-deploys via Cloudflare Pages on every push to `main` (GitHub:
 `mattrshaw4/penpixel-site`). Build command `npm run build`, output `dist`.
-No manual deploy step — `git push` is the whole release process.
+No manual deploy step: `git push` is the whole release process.
 
 ## Canonical domain: penpixelcreative.com (bare, not www)
 
@@ -87,58 +87,58 @@ This is the single source of truth every other piece of config must agree with:
 
 If you ever add a new hardcoded absolute URL anywhere, it must use the bare
 domain. `www.penpixelcreative.com` 301-redirects to the bare domain via a
-Cloudflare Redirect Rule (zone-level, not in this repo) — Type: Dynamic,
+Cloudflare Redirect Rule (zone-level, not in this repo), Type: Dynamic,
 expression `concat("https://penpixelcreative.com", http.request.uri.path)`,
 301, preserve query string.
 
-## DNS — migration complete
+## DNS: migration complete
 
 Nameservers moved from GoDaddy to Cloudflare
 (`memphis.ns.cloudflare.com` / `surina.ns.cloudflare.com`). The zone is Active.
 Matt manages DNS via a Cloudflare account with the domain added directly
 (not via GoDaddy Delegate Access, which only covers record-level changes, not
-the nameserver switch itself — that had to be done by Deven at the registrar).
+the nameserver switch itself, that had to be done by Deven at the registrar).
 
 **Records that matter and must not be deleted:**
-- Google Workspace MX + DKIM + SPF (Deven's regular email — `deven@penpixelcreative.com`)
+- Google Workspace MX + DKIM + SPF (Deven's regular email: `deven@penpixelcreative.com`)
 - Resend MX/TXT records on the `info.` subdomain (DKIM `resend._domainkey.info`,
-  SPF + bounce MX on `send.info`) — these did **not** survive Cloudflare's
+  SPF + bounce MX on `send.info`). These did **not** survive Cloudflare's
   automatic DNS import scan when the zone was added and had to be re-added
   manually, sourced from Resend's own dashboard. If DNS is ever re-migrated,
-  check this specifically — the scan will likely miss them again.
+  check this specifically: the scan will likely miss them again.
 - Legacy Mailgun and Mailchimp records exist in the zone, unused as far as we
   know. Left alone rather than deleted; ask Deven before removing.
 
 **AI crawler settings**, configured at zone onboarding: Search, Agent, and
-Training all set to Allow (Training's default is "block on pages with ads" —
+Training all set to Allow (Training's default is "block on pages with ads";
 changed explicitly even though the site runs no ads). Cloudflare's managed
 robots.txt was declined so it doesn't override the hand-written one in this
 repo. AI Labyrinth / Bot Fight Mode / AI Crawl Control are off.
 
 **`.co` domain redirect:** the original site spec called for a redirect from
 `penpixelcreative.co` (a burner send-domain) to `.com`. **Status unconfirmed**
-as of this writing — verify it exists as a Cloudflare Redirect Rule before
+as of this writing. Verify it exists as a Cloudflare Redirect Rule before
 assuming it's live.
 
 ## Fonts
 Self-hosted via Fontsource (`@fontsource/blinker`, `@fontsource-variable/geist`,
-`@fontsource-variable/geist-mono`). No Google Fonts request — tighter CSP, no
+`@fontsource-variable/geist-mono`). No Google Fonts request: tighter CSP, no
 visitor data leaked to a third party.
 
 ## Booking
 `SITE.booking` in `consts.ts` holds Deven's real Google Appointment Scheduling
-URL. It's a plain link, not an embed — opens on Google's own domain, keeping
+URL. It's a plain link, not an embed: opens on Google's own domain, keeping
 the CSP tight (no iframe exception needed). If it's ever embedded inline
 instead, add `frame-src https://calendar.google.com https://calendar.app.google`
 to the CSP in `public/_headers`.
 
-## Contact form (Pages Function + Turnstile + Resend) — live and confirmed working
+## Contact form (Pages Function + Turnstile + Resend): live and confirmed working
 
-`/contact` posts to `/api/contact`, handled by `functions/api/contact.js` — a
+`/contact` posts to `/api/contact`, handled by `functions/api/contact.js`, a
 Cloudflare Pages Function, deploys with every push, no separate Worker step.
 
 Flow: honeypot check → server-side validation → Turnstile Siteverify (server-
-side, the actual gate — client-side checks are UX only) → plain-text email via
+side, the actual gate; client-side checks are UX only) → plain-text email via
 Resend to `CONTACT_TO_EMAIL`, with `reply_to` set to the prospect's address so
 Deven can reply in one click.
 
@@ -146,33 +146,33 @@ Deven can reply in one click.
 `consts.ts` (`turnstileSiteKey`), secret in the Cloudflare Pages env var
 `TURNSTILE_SECRET_KEY`. Configured for `penpixelcreative.com`,
 `www.penpixelcreative.com`, and `penpixel-site.pages.dev`. Managed mode (not
-Invisible — avoids the extra privacy-policy addendum requirement).
+Invisible: avoids the extra privacy-policy addendum requirement).
 
 **Resend:** sending domain `info.penpixelcreative.com` verified. Env vars set
 in the Cloudflare Pages dashboard (never in this repo): `RESEND_API_KEY`
 (Secret), `CONTACT_TO_EMAIL` (Text, `deven@penpixelcreative.com`),
-`CONTACT_FROM_EMAIL` (Text, an address on the `info.` subdomain — confirm the
+`CONTACT_FROM_EMAIL` (Text, an address on the `info.` subdomain, confirm the
 exact value in the dashboard).
 
 Real end-to-end test confirmed: submissions from two separate sender accounts
 both landed in Deven's inbox.
 
 Local dev with the function: `npm run build && npx wrangler pages dev dist`
-(uses `.env` — see `.env.example`; Cloudflare's public test keys always pass
+(uses `.env`, see `.env.example`; Cloudflare's public test keys always pass
 and are safe for local dev).
 
 ## Blog migration status: 24 of 25 posts
 
-Bucket A (12) and Bucket B (12) are migrated — converted from source, internal
+Bucket A (12) and Bucket B (12) are migrated: converted from source, internal
 links rewritten to new-site URLs, titles trimmed to ≤60 chars, descriptions to
 ≤160, `BlogPosting` JSON-LD on every post. The 7 Bucket C posts (old-ICP
 content-marketing pieces) were deliberately cut, each with a 301 in
 `_redirects` to `/blog`. Every migrated post also carries 2-4 contextual
-internal links to related posts and case studies (an SEO/AEO audit finding —
+internal links to related posts and case studies (an SEO/AEO audit finding,
 previously zero, verified by scanning all post bodies for `/blog/` and
 `/case-studies/` links).
 
-**`20-year-seo-loop` is still missing** — same root cause as before: it was
+**`20-year-seo-loop` is still missing**, same root cause as before: it was
 live on the site when the original triage was built but is absent from the
 WordPress export used for the rest of the migration. The one place it was
 still linked internally
@@ -180,7 +180,7 @@ still linked internally
 it as a live dead link) has been repointed to an existing post, so there's no
 broken link in production anymore. But the actual migration decision is still
 open: source the original text and migrate it properly, or drop it
-permanently and add a 301 in `_redirects` for its old URL — currently
+permanently and add a 301 in `_redirects` for its old URL. Currently
 unmapped, so `/blog/20-year-seo-loop/` still 404s if anything external still
 links to it.
 
@@ -189,14 +189,14 @@ links to it.
 Each of the 4 service pages renders `<FAQSection faqs={...} />` just above its
 closing CTA section. The component (`src/components/FAQSection.astro`) builds
 the visible accordion (native `<details>`/`<summary>`, no JS required) and the
-`FAQPage` JSON-LD from the same `faqs` array — one source of truth, so the
+`FAQPage` JSON-LD from the same `faqs` array, one source of truth, so the
 schema can never drift from what a visitor actually reads. Content lives in
 `src/data/service-faqs.ts`, one named export per page (`auditFaqs`,
 `brandFaqs`, `entityFaqs`, `implementationFaqs`), following the same
 "typed data file, not a content collection" pattern as `case-studies.ts`.
 
 JSON-LD is emitted via
-`set:html={JSON.stringify(faqSchema).replace(/</g, '\\u003c')}` — the escape
+`set:html={JSON.stringify(faqSchema).replace(/</g, '\\u003c')}`: the escape
 is defense-in-depth against a future FAQ answer accidentally containing the
 literal string `</script>` and breaking out of the tag. Not currently
 exploitable (content is static, not user input), but costs nothing to guard
@@ -209,16 +209,16 @@ import it, and drop `<FAQSection faqs={...} />` above that page's CTA section.
 
 `src/data/case-studies.ts` holds all six studies as typed data; a single
 dynamic route (`src/pages/case-studies/[slug].astro`) renders them all. To add
-a seventh, add an entry to the data file — no new page needed. Two case
+a seventh, add an entry to the data file. No new page needed. Two case
 studies (DT Heritage, Joveo) have self-hosted client logos; The Alexander
-Group's does not yet — pending Deven's file and usage permission.
+Group's does not yet: pending Deven's file and usage permission.
 
 ## Mobile
-Desktop nav (`hidden sm:inline`) had no mobile equivalent for a while —
+Desktop nav (`hidden sm:inline`) had no mobile equivalent for a while:
 navigation links simply vanished below 640px with no way to reach them. Fixed:
 `Header.astro` now includes a hamburger toggle + slide-down panel, wired via
 the external `public/js/mobile-nav.js` (same CSP-safe external-script pattern
-as the contact form — this project's CSP has no `unsafe-inline`, so no JS can
+as the contact form: this project's CSP has no `unsafe-inline`, so no JS can
 live inline in the HTML). A full manual mobile QA pass across blog posts, case
 studies, and the service page grids is still pending.
 
@@ -226,7 +226,7 @@ studies, and the service page grids is still pending.
 Headers set at the edge in `public/_headers`, reviewed against OWASP Top 10
 (2021). CSP is `script-src 'self' https://challenges.cloudflare.com` (the
 Cloudflare exception is scoped narrowly, for Turnstile only) and
-`style-src 'self'` with no `unsafe-inline` — the build uses
+`style-src 'self'` with no `unsafe-inline`. The build uses
 `inlineStylesheets: 'never'` specifically so this holds; any inline
 `<style>` or `style=""` attribute will silently break under this CSP, not
 throw a build error, so check visually after any styling change that feels
@@ -243,12 +243,12 @@ unusual. Secrets live only in Cloudflare env vars, never in this repo.
   names, SSR error pages, a Windows-only dev-server file read) don't apply to
   this static, prerendered, Linux-built site.
 
-Do **not** run `npm audit fix --force` — it forces Astro 7, breaking the
+Do **not** run `npm audit fix --force`: it forces Astro 7, breaking the
 Tailwind build. Plain `npm audit fix` is a no-op here.
 
 
-- [ ] The Alexander Group case study — logo asset + usage permission pending
-- [ ] `.co` → `.com` redirect — confirm it actually exists
-- [ ] Squarespace cancellation — deliberately on hold during the stability-
+- [ ] The Alexander Group case study: logo asset + usage permission pending
+- [ ] `.co` → `.com` redirect: confirm it actually exists
+- [ ] Squarespace cancellation: deliberately on hold during the stability-
       watching window; do not cancel until email + traffic have been stable
       for a few days to two weeks post-cutover
