@@ -1,0 +1,68 @@
+---
+// BlogFAQ.astro
+// FAQ accordion + FAQPage schema for blog posts.
+//
+// Sibling of FAQSection.astro, but sized to sit inside the article's
+// max-w-3xl column (no outer max-w-6xl/py-20 section wrapper) instead of a
+// full-bleed marketing section. Same single-source-of-truth pattern: the
+// `faqs` array drives both the visible accordion and the JSON-LD, so the
+// schema can never drift from what a visitor actually reads.
+//
+// Usage — in src/pages/blog/[slug].astro, after <Content />:
+//   import BlogFAQ from '../../components/BlogFAQ.astro';
+//   ...
+//   {d.faqs && d.faqs.length > 0 && <BlogFAQ faqs={d.faqs} />}
+
+export interface FAQItem {
+  question: string;
+  answer: string;
+}
+
+interface Props {
+  faqs: FAQItem[];
+  heading?: string;
+}
+
+const { faqs, heading = 'Questions' } = Astro.props;
+
+// Controlled data only (authored in blog post frontmatter, validated by the
+// zod content schema) — no user input is ever interpolated here, so set:html
+// on a JSON.stringify is safe. \u003c is escaped as defense in depth so a
+// future answer containing the literal text "</script>" can never break out
+// of the tag.
+const faqSchema = {
+  '@context': 'https://schema.org',
+  '@type': 'FAQPage',
+  mainEntity: faqs.map((item) => ({
+    '@type': 'Question',
+    name: item.question,
+    acceptedAnswer: {
+      '@type': 'Answer',
+      text: item.answer,
+    },
+  })),
+};
+const faqSchemaJson = JSON.stringify(faqSchema).replace(/</g, '\\u003c');
+---
+
+<section class="mt-16 border-t border-white/10 pt-10">
+  <h2 class="font-display text-[1.75rem] font-bold leading-[1.15] text-canvas">{heading}</h2>
+  <div class="mt-6 divide-y divide-white/10 border-t border-white/10">
+    {faqs.map((item) => (
+      <details class="group py-5">
+        <summary class="flex cursor-pointer list-none items-center justify-between gap-6 font-body text-base text-canvas/90 transition-colors hover:text-canvas">
+          <span>{item.question}</span>
+          <span
+            class="shrink-0 font-mono text-xl text-canvas/40 transition-transform duration-200 group-open:rotate-45"
+            aria-hidden="true"
+          >
+            +
+          </span>
+        </summary>
+        <p class="mt-3 font-body text-base text-canvas/70">{item.answer}</p>
+      </details>
+    ))}
+  </div>
+</section>
+
+<script type="application/ld+json" set:html={faqSchemaJson} is:inline />
