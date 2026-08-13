@@ -11,6 +11,7 @@ const blog = defineCollection({
     pubDate: z.coerce.date(),
     updatedDate: z.coerce.date().optional(),
     draft: z.boolean().default(false),
+    author: z.string().optional(), // falls back to SITE.founder if unset; see AUTHORS in consts.ts
     faqs: z.array(z.object({ question: z.string(), answer: z.string() })).optional(),
     about: z.array(z.string()).optional(),
     citation: z.array(z.string().url()).optional(),

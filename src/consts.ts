@@ -23,6 +23,22 @@ export const SITE = {
   booking: 'https://calendar.google.com/calendar/appointments/schedules/AcZssZ1SmU2qriNzKKunIEhV1CS2eRgeupqZTsN7ooWv5K9Y-LWAcBv2M0Hc1tKOdrNcgmHGbAm4YL2W?gv=true',
 } as const;
 
+// Per-author metadata for blog bylines and Person schema. Keyed by the exact
+// string used in a post's frontmatter `author` field. Posts with no `author`
+// set fall back to SITE.founder (Deven) with no entry needed here.
+export const AUTHORS = {
+  'Deven Bhagwandin': {
+    jobTitle: 'Founder',
+    url: `${SITE.url}/about/#deven-bhagwandin`,
+    sameAs: ['https://www.linkedin.com/in/devenbhagwandin'],
+  },
+  'Matt Shaw': {
+    jobTitle: 'Infrastructure Architect',
+    url: `${SITE.url}/about/#matt-shaw`,
+    sameAs: ['https://www.linkedin.com/in/matt-r-shaw-/'],
+  },
+} as const;
+
 export const NAV = [
   { label: 'About', href: '/about' },
   { label: 'Services', href: '/services' },
