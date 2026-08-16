@@ -1,0 +1,179 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+
+type Term = { name: string; description: string; proprietary?: boolean };
+
+const terms: Term[] = [
+  {
+    name: "Agent Abandonment Rate",
+    description: "The percentage of times an AI agent skips citing or recommending a brand due to structural friction, unparseable code, or low-confidence data. It is a sampled benchmark metric derived from simulated model query testing, not a direct server or analytics log measurement. This is a proprietary framework and term coined by Penpixel Creative.",
+    proprietary: true,
+  },
+  {
+    name: "AI Share of Voice",
+    description: "The proportion and prominence of times an AI answer engine cites, references, or recommends a specific brand relative to its competitors for targeted industry queries.",
+  },
+  {
+    name: "Answer Engine Optimization (AEO)",
+    description: "The technical and strategic practice of structuring digital assets so AI models (ChatGPT, Claude, Perplexity, Gemini) can easily extract, trust, and cite them as direct answers.",
+  },
+  {
+    name: "Canonical Normalization",
+    description: "The systematic standardization of self-referencing and cross-domain canonical tags to eliminate duplicate content issues and unify indexation signals.",
+  },
+  {
+    name: "Crawl Budget",
+    description: "The maximum number of URLs a search engine or automated crawler will parse on a website within a given timeframe, determined by crawl capacity limits and crawl demand.",
+  },
+  {
+    name: "Crawl Trap",
+    description: "A structural site architecture flaw, such as infinite parameter combinations or bad redirects, that consumes crawler budget and prevents full site indexation.",
+  },
+  {
+    name: "Digital Estate",
+    description: "The total footprint of a brand's web presence, including its main domain, subdomains, third-party platform profiles, structured data, and knowledge graph citations. This is a proprietary framework and term coined by Penpixel Creative.",
+    proprietary: true,
+  },
+  {
+    name: "Entity Debt",
+    description: "The cumulative technical, visual, and verbal inconsistencies across a brand's digital estate that degrade AI confidence and lead to hallucinated or omitted brand references. This is a proprietary framework and term coined by Penpixel Creative.",
+    proprietary: true,
+  },
+  {
+    name: "Entity Integrity",
+    description: "The structural consistency of a brand's identity signals across the web, determining how confidently AI models can verify and recommend the organization. This is a proprietary framework and term coined by Penpixel Creative.",
+    proprietary: true,
+  },
+  {
+    name: "Entity Resolution",
+    description: "The algorithmic process by which search engines and LLMs aggregate scattered online references into a single, unambiguous entity profile within a knowledge graph.",
+  },
+  {
+    name: "Extractive Efficiency",
+    description: "A measure of how efficiently an automated crawler or LLM can parse and extract clean, structured factual data directly from a page's raw HTML. This is a proprietary framework and term coined by Penpixel Creative.",
+    proprietary: true,
+  },
+  {
+    name: "Hreflang Logic",
+    description: "The technical configuration of language and regional attributes, ensuring search engines and language models serve the correct geographic version of a web page.",
+  },
+  {
+    name: "Information Gain",
+    description: "The degree of unique, factual, or expert value a page adds beyond the baseline data already available in an AI model's training set or competing search results.",
+  },
+  {
+    name: "Machine-First Consumption",
+    description: "The architectural approach of optimizing web layout, data structures, and server rendering specifically for automated AI agents rather than human visual UI. This is a proprietary framework and term coined by Penpixel Creative.",
+    proprietary: true,
+  },
+  {
+    name: "Soft 404",
+    description: 'A web page response where a server returns a successful "200 OK" status code even though the requested content is missing, expired, or displaying an error message.',
+  },
+  {
+    name: "SSR Fallback",
+    description: "A Server-Side Rendering mechanism that serves fully rendered HTML to AI bots and crawlers when Client-Side JavaScript execution is restricted or delayed.",
+  },
+  {
+    name: "Structural Friction",
+    description: "Technical obstacles, such as render-blocking scripts, unindexed JS frames, or broken schema, that block AI engines from parsing and processing site content. This is a proprietary framework and term coined by Penpixel Creative.",
+    proprietary: true,
+  },
+  {
+    name: "UCP Alignment",
+    description: "The synchronization of site schema, markup, and catalog structures with machine-readable protocols to enable direct automated evaluation and transactional readiness by AI agents.",
+  },
+];
+
+const slugify = (s: string): string =>
+  s.toLowerCase().replace(/[^a-z0-9]+/g, '-').replace(/(^-|-$)/g, '');
+
+const schema = {
+  "@context": "https://schema.org",
+  "@graph": [
+    {
+      "@type": "WebPage",
+      "@id": "https://penpixelcreative.com/glossary/#webpage",
+      "url": "https://penpixelcreative.com/glossary",
+      "name": "AI Search & AEO Glossary | Penpixel Creative",
+      "description": "Clear definitions for key AI search, Answer Engine Optimization (AEO), entity optimization, and machine-first SEO terminology.",
+      "isPartOf": {
+        "@type": "WebSite",
+        "@id": "https://penpixelcreative.com/#website",
+        "url": "https://penpixelcreative.com/",
+        "name": "Penpixel Creative",
+      },
+      "publisher": {
+        "@type": "Organization",
+        "@id": "https://penpixelcreative.com/#organization",
+        "name": "Penpixel Creative",
+        "url": "https://penpixelcreative.com/",
+      },
+      "mainEntity": {
+        "@id": "https://penpixelcreative.com/glossary/#definedtermset",
+      },
+    },
+    {
+      "@type": "DefinedTermSet",
+      "@id": "https://penpixelcreative.com/glossary/#definedtermset",
+      "name": "AI Search & AEO Glossary",
+      "description": "Definitions for Answer Engine Optimization (AEO), entity architecture, and machine-first SEO terminology.",
+      "hasDefinedTerm": terms.map((t) => ({
+        "@type": "DefinedTerm",
+        "name": t.name,
+        "description": t.description,
+      })),
+    },
+  ],
+};
+
+// Defense in depth: escape any '</' in serialized JSON so a future
+// description containing that sequence cannot break out of the script tag.
+const schemaJson = JSON.stringify(schema).replace(/</g, '\\u003c');
+---
+<BaseLayout
+  title="AI Search & AEO Glossary | Penpixel Creative"
+  description="Clear definitions for key AI search, Answer Engine Optimization (AEO), entity optimization, and machine-first SEO terminology."
+>
+  <main>
+    <section class="mx-auto max-w-6xl px-6 pt-20 pb-16 md:pt-28">
+      <p class="font-mono text-sm uppercase tracking-[0.2em] text-impact">// glossary</p>
+      <h1 class="mt-5 max-w-4xl text-5xl md:text-6xl">AI Search &amp; AEO Glossary</h1>
+      <p class="mt-6 max-w-2xl text-lg text-canvas/80">
+        AI search, machine-first discovery, and agentic search require different mechanics than search engines or previous iterations of the internet. Now, LLMs research, evaluate, cite, and link to web content in AI overviews or generated answers.
+      </p>
+      <p class="mt-4 max-w-2xl text-canvas/70">
+        Our glossary is an ever-evolving tool that defines current search engine optimization (SEO), answer engine optimization (AEO), and foundational concepts to provide clear communication and standards when optimizing your digital estate.
+      </p>
+    </section>
+
+    <section class="border-t border-white/10">
+      <div class="mx-auto max-w-6xl px-6 py-20">
+        <dl class="grid gap-12">
+          {terms.map((term) => (
+            <div id={slugify(term.name)} class="scroll-mt-24">
+              <dt class="flex flex-wrap items-baseline gap-3">
+                <span class="font-display text-2xl font-bold text-canvas">{term.name}</span>
+                {term.proprietary && (
+                  <span class="font-mono text-xs uppercase tracking-[0.2em] text-impact">
+                    // Penpixel Creative framework
+                  </span>
+                )}
+              </dt>
+              <dd class="mt-3 max-w-3xl font-body text-canvas/70">{term.description}</dd>
+            </div>
+          ))}
+        </dl>
+      </div>
+    </section>
+
+    <section class="border-t border-white/10">
+      <div class="mx-auto max-w-6xl px-6 py-24">
+        <h2 class="max-w-3xl text-4xl md:text-5xl">See where your brand stands.</h2>
+        <a href="/contact" class="mt-8 inline-block bg-impact px-8 py-4 font-display text-lg font-bold text-canvas transition-opacity hover:opacity-90">Get the Diagnosis</a>
+      </div>
+    </section>
+  </main>
+
+  <script type="application/ld+json" set:html={schemaJson} />
+</BaseLayout>
