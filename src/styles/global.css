@@ -8,10 +8,10 @@
   /* Color logic */
   --color-authority: #000000; /* Rich Black  — strategy/authority backgrounds */
   --color-canvas:    #ffffff; /* Clean White — readability */
-  --color-impact:    #bf00bf; /* Magenta     — IMPACT ONLY: revenue gap, CTA */
-  --color-infra:     #44739a; /* Deep Blue   — system infrastructure / existing tech */
+  --color-impact:    #d926d9; /* Magenta     — IMPACT ONLY: revenue gap, CTA */
+  --color-infra:     #6b95bb; /* Deep Blue   — system infrastructure / existing tech */
   --color-success:   #74a788; /* Muted Green — growth metrics / success states */
-  --color-ai:        #833eb4; /* Purple      — technical nuance / AI logic */
+  --color-ai:        #a76bd9; /* Purple      — technical nuance / AI logic */
 
   /* Type stack */
   --font-display: "Blinker", system-ui, sans-serif;             /* H1–H3 */
