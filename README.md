@@ -1,6 +1,6 @@
 # Penpixel Creative: Website
 
-Static site built with **Astro 5** + **Tailwind CSS 4**, deployed on **Cloudflare
+Static site built with **Astro 7** + **Tailwind CSS 4**, deployed on **Cloudflare
 Pages**. Server-rendered HTML, minimal JavaScript, built to be read and cited by
 AI systems. The site is a working example of the thing Penpixel Creative sells.
 
@@ -18,8 +18,37 @@ still outstanding.
 
 ## Requirements
 - Node.js **22.12.0+** (see `.nvmrc`)
-- Do **not** upgrade to Astro 6/7: their rolldown-based Vite breaks
-  `@tailwindcss/vite`. Pinned to `^5.13.0`.
+- Astro **7.2.4**. See "Astro version: upgraded to 7 (Aug 2026)" below before
+  touching this pin.
+
+## Astro version: upgraded to 7 (Aug 2026)
+
+Upgraded from 5.13 to 7.2.4. Not optional-nice-to-have: `npm audit` on the
+5.13 install flagged several high-severity advisories against Astro itself
+(XSS via unescaped attribute names/spread props, host-header SSRF in the
+prerendered error-page fetch) plus a libvips advisory in `sharp`, all fixed
+upstream in 7.2.4. `npm audit` reports 0 vulnerabilities as of this upgrade.
+
+The Requirements section above used to say the opposite: don't upgrade past
+5.13, because Astro 6/7's rolldown-based Vite supposedly breaks
+`@tailwindcss/vite`. That didn't hold up. Build is clean on Vite 8 with the
+existing `@tailwindcss/vite` integration, no changes needed there. Whatever
+prompted that warning either got fixed upstream before 7.2.4 or was never
+actually tested against a real build.
+
+One real breaking change, already handled: Astro 7's default Markdown
+processor (Sätteri) doesn't run remark/rehype plugins, which is what put
+`target="_blank"` on external blog links. `markdown.rehypePlugins` in
+`astro.config.mjs` is now `markdown.processor: unified({ rehypePlugins: [...] })`
+from `@astrojs/markdown-remark` (a new direct dependency) instead. If that
+processor config ever looks redundant or gets "simplified" away, don't:
+`rehype-external-links` stops running without it and every external link in
+every blog post silently loses `target="_blank"`.
+
+Verified before merging: all 47 pages diffed against the pre-upgrade build
+output for content differences, none found (only the documented
+`compressHTML: 'jsx'` whitespace change). All external blog links confirmed
+still opening in a new tab post-upgrade.
 
 ## Local development
 ```bash
@@ -234,17 +263,10 @@ unusual. Secrets live only in Cloudflare env vars, never in this repo.
 
 ## Dependency advisories (npm audit)
 
-`npm install` reports ~7 advisories, reviewed and intentionally left as-is:
-
-- **6 of 7 are dev-only**, in the `yaml` parser under `@astrojs/check` (the
-  `npm run check` type-checker). Never ships to a visitor's browser.
-- **1 of 7 is a "high" in Astro/esbuild** whose trigger conditions
-  (`define:vars`, Server Islands, dynamic slot names, untrusted spread-prop
-  names, SSR error pages, a Windows-only dev-server file read) don't apply to
-  this static, prerendered, Linux-built site.
-
-Do **not** run `npm audit fix --force`: it forces Astro 7, breaking the
-Tailwind build. Plain `npm audit fix` is a no-op here.
+`npm audit` reports 0 vulnerabilities as of the Astro 7.2.4 upgrade (Aug
+2026, see above). Re-run `npm audit` after any dependency bump. A nonzero
+result on a client-facing site is worth actually reading, not routine noise
+to wave off, whatever the specific numbers were before this upgrade.
 
 
 

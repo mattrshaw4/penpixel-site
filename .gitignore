@@ -11,3 +11,4 @@ node_modules/
 # os / editor
 .DS_Store
 *.log
+.dev.vars
