@@ -8,7 +8,8 @@
   /* Color logic */
   --color-authority: #000000; /* Rich Black  — strategy/authority backgrounds */
   --color-canvas:    #ffffff; /* Clean White — readability */
-  --color-impact:    #ce00ce; /* Magenta     — IMPACT ONLY: revenue gap, CTA */
+  --color-impact:    #e030e0; /* Magenta     — IMPACT ONLY: revenue gap, CTA */
+  --color-impact-bg: #8f168f; /* Magenta (darker) — button backgrounds only, holds white text at AA */
   --color-infra:     #6b95bb; /* Deep Blue   — system infrastructure / existing tech */
   --color-success:   #74a788; /* Muted Green — growth metrics / success states */
   --color-ai:        #a76bd9; /* Purple      — technical nuance / AI logic */
