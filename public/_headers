@@ -2,7 +2,7 @@
 # Reviewed against OWASP Top 10 (2021): A05 (misconfiguration), A02 (transport).
 
 /*
-  Content-Security-Policy: default-src 'self'; script-src 'self' https://challenges.cloudflare.com; style-src 'self'; img-src 'self' data:; font-src 'self'; connect-src 'self'; frame-src https://challenges.cloudflare.com; frame-ancestors 'none'; base-uri 'self'; form-action 'self'; object-src 'none'; upgrade-insecure-requests
+  Content-Security-Policy: default-src 'self'; script-src 'self' https://challenges.cloudflare.com https://www.googletagmanager.com 'sha256-oJviho+4/VcFLOKyHzqua2Zs/Np50hZoQwtIcJak5as='; style-src 'self'; img-src 'self' data: https://www.google-analytics.com; font-src 'self'; connect-src 'self' https://www.google-analytics.com https://*.google-analytics.com; frame-src https://challenges.cloudflare.com; frame-ancestors 'none'; base-uri 'self'; form-action 'self'; object-src 'none'; upgrade-insecure-requests
   Strict-Transport-Security: max-age=63072000; includeSubDomains; preload
   X-Content-Type-Options: nosniff
   X-Frame-Options: DENY
@@ -25,4 +25,24 @@
 # <style> in a component, Astro will inline it and this CSP will block it.
 # Fix then by enabling Astro's experimental CSP (auto-hashes styles) rather
 # than re-adding 'unsafe-inline'.
+#
+# CSP NOTE (GA4 / gtag.js, src/components/GoogleAnalytics.astro):
+# script-src allows googletagmanager.com for the external gtag.js loader,
+# plus a SHA-256 hash for the small inline bootstrap script instead of
+# 'unsafe-inline'. That hash is computed on the EXACT bytes Astro renders
+# between <script> and </script> for that one component. If you ever edit
+# GoogleAnalytics.astro's inline script -- even whitespace -- run
+# `npm run build` and recompute the hash (see script below) or GA breaks
+# silently: CSP fails closed, no console error a visitor would notice,
+# tracking just stops firing.
+#   node -e "
+#     const fs=require('fs'),c=require('crypto');
+#     const html=fs.readFileSync('dist/index.html','utf8');
+#     const m=[...html.matchAll(/<script>(.*?)<\/script>/gs)].find(x=>x[1].includes('gaId'));
+#     console.log('sha256-'+c.createHash('sha256').update(m[1]).digest('base64'));
+#   "
+# connect-src / img-src allow google-analytics.com (+ wildcard subdomain for
+# GA4's regional collection endpoints, e.g. region1.google-analytics.com).
+# No SRI on the gtag.js loader: Google doesn't publish stable per-version
+# file hashes for it (same accepted tradeoff as the Turnstile loader above).
 # ---------------------------------------------------------------------------
