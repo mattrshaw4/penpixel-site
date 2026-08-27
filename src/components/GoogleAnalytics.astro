@@ -1,0 +1,43 @@
+---
+// Loads Google Analytics 4 via gtag.js. Production builds only -- astro dev
+// never renders this, so local testing never touches real analytics data.
+//
+// Runtime hostname check below also keeps Cloudflare Pages preview deploys
+// (*.pages.dev, used for every feature-branch review before merge to main)
+// out of production GA4 data. The exact same built HTML ships to both; only
+// the browser's actual hostname at request time tells them apart.
+//
+// CSP (public/_headers): script-src allows googletagmanager.com for the
+// loader below, plus a SHA-256 hash for the inline bootstrap script's exact
+// contents. Edit the inline <script> below at all -- even whitespace -- and
+// the hash in _headers must be recomputed or GA breaks silently. CSP fails
+// closed with no error a visitor would ever see; tracking just stops.
+//
+// window.gtag is assigned explicitly (not a bare function declaration)
+// because Astro's define:vars wraps this whole script in an IIFE, which
+// would otherwise scope a bare `function gtag(){}` locally instead of
+// exposing it on window. Other scripts on the site (contact form,
+// readiness-check funnel) can call window.gtag('event', ...) later --
+// always guard with `if (window.gtag)` first, since this block is skipped
+// entirely on non-production hostnames (see prodHost below).
+import { SITE } from '../consts';
+
+const prodHost = new URL(SITE.url).hostname;
+---
+{import.meta.env.PROD && (
+  <>
+    <script
+      is:inline
+      async
+      src={`https://www.googletagmanager.com/gtag/js?id=${SITE.gaMeasurementId}`}
+    ></script>
+    <script is:inline define:vars={{ gaId: SITE.gaMeasurementId, prodHost }}>
+      if (window.location.hostname === prodHost) {
+        window.dataLayer = window.dataLayer || [];
+        window.gtag = function () { window.dataLayer.push(arguments); };
+        window.gtag('js', new Date());
+        window.gtag('config', gaId);
+      }
+    </script>
+  </>
+)}
