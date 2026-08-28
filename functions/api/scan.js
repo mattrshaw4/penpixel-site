@@ -22,10 +22,15 @@
  */
 
 import { analyzeCrawlAccess } from '../../lib/crawl-access-check.js';
+import { analyzePageSpeed } from '../../lib/pagespeed-check.js';
+import { analyzeStructuredData } from '../../lib/structured-data-check.js';
 import { validateAndNormalizeUrl } from '../../lib/url-validate.js';
 
 const FETCH_TIMEOUT_MS = 8000;
-const MAX_BODY_BYTES = 512 * 1024; // hard cap; real robots.txt/llms.txt are tiny
+const PSI_TIMEOUT_MS = 55000; // PageSpeed runs a live Lighthouse pass; 15-40s is normal
+const MAX_BODY_BYTES = 512 * 1024; // robots.txt/llms.txt cap; real ones are tiny
+const PSI_MAX_BODY_BYTES = 8 * 1024 * 1024; // PSI responses embed full Lighthouse detail, often 0.5-2 MB
+const PAGE_MAX_BODY_BYTES = 3 * 1024 * 1024; // full page HTML; generous for JSON-LD anywhere in the document
 const CRAWLER_UA =
   'Mozilla/5.0 (compatible; PenpixelReadinessCheck/1.0; +https://penpixelcreative.com/readiness-check)';
 
@@ -73,9 +78,9 @@ async function verifyTurnstile(token, secret, remoteip) {
  *  Never throws; returns {status, body}. We stop reading once MAX_BODY_BYTES is
  *  reached and abort the rest, so a huge or slow-drip response can neither fill
  *  memory nor run out the clock. The 8s timeout bounds total time regardless. */
-async function safeFetch(url) {
+async function safeFetch(url, timeoutMs = FETCH_TIMEOUT_MS, maxBytes = MAX_BODY_BYTES) {
   const controller = new AbortController();
-  const timer = setTimeout(() => controller.abort(), FETCH_TIMEOUT_MS);
+  const timer = setTimeout(() => controller.abort(), timeoutMs);
   try {
     const res = await fetch(url, {
       method: 'GET',
@@ -87,14 +92,14 @@ async function safeFetch(url) {
     // Stream the body and stop at the cap. If there's no readable stream (some
     // runtimes), fall back to text() which is still bounded by the timeout.
     if (!res.body || typeof res.body.getReader !== 'function') {
-      const text = (await res.text()).slice(0, MAX_BODY_BYTES);
+      const text = (await res.text()).slice(0, maxBytes);
       return { status: res.status, body: text };
     }
     const reader = res.body.getReader();
     const decoder = new TextDecoder('utf-8', { fatal: false });
     let received = 0;
     let text = '';
-    while (received < MAX_BODY_BYTES) {
+    while (received < maxBytes) {
       const { done, value } = await reader.read();
       if (done) break;
       received += value.byteLength;
@@ -102,7 +107,7 @@ async function safeFetch(url) {
     }
     // Stop reading the rest and free the connection past the cap.
     try { await reader.cancel(); } catch { /* already closed */ }
-    return { status: res.status, body: text.slice(0, MAX_BODY_BYTES) };
+    return { status: res.status, body: text.slice(0, maxBytes) };
   } catch {
     return { status: 0, body: '' }; // timeout / network error -> inconclusive
   } finally {
@@ -145,10 +150,25 @@ export async function onRequestPost(context) {
   }
 
   // 4. Fetch the two fixed paths on the validated origin, in parallel.
-  const [robots, llms] = await Promise.all([
+  // PageSpeed Insights: key comes from env when configured (dedicated quota);
+  // without one the shared keyless pool is tried, which often 429s. Either
+  // failure mode lands as an honest "not scored this run", never a bad grade.
+  const psiUrl = 'https://www.googleapis.com/pagespeedonline/v5/runPagespeed'
+    + `?url=${encodeURIComponent(v.origin)}`
+    + '&strategy=mobile&category=PERFORMANCE'
+    + (env.PAGESPEED_API_KEY ? `&key=${env.PAGESPEED_API_KEY}` : '');
+
+  const [robots, llms, psiRaw, page] = await Promise.all([
     safeFetch(`${v.origin}/robots.txt`),
     safeFetch(`${v.origin}/llms.txt`),
+    safeFetch(psiUrl, PSI_TIMEOUT_MS, PSI_MAX_BODY_BYTES),
+    safeFetch(`${v.origin}/`, FETCH_TIMEOUT_MS, PAGE_MAX_BODY_BYTES),
   ]);
+
+  let psiJson = null;
+  if (psiRaw.status !== 0 && psiRaw.body) {
+    try { psiJson = JSON.parse(psiRaw.body); } catch { psiJson = null; }
+  }
 
   // 5. Score.
   const crawl = analyzeCrawlAccess({
@@ -157,11 +177,16 @@ export async function onRequestPost(context) {
     llmsStatus: llms.status,
   });
 
-  // v1 has one dimension; the response is shaped for more to be added without a
-  // frontend rewrite. Overall = mean of dimension scores (just crawl for now).
-  const dimensions = [crawl];
+  const speed = analyzePageSpeed(psiJson);
+  const structuredData = analyzeStructuredData({ pageStatus: page.status, pageHtml: page.body });
+
+  // Overall = mean of the dimensions that actually produced a score. An
+  // inconclusive measurement (score:null) is excluded, never counted against
+  // the site. Crawl access always scores, so the list is never empty.
+  const dimensions = [crawl, speed, structuredData];
+  const scored = dimensions.filter((d) => typeof d.score === 'number');
   const overallScore = Math.round(
-    dimensions.reduce((sum, d) => sum + d.score, 0) / dimensions.length
+    scored.reduce((sum, d) => sum + d.score, 0) / scored.length
   );
 
   const result = {

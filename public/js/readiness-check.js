@@ -96,7 +96,7 @@
       var block = el('div', 'mt-10 max-w-3xl');
       var header = el('div', 'flex items-baseline justify-between gap-4');
       header.appendChild(el('h3', 'text-2xl', d.dimension));
-      header.appendChild(el('span', 'font-mono text-lg text-canvas/70', d.score + '/100'));
+      header.appendChild(el('span', 'font-mono text-lg text-canvas/70', d.score === null ? 'not scored' : d.score + '/100'));
       block.appendChild(header);
       var list = el('ul', 'mt-4');
       (d.findings || []).forEach(function (f) { list.appendChild(severityRow(f)); });
@@ -121,7 +121,7 @@
     if (!token) { setStatus('Complete the verification first.'); return; }
 
     if (btn) btn.disabled = true;
-    setStatus('Scanning\u2026');
+    setStatus('Scanning\u2026 the speed check runs a full Lighthouse pass, so this can take up to 30 seconds.');
 
     fetch('/api/scan', {
       method: 'POST',
