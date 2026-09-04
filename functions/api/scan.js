@@ -180,14 +180,28 @@ export async function onRequestPost(context) {
   const speed = analyzePageSpeed(psiJson);
   const structuredData = analyzeStructuredData({ pageStatus: page.status, pageHtml: page.body });
 
-  // Overall = mean of the dimensions that actually produced a score. An
-  // inconclusive measurement (score:null) is excluded, never counted against
-  // the site. Crawl access always scores, so the list is never empty.
   const dimensions = [crawl, speed, structuredData];
-  const scored = dimensions.filter((d) => typeof d.score === 'number');
-  const overallScore = Math.round(
-    scored.reduce((sum, d) => sum + d.score, 0) / scored.length
-  );
+
+  // Overall score: weighted, not a flat mean, and hard-capped on a global
+  // crawl block. A flat mean lets good speed/schema partially "rescue" a
+  // score even when the site is completely unreachable, which misrepresents
+  // reality: a blocked crawler never gets far enough to benefit from either.
+  // Weights favor crawl access (most foundational: nothing else matters if
+  // the page can't be fetched at all), then structured data, then speed.
+  // Inconclusive dimensions (score:null) are excluded and the remaining
+  // weights renormalize, so a missing measurement never counts against the
+  // site. Crawl access always produces a score, so this never divides by zero.
+  const DIMENSION_WEIGHTS = { 'Crawl Access': 0.45, 'Delivery Speed': 0.25, 'Structured Data': 0.30 };
+  let overallScore;
+  if (crawl.globalBlocked) {
+    overallScore = crawl.score;
+  } else {
+    const scored = dimensions.filter((d) => typeof d.score === 'number');
+    const totalWeight = scored.reduce((sum, d) => sum + (DIMENSION_WEIGHTS[d.dimension] || 0), 0);
+    overallScore = totalWeight > 0
+      ? Math.round(scored.reduce((sum, d) => sum + d.score * (DIMENSION_WEIGHTS[d.dimension] || 0), 0) / totalWeight)
+      : Math.round(scored.reduce((sum, d) => sum + d.score, 0) / scored.length);
+  }
 
   const result = {
     scannedUrl: v.origin,
