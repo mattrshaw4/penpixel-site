@@ -37,14 +37,15 @@ import { SITE } from '../consts';
 
           <div class="mt-5 flex flex-wrap items-center gap-5">
             <button type="submit"
-              class="bg-impact-bg px-8 py-4 font-display text-lg font-bold text-canvas transition-opacity hover:opacity-90 disabled:opacity-40">
+              class="bg-impact px-8 py-4 font-display text-lg font-bold text-canvas transition-opacity hover:opacity-90 disabled:opacity-40">
               Run the check
             </button>
             <p id="scan-status" role="status" aria-live="polite" class="font-mono text-sm text-canvas/60"></p>
           </div>
 
-          <!-- GATE HOOK: when the email gate is finalized (Deven's call), the
-               capture field mounts here and the API enforces it server-side. -->
+          <!-- Email is not collected here. Results show score-only until the
+               visitor chooses to unlock full findings below (two-step reveal,
+               matches the hybrid model: value first, then the ask). -->
         </form>
       </div>
     </section>
@@ -54,6 +55,27 @@ import { SITE } from '../consts';
       <div class="mx-auto max-w-6xl px-6 py-16">
         <p class="font-mono text-xs uppercase tracking-[0.2em] text-canvas/50">// machine readout</p>
         <div id="results-body" class="mt-6"></div>
+
+        <!-- Unlock box: shown only when the API returns a gated result
+             (no valid email yet). Hidden entirely once unlocked, since at
+             that point results-body already has the full findings. -->
+        <div id="unlock-box" class="hidden mt-10 border border-impact/40 bg-white/[0.02] p-8 max-w-2xl">
+          <p class="font-mono text-xs uppercase tracking-[0.2em] text-impact">// see the full breakdown</p>
+          <p class="mt-3 text-canvas/80">
+            The score is free. What to fix, and which crawlers are actually
+            blocked, is behind your email.
+          </p>
+          <div class="mt-5 flex flex-wrap items-center gap-4">
+            <label class="sr-only" for="unlock-email">Email</label>
+            <input id="unlock-email" type="email" required autocomplete="email" placeholder="you@company.com"
+              class="min-w-0 flex-1 border border-white/20 bg-white/[0.03] px-4 py-3 font-mono text-canvas placeholder:text-canvas/30 focus:border-impact focus:outline-none" />
+            <button id="unlock-submit" type="button"
+              class="bg-impact px-6 py-3 font-display font-bold text-canvas transition-opacity hover:opacity-90 disabled:opacity-40 whitespace-nowrap">
+              Unlock full report
+            </button>
+          </div>
+          <p id="unlock-status" role="status" aria-live="polite" class="mt-3 font-mono text-sm text-canvas/60"></p>
+        </div>
         <div class="mt-12 border border-white/15 bg-white/[0.02] p-8 max-w-2xl">
           <p class="font-mono text-xs uppercase tracking-[0.2em] text-canvas/50">// what now</p>
           <h2 class="mt-3 text-2xl">A score tells you where you stand. It doesn&rsquo;t fix anything.</h2>
