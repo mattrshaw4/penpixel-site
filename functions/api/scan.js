@@ -13,7 +13,10 @@
  *
  * Secrets come from the Pages project environment (context.env), never code:
  *   - TURNSTILE_SECRET_KEY   (required)   same secret the contact form uses
- *   - LEAD_WEBHOOK_URL       (optional)   n8n webhook that routes leads to HubSpot
+ *   - HUBSPOT_ACCESS_TOKEN   (optional)   HubSpot Private App token, scoped to
+*                                          crm.objects.contacts.write. Without it,
+*                                          the tool still works, leads are simply
+*                                          not pushed to HubSpot.
  *
  * SSRF posture: on Cloudflare's edge a Pages Function fetch() egresses as public
  * Internet traffic and cannot reach private IP space or cloud metadata. The URL
@@ -24,6 +27,8 @@
 import { analyzeCrawlAccess } from '../../lib/crawl-access-check.js';
 import { analyzePageSpeed } from '../../lib/pagespeed-check.js';
 import { analyzeStructuredData } from '../../lib/structured-data-check.js';
+import { applyGate, isValidEmail } from '../../lib/email-gate.js';
+import { pushLead } from '../../lib/hubspot-lead.js';
 import { validateAndNormalizeUrl } from '../../lib/url-validate.js';
 
 const FETCH_TIMEOUT_MS = 8000;
@@ -203,33 +208,31 @@ export async function onRequestPost(context) {
       : Math.round(scored.reduce((sum, d) => sum + d.score, 0) / scored.length);
   }
 
+  // Gate decision: a valid email unlocks full findings; an absent or
+  // malformed one gets score-only, per-dimension. Deliberately server-side
+  // (see file header) rather than a client-side reveal of data already sent.
+  const gate = applyGate(dimensions, email);
+
   const result = {
     scannedUrl: v.origin,
     overallScore,
     overallGrade: grade(overallScore),
-    dimensions,
-    // GATE HOOK: once Deven finalizes the hybrid gate, return `dimensions`
-    // (findings/bots) only when `email` is a valid captured lead, and always
-    // return overallScore/overallGrade. That makes the gate server-side and
-    // not bypassable by calling the API directly. Left open until decided.
+    gated: gate.gated,
+    dimensions: gate.dimensions,
   };
 
-  // 6. Optional, best-effort lead forward to n8n -> HubSpot. Fire-and-forget so
-  // a slow/absent lead pipeline never delays the visitor's result. Skipped
-  // entirely until LEAD_WEBHOOK_URL is configured (n8n lead flow not built yet).
-  if (email && env.LEAD_WEBHOOK_URL) {
+  // Lead push: best-effort, fire-and-forget. A slow or failing HubSpot call
+  // must never delay or block the visitor's result, they already earned it
+  // by providing a valid email; whether HubSpot's API is happy right now is
+  // Penpixel Creative's problem, not theirs. Only fires when the email
+  // actually passed validation (gate.validEmail), never on a malformed one.
+  if (gate.validEmail && env.HUBSPOT_ACCESS_TOKEN) {
     context.waitUntil(
-      fetch(env.LEAD_WEBHOOK_URL, {
-        method: 'POST',
-        headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({
-          email,
-          scannedUrl: v.origin,
-          overallScore,
-          overallGrade: result.overallGrade,
-          source: 'aeo-readiness-check',
-        }),
-      }).catch(() => {}) // never surface lead-pipeline errors to the visitor
+      pushLead(
+        gate.validEmail,
+        { scannedUrl: v.origin, overallScore, overallGrade: result.overallGrade },
+        env.HUBSPOT_ACCESS_TOKEN
+      ).catch(() => {}) // pushLead already never throws; belt and suspenders
     );
   }
 
