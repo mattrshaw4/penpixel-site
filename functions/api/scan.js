@@ -25,6 +25,7 @@
  */
 
 import { analyzeCrawlAccess } from '../../lib/crawl-access-check.js';
+import { analyzeEdgeProtection, extractTitle } from '../../lib/edge-protection-check.js';
 import { analyzePageSpeed } from '../../lib/pagespeed-check.js';
 import { analyzeStructuredData } from '../../lib/structured-data-check.js';
 import { applyGate, isValidEmail } from '../../lib/email-gate.js';
@@ -38,6 +39,17 @@ const PSI_MAX_BODY_BYTES = 8 * 1024 * 1024; // PSI responses embed full Lighthou
 const PAGE_MAX_BODY_BYTES = 3 * 1024 * 1024; // full page HTML; generous for JSON-LD anywhere in the document
 const CRAWLER_UA =
   'Mozilla/5.0 (compatible; PenpixelReadinessCheck/1.0; +https://penpixelcreative.com/aeo-readiness-check)';
+
+// Simulated AI-crawler user agents for the edge-protection probe. Each keeps the
+// real crawler's token (rules match on it) and says plainly that it is us
+// simulating it, so a site owner reading their logs is not misled.
+const SIM_SUFFIX = ' PenpixelReadinessCheck/1.0 (simulated crawler user agent; +https://penpixelcreative.com/aeo-readiness-check)';
+const AI_PROBES = [
+  { id: 'OAI-SearchBot', ua: 'Mozilla/5.0 AppleWebKit/537.36 (KHTML, like Gecko); compatible; OAI-SearchBot/1.0; +https://openai.com/searchbot' + SIM_SUFFIX },
+  { id: 'PerplexityBot', ua: 'Mozilla/5.0 AppleWebKit/537.36 (KHTML, like Gecko; compatible; PerplexityBot/1.0; +https://perplexity.ai/perplexitybot)' + SIM_SUFFIX },
+  { id: 'ClaudeBot', ua: 'Mozilla/5.0 AppleWebKit/537.36 (KHTML, like Gecko; compatible; ClaudeBot/1.0; +claudebot@anthropic.com)' + SIM_SUFFIX },
+];
+const PROBE_MAX_BODY_BYTES = 64 * 1024; // only the status, one header and the <title> are read
 
 const SECURITY_HEADERS = {
   'Content-Type': 'application/json; charset=utf-8',
@@ -83,22 +95,23 @@ async function verifyTurnstile(token, secret, remoteip) {
  *  Never throws; returns {status, body}. We stop reading once MAX_BODY_BYTES is
  *  reached and abort the rest, so a huge or slow-drip response can neither fill
  *  memory nor run out the clock. The 8s timeout bounds total time regardless. */
-async function safeFetch(url, timeoutMs = FETCH_TIMEOUT_MS, maxBytes = MAX_BODY_BYTES) {
+async function safeFetch(url, timeoutMs = FETCH_TIMEOUT_MS, maxBytes = MAX_BODY_BYTES, ua = CRAWLER_UA) {
   const controller = new AbortController();
   const timer = setTimeout(() => controller.abort(), timeoutMs);
   try {
     const res = await fetch(url, {
       method: 'GET',
-      headers: { 'User-Agent': CRAWLER_UA, Accept: 'text/plain, */*' },
+      headers: { 'User-Agent': ua, Accept: 'text/plain, */*' },
       redirect: 'follow', // edge model prevents private-range targets regardless
       signal: controller.signal,
     });
 
     // Stream the body and stop at the cap. If there's no readable stream (some
     // runtimes), fall back to text() which is still bounded by the timeout.
+    const cfMitigated = res.headers.get('cf-mitigated');
     if (!res.body || typeof res.body.getReader !== 'function') {
       const text = (await res.text()).slice(0, maxBytes);
-      return { status: res.status, body: text };
+      return { status: res.status, body: text, cfMitigated };
     }
     const reader = res.body.getReader();
     const decoder = new TextDecoder('utf-8', { fatal: false });
@@ -112,9 +125,9 @@ async function safeFetch(url, timeoutMs = FETCH_TIMEOUT_MS, maxBytes = MAX_BODY_
     }
     // Stop reading the rest and free the connection past the cap.
     try { await reader.cancel(); } catch { /* already closed */ }
-    return { status: res.status, body: text.slice(0, maxBytes) };
+    return { status: res.status, body: text.slice(0, maxBytes), cfMitigated };
   } catch {
-    return { status: 0, body: '' }; // timeout / network error -> inconclusive
+    return { status: 0, body: '', cfMitigated: null }; // timeout / network error -> inconclusive
   } finally {
     clearTimeout(timer);
   }
@@ -163,11 +176,23 @@ export async function onRequestPost(context) {
     + '&strategy=mobile&category=PERFORMANCE'
     + (env.PAGESPEED_API_KEY ? `&key=${env.PAGESPEED_API_KEY}` : '');
 
-  const [robots, llms, psiRaw, page] = await Promise.all([
+  const [robots, llms, psiRaw, page, ...aiProbeResults] = await Promise.all([
     safeFetch(`${v.origin}/robots.txt`),
     safeFetch(`${v.origin}/llms.txt`),
     safeFetch(psiUrl, PSI_TIMEOUT_MS, PSI_MAX_BODY_BYTES),
     safeFetch(`${v.origin}/`, FETCH_TIMEOUT_MS, PAGE_MAX_BODY_BYTES),
+    // Edge-protection probes: the same homepage, requested as simulated AI crawlers.
+    ...AI_PROBES.map((p) => safeFetch(`${v.origin}/`, FETCH_TIMEOUT_MS, PROBE_MAX_BODY_BYTES, p.ua)),
+  ]);
+
+  const edge = analyzeEdgeProtection([
+    { id: 'baseline', status: page.status, cfMitigated: page.cfMitigated, title: extractTitle(page.body) },
+    ...AI_PROBES.map((p, i) => ({
+      id: p.id,
+      status: aiProbeResults[i].status,
+      cfMitigated: aiProbeResults[i].cfMitigated,
+      title: extractTitle(aiProbeResults[i].body),
+    })),
   ]);
 
   let psiJson = null;
@@ -180,10 +205,17 @@ export async function onRequestPost(context) {
     robotsStatus: robots.status,
     robotsBody: robots.body,
     llmsStatus: llms.status,
+    edge,
   });
 
   const speed = analyzePageSpeed(psiJson);
-  const structuredData = analyzeStructuredData({ pageStatus: page.status, pageHtml: page.body });
+  // A bot-challenge page is not the site's content, so structured data from it
+  // (or the absence of any) says nothing about the site. Report it as unread.
+  const pageIsChallenge = edge.probes.find((x) => x.id === 'baseline')?.blocked === true;
+  const structuredData = analyzeStructuredData({
+    pageStatus: pageIsChallenge ? (page.status >= 400 ? page.status : 403) : page.status,
+    pageHtml: pageIsChallenge ? '' : page.body,
+  });
 
   const dimensions = [crawl, speed, structuredData];
 

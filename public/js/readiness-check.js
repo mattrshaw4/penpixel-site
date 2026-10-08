@@ -59,14 +59,38 @@
     return row;
   }
 
-  // Pick the single worst finding for the Bottom Line (the one magenta moment).
-  // Gated dimensions carry no findings array at all, so this naturally reads
-  // as "no critical gaps" until unlocked, never a false problem claim.
+  // Pick the single worst thing for the Bottom Line (the one magenta moment).
+  // Findings win when present (unlocked results). Gated results carry no
+  // findings, so fall back to the scores, which are always visible: the
+  // headline must never say "all clear" next to a failing score. That was a
+  // real bug: gating hid the findings and the box defaulted to reassurance
+  // beside a 26/100 Delivery Speed.
+  var LOW_SCORE_TEXT = {
+    'Crawl Access': 'AI crawlers are likely locked out or heavily restricted.',
+    'Delivery Speed': 'Pages load too slowly for AI crawlers, which give up in seconds.',
+    'Structured Data': 'Machines have little or no structured data to read.'
+  };
   function worstFinding(dimensions) {
     var all = [];
     dimensions.forEach(function (d) { (d.findings || []).forEach(function (f) { all.push(f); }); });
     var critical = all.filter(function (f) { return f.severity === 'critical'; });
     if (critical.length) return { text: critical[0].text, isProblem: true };
+
+    var scored = dimensions.filter(function (d) { return typeof d.score === 'number'; });
+    var weakest = scored.reduce(function (min, d) { return !min || d.score < min.score ? d : min; }, null);
+    if (weakest && weakest.score < 50) {
+      return {
+        text: weakest.dimension + ' scored ' + weakest.score + '/100. ' +
+          (LOW_SCORE_TEXT[weakest.dimension] || 'This is the weak link in the score.'),
+        isProblem: true
+      };
+    }
+    if (weakest && weakest.score < 70) {
+      return {
+        text: 'Readable, with room to improve. ' + weakest.dimension + ' is the weakest area at ' + weakest.score + '/100.',
+        isProblem: true
+      };
+    }
     return {
       text: 'No critical gaps found in what this scan measures. The machine can read you.',
       isProblem: false
