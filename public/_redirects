@@ -39,5 +39,11 @@
 /industries/executive-coaches        /services/ai-search-readiness-audits/    301
 /home                               /                                        301
 
-# --- Readiness Check slug (Deven): original slug to final slug ---
-/readiness-check                   /aeo-readiness-check/                    301
+# --- Readiness Check: TEMPORARILY OFFLINE (302 = temporary, do not cache as permanent) ---
+# To bring it back: rename src/pages/_aeo-readiness-check.astro to aeo-readiness-check.astro,
+# set SCAN_ENABLED = true in functions/api/scan.js, delete these four lines, and re-apply
+# the Resources nav (git revert the "Remove Resources dropdown" commit).
+/readiness-check                   /services/ai-search-readiness-audits/    302
+/readiness-check/                  /services/ai-search-readiness-audits/    302
+/aeo-readiness-check               /services/ai-search-readiness-audits/    302
+/aeo-readiness-check/              /services/ai-search-readiness-audits/    302

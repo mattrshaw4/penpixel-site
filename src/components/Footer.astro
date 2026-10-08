@@ -1,5 +1,5 @@
 ---
-import { SITE, NAV_FLAT } from '../consts';
+import { SITE, NAV } from '../consts';
 const year = new Date().getFullYear();
 ---
 <footer class="mt-24 border-t border-white/10">
@@ -12,7 +12,7 @@ const year = new Date().getFullYear();
         </p>
       </div>
       <nav class="flex flex-col gap-2 text-sm" aria-label="Footer">
-        {NAV_FLAT.map((item) => (
+        {NAV.map((item) => (
           <a href={item.href} class="font-body text-canvas/60 transition-colors hover:text-canvas">{item.label}</a>
         ))}
         <a href="/glossary" class="font-body text-canvas/60 transition-colors hover:text-canvas">Glossary</a>
