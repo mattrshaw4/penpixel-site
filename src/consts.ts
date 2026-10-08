@@ -42,10 +42,22 @@ export const AUTHORS = {
   },
 } as const;
 
-export const NAV = [
+export type NavLink = { label: string; href: string };
+export type NavItem = NavLink | { label: string; children: readonly NavLink[] };
+
+export const NAV: readonly NavItem[] = [
   { label: 'About', href: '/about' },
   { label: 'Services', href: '/services' },
   { label: 'Case Studies', href: '/case-studies' },
-  { label: 'Blog', href: '/blog' },
+  {
+    label: 'Resources',
+    children: [
+      { label: 'Blog', href: '/blog' },
+      { label: 'AEO Readiness Check', href: '/aeo-readiness-check' },
+    ],
+  },
   { label: 'Contact', href: '/contact' },
-] as const;
+];
+
+// Footer and any other flat list: groups expand into their children.
+export const NAV_FLAT: readonly NavLink[] = NAV.flatMap((i) => ('children' in i ? i.children : [i]));

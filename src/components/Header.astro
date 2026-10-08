@@ -10,17 +10,46 @@ const isActive = (href: string) => path === href || path.startsWith(href + '/');
       <span>Penpixel <span class="text-canvas/50">Creative</span></span>
     </a>
 
-    <!-- Desktop nav: unchanged -->
+    <!-- Desktop nav. Resources is a CSS-only dropdown (hover/focus-within), no JS, so the strict CSP holds. -->
     <nav class="flex items-center gap-6 text-sm" aria-label="Primary">
       {NAV.map((item) => (
-        <a
-          href={item.href}
-          aria-current={isActive(item.href) ? 'page' : undefined}
-          class:list={[
-            'hidden font-body transition-colors hover:text-canvas sm:inline',
-            isActive(item.href) ? 'text-canvas' : 'text-canvas/60',
-          ]}
-        >{item.label}</a>
+        'children' in item ? (
+          <div class="group relative hidden sm:block">
+            <button
+              type="button"
+              class:list={[
+                'flex items-center gap-1 font-body transition-colors hover:text-canvas group-focus-within:text-canvas group-hover:text-canvas',
+                item.children.some((c) => isActive(c.href)) ? 'text-canvas' : 'text-canvas/60',
+              ]}
+            >
+              {item.label}
+              <svg class="h-3 w-3" viewBox="0 0 12 12" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M2 4l4 4 4-4" /></svg>
+            </button>
+            <div class="invisible absolute left-0 top-full z-50 min-w-56 pt-3 opacity-0 transition-opacity group-focus-within:visible group-focus-within:opacity-100 group-hover:visible group-hover:opacity-100">
+              <div class="border border-white/10 bg-authority py-2">
+                {item.children.map((child) => (
+                  <a
+                    href={child.href}
+                    aria-current={isActive(child.href) ? 'page' : undefined}
+                    class:list={[
+                      'block px-4 py-2 font-body transition-colors hover:bg-white/5 hover:text-canvas',
+                      isActive(child.href) ? 'text-canvas' : 'text-canvas/70',
+                    ]}
+                  >{child.label}</a>
+                ))}
+              </div>
+            </div>
+          </div>
+        ) : (
+          <a
+            href={item.href}
+            aria-current={isActive(item.href) ? 'page' : undefined}
+            class:list={[
+              'hidden font-body transition-colors hover:text-canvas sm:inline',
+              isActive(item.href) ? 'text-canvas' : 'text-canvas/60',
+            ]}
+          >{item.label}</a>
+        )
       ))}
       <a
         href="/contact"
@@ -55,14 +84,32 @@ const isActive = (href: string) => path === href || path.startsWith(href + '/');
   >
     <div class="flex flex-col px-6 py-4">
       {NAV.map((item) => (
-        <a
-          href={item.href}
-          aria-current={isActive(item.href) ? 'page' : undefined}
-          class:list={[
-            'border-b border-white/10 py-4 font-body text-base last:border-b-0',
-            isActive(item.href) ? 'text-canvas' : 'text-canvas/70',
-          ]}
-        >{item.label}</a>
+        'children' in item ? (
+          <div class="border-b border-white/10 py-4">
+            <p class="font-mono text-xs uppercase tracking-[0.2em] text-canvas/50">{item.label}</p>
+            <div class="mt-2 flex flex-col">
+              {item.children.map((child) => (
+                <a
+                  href={child.href}
+                  aria-current={isActive(child.href) ? 'page' : undefined}
+                  class:list={[
+                    'py-3 pl-4 font-body text-base',
+                    isActive(child.href) ? 'text-canvas' : 'text-canvas/70',
+                  ]}
+                >{child.label}</a>
+              ))}
+            </div>
+          </div>
+        ) : (
+          <a
+            href={item.href}
+            aria-current={isActive(item.href) ? 'page' : undefined}
+            class:list={[
+              'border-b border-white/10 py-4 font-body text-base',
+              isActive(item.href) ? 'text-canvas' : 'text-canvas/70',
+            ]}
+          >{item.label}</a>
+        )
       ))}
       <a
         href="/contact"
