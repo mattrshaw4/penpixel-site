@@ -2,8 +2,7 @@
 import BaseLayout from '../layouts/BaseLayout.astro';
 import { SITE } from '../consts';
 // Working title. Final product name is Deven's call (see plan doc: naming is an
-// open decision). The slug /readiness-check is neutral; add a redirect if the
-// final name wants a different one.
+// open decision). Slug is /aeo-readiness-check; /readiness-check 301s to it (public/_redirects).
 ---
 <BaseLayout
   title="AEO Readiness Check | Can AI Actually Read Your Site?"
@@ -91,7 +90,22 @@ import { SITE } from '../consts';
       </div>
     </section>
 
-    <!-- What this measures: Deven's requirement: define it upfront, plainly. -->
+    <!-- Bottom line: plain-English summary for first-time visitors. -->
+    <section class="border-t border-white/10">
+      <div class="mx-auto max-w-6xl px-6 py-16">
+        <p class="font-mono text-xs uppercase tracking-[0.2em] text-canvas/50">// the bottom line</p>
+        <h2 class="mt-3 max-w-3xl text-3xl">This scores whether AI systems can read your site. Not Google.</h2>
+        <p class="mt-6 max-w-3xl text-lg text-canvas/80">
+          The check runs three tests: crawl access, structured data, and page
+          speed. It rolls them into one grade, A through F. The weighting is
+          deliberate. Being reachable by the right crawlers counts for almost
+          half the grade, because nothing else on the list matters if a crawler
+          never gets in the door.
+        </p>
+      </div>
+    </section>
+
+    <!-- Three things it measures -->
     <section class="border-t border-white/10">
       <div class="mx-auto max-w-6xl px-6 py-16">
         <p class="font-mono text-xs uppercase tracking-[0.2em] text-canvas/50">// what this measures</p>
@@ -101,28 +115,100 @@ import { SITE } from '../consts';
             <h3 class="text-xl">Crawl access</h3>
             <p class="mt-3 text-canvas/70">
               Whether the crawlers behind ChatGPT, Perplexity, Claude, and Gemini
-              are allowed to read your site at all. Blocking a training bot is a
-              choice. Blocking a citation bot is a self-inflicted wound, and most
-              teams doing it don&rsquo;t know they are.
+              are allowed to read your site at all. If a crawler is blocked,
+              nothing else here matters. It never gets far enough to notice.
             </p>
           </div>
           <div class="border-t-2 border-ai pt-5">
             <h3 class="text-xl">Structured data</h3>
             <p class="mt-3 text-canvas/70">
-              Whether your pages carry valid machine-readable markup. AI systems
-              lean on structure over prose. No valid schema means the machine is
-              guessing at what your company is.
+              Whether your pages carry valid schema.org markup describing what
+              your company is. Machines lean on structure over prose. No
+              structured data means they are guessing.
             </p>
           </div>
           <div class="border-t-2 border-success pt-5">
             <h3 class="text-xl">Delivery speed</h3>
             <p class="mt-3 text-canvas/70">
-              Whether your pages arrive fast enough to be read. AI crawlers give
-              up in seconds and largely don&rsquo;t run your JavaScript. A slow,
-              client-rendered page is an empty page to a machine.
+              How fast your page loads, with extra weight on how fast the server
+              answers first. AI crawlers give up in seconds and mostly do not run
+              JavaScript. A slow page may as well be empty.
             </p>
           </div>
         </div>
+      </div>
+    </section>
+
+    <!-- How the overall score is calculated -->
+    <section class="border-t border-white/10">
+      <div class="mx-auto max-w-6xl px-6 py-16">
+        <p class="font-mono text-xs uppercase tracking-[0.2em] text-canvas/50">// how the score works</p>
+        <h2 class="mt-3 max-w-3xl text-3xl">How the overall score is calculated.</h2>
+        <p class="mt-6 max-w-3xl text-canvas/80">
+          The three scores do not average evenly. Crawl access counts for almost
+          half the grade, and a total crawl block overrides everything else.
+        </p>
+        <dl class="mt-10 grid gap-8 md:grid-cols-3">
+          <div class="border-t-2 border-infra pt-5">
+            <dt class="font-mono text-xs uppercase tracking-[0.2em] text-canvas/50">Crawl access</dt>
+            <dd class="mt-2 font-mono text-5xl font-bold text-canvas">45%</dd>
+          </div>
+          <div class="border-t-2 border-ai pt-5">
+            <dt class="font-mono text-xs uppercase tracking-[0.2em] text-canvas/50">Structured data</dt>
+            <dd class="mt-2 font-mono text-5xl font-bold text-canvas">30%</dd>
+          </div>
+          <div class="border-t-2 border-success pt-5">
+            <dt class="font-mono text-xs uppercase tracking-[0.2em] text-canvas/50">Delivery speed</dt>
+            <dd class="mt-2 font-mono text-5xl font-bold text-canvas">25%</dd>
+          </div>
+        </dl>
+        <p class="mt-10 max-w-3xl text-canvas/70">
+          If a site blocks every crawler outright, the overall grade is capped at
+          the crawl score itself. No amount of speed or structured data can pull
+          it back up. A blocked crawler never gets far enough to benefit from
+          either.
+        </p>
+        <p class="mt-4 max-w-3xl text-canvas/70">
+          If a test cannot be measured on a given run, it is left out and the
+          remaining weights rebalance. A measurement failure is never scored as a
+          bad site.
+        </p>
+      </div>
+    </section>
+
+    <!-- Citation vs training crawlers -->
+    <section class="border-t border-white/10">
+      <div class="mx-auto max-w-6xl px-6 py-16">
+        <p class="font-mono text-xs uppercase tracking-[0.2em] text-canvas/50">// crawler types</p>
+        <h2 class="mt-3 max-w-3xl text-3xl">Not every AI crawler matters the same way.</h2>
+        <p class="mt-6 max-w-3xl text-canvas/80">
+          A generic scanner reports &ldquo;GPTBot: blocked&rdquo; as if that is
+          automatically a problem. It is not. Blocking a training crawler is a
+          legitimate business choice. This check separates the two.
+        </p>
+        <div class="mt-10 grid gap-8 md:grid-cols-2">
+          <div class="border-t-2 border-ai pt-5">
+            <h3 class="text-xl">Citation crawlers</h3>
+            <p class="mt-2 font-mono text-sm text-ai">OAI-SearchBot, PerplexityBot, Claude-User, Google-Extended</p>
+            <p class="mt-3 text-canvas/70">
+              These drive real AI answer-engine visibility. Blocking them is
+              usually accidental self-harm.
+            </p>
+          </div>
+          <div class="border-t-2 border-infra pt-5">
+            <h3 class="text-xl">Training crawlers</h3>
+            <p class="mt-2 font-mono text-sm text-infra">GPTBot, ClaudeBot, CCBot</p>
+            <p class="mt-3 text-canvas/70">
+              These feed model training. Blocking them is common and does not
+              hurt citation visibility.
+            </p>
+          </div>
+        </div>
+        <p class="mt-10 max-w-3xl text-canvas/70">
+          The check only flags a real problem when a citation crawler is blocked.
+          Those are the ones that decide whether ChatGPT, Perplexity, or Gemini
+          cite your site.
+        </p>
         <p class="mt-10 max-w-2xl text-sm text-canvas/60">
           This scan reports what is publicly fetchable. Some sites serve
           different responses to different crawlers; where we can&rsquo;t read a

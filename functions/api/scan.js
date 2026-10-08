@@ -37,7 +37,7 @@ const MAX_BODY_BYTES = 512 * 1024; // robots.txt/llms.txt cap; real ones are tin
 const PSI_MAX_BODY_BYTES = 8 * 1024 * 1024; // PSI responses embed full Lighthouse detail, often 0.5-2 MB
 const PAGE_MAX_BODY_BYTES = 3 * 1024 * 1024; // full page HTML; generous for JSON-LD anywhere in the document
 const CRAWLER_UA =
-  'Mozilla/5.0 (compatible; PenpixelReadinessCheck/1.0; +https://penpixelcreative.com/readiness-check)';
+  'Mozilla/5.0 (compatible; PenpixelReadinessCheck/1.0; +https://penpixelcreative.com/aeo-readiness-check)';
 
 const SECURITY_HEADERS = {
   'Content-Type': 'application/json; charset=utf-8',

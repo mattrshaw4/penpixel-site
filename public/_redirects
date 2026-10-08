@@ -38,3 +38,6 @@
 /industries/fractional-c-suite       /services/ai-search-readiness-audits/    301
 /industries/executive-coaches        /services/ai-search-readiness-audits/    301
 /home                               /                                        301
+
+# --- Readiness Check slug (Deven): original slug to final slug ---
+/readiness-check                   /aeo-readiness-check/                    301
