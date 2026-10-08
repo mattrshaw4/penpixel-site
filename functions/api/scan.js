@@ -133,7 +133,14 @@ async function safeFetch(url, timeoutMs = FETCH_TIMEOUT_MS, maxBytes = MAX_BODY_
   }
 }
 
+// Kill switch. While false, the endpoint does no work at all: no Turnstile call,
+// no outbound fetches, no PageSpeed quota. Flip to true to bring the tool back.
+const SCAN_ENABLED = false;
+
 export async function onRequestPost(context) {
+  if (!SCAN_ENABLED) {
+    return json({ error: 'The AEO Readiness Check is offline for maintenance. Please check back soon.' }, 503);
+  }
   const { request, env } = context;
 
   // 1. Content-type guard (we only accept JSON).
