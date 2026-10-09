@@ -7,14 +7,14 @@ const stages = [
     color: 'text-impact',
     accent: 'border-impact/60',
     title: 'AI Search & Machine-First Audits',
-    desc: 'We identify exactly why your brand is missing from AI answers and where your site architecture fails machine-first consumption tests.',
+    desc: 'We identify why AI overlooks your brand and what’s preventing it from being understood, trusted, cited, and surfaced.',
   },
   {
     stage: 'STAGE 2: THE IMPLEMENTATION',
     color: 'text-ai',
     accent: 'border-ai/60',
-    title: 'Full-Stack AI Readiness',
-    desc: 'We execute the technical, visual, and entity-level fixes required to make your brand a high-confidence, buyable data source.',
+    title: 'AI Visibility Optimization',
+    desc: 'We optimize the brand signals, structure, and content that AI systems rely on to understand your company, establish authority, and confidently recommend your brand.',
   },
 ];
 
@@ -26,24 +26,27 @@ const results = [
 ---
 <BaseLayout
   title="Penpixel Creative | AEO & AI Search Optimization, SaaS"
-  description="We transform B2B SaaS architecture into high-confidence data sources that AI agents trust, cite, and recommend. Get the diagnosis."
+  description="Penpixel Creative restructures your content and digital presence so AI systems understand your expertise and surface your brand when buyers search."
 >
   <main>
     <!-- Hero -->
     <section class="relative mx-auto max-w-6xl px-6 pt-20 pb-24 md:pt-28 overflow-hidden">
   <div class="relative max-w-2xl">
-      <p class="font-mono text-sm uppercase tracking-[0.2em] text-impact">// the invisible loss</p>
+      <p class="font-mono text-sm uppercase tracking-[0.2em] text-impact">// the ai visibility gap</p>
       <h1 class="mt-5 max-w-4xl text-5xl md:text-6xl">
-        We Don&rsquo;t Just Help You Get Seen; We Ensure You Are Buyable.
+        We Don&rsquo;t Just Help You Get Seen. We Make Sure You Get Chosen.
       </h1>
+      <p class="mt-6 max-w-2xl font-display text-xl font-bold text-canvas md:text-2xl">
+        Be Visible to the People Searching. Be Discoverable by the AI Answering Them.
+      </p>
       <p class="mt-6 max-w-2xl text-lg text-canvas/80">
-        If your site isn&rsquo;t structured for machine-first consumption, your brand has a
-        100% agent abandonment rate.
+        AI is changing how B2B buyers discover and evaluate companies. If AI can&rsquo;t
+        understand your brand, it can&rsquo;t recommend it.
       </p>
       <p class="mt-4 max-w-2xl text-lg text-canvas/80">
-        Penpixel Creative transforms B2B SaaS architecture into high-confidence data sources
-        that AI agents trust, cite, and recommend. Stop building for humans. Start building
-        for machines.
+        Penpixel Creative restructures your content and digital presence so AI systems can
+        understand your expertise, recognize your authority, and confidently surface your
+        brand when buyers search for answers.
       </p>
       <div class="mt-10 flex flex-wrap gap-4">
         <a href="/contact" class="bg-impact-bg px-6 py-3 font-display font-bold text-canvas transition-opacity hover:opacity-90">Get the Diagnosis</a>
@@ -55,12 +58,13 @@ const results = [
     <section class="border-t border-white/10">
       <div class="mx-auto max-w-6xl px-6 py-20">
         <p class="font-mono text-sm uppercase tracking-[0.2em] text-canvas/50">// the shift</p>
-        <h2 class="mt-5 max-w-3xl text-3xl md:text-4xl">Buyers stopped clicking. Agents started deciding.</h2>
+        <h2 class="mt-5 max-w-3xl text-3xl md:text-4xl">AI is changing how brands get discovered.</h2>
         <div class="mt-8 grid gap-8 md:grid-cols-3">
-          <p class="text-canvas/70">An AI assistant now sits between your buyer and your site. It reads, ranks, and recommends before a human ever lands on a page.</p>
-          <p class="text-canvas/70">If your architecture is built for human clicks, agents skip it. Your content exists, but it never enters the answer.</p>
-          <p class="text-canvas/70">Conflicting data across the web makes models distrust your brand entirely — they cite a competitor instead, or hallucinate.</p>
+          <p class="text-canvas/70">AI now sits between your audience and your website. It reads, interprets, compares, and recommends information before someone ever reaches your site.</p>
+          <p class="text-canvas/70">When your brand information conflicts across your website and the broader web, AI has to reconcile competing signals, making it harder for your brand to earn a place in the answer.</p>
+          <p class="text-canvas/70">If your content is built only for human visitors, it may not give AI the context it needs to understand your expertise, authority, and relevance.</p>
         </div>
+        <p class="mt-10 max-w-3xl font-display text-xl font-bold text-canvas md:text-2xl">If AI can&rsquo;t understand your brand, you won&rsquo;t be visible when it matters most.</p>
       </div>
     </section>
 
@@ -68,7 +72,7 @@ const results = [
     <section class="border-t border-white/10">
       <div class="mx-auto max-w-6xl px-6 py-20">
         <p class="font-mono text-sm uppercase tracking-[0.2em] text-canvas/50">// our process</p>
-        <h2 class="mt-5 text-3xl md:text-4xl">From audit to execution.</h2>
+        <h2 class="mt-5 text-3xl md:text-4xl">From diagnosis to execution.</h2>
         <div class="mt-10 grid gap-6 md:grid-cols-2">
           {stages.map((s) => (
             <article class:list={['border-l-2 bg-white/[0.02] p-7', s.accent]}>
@@ -86,7 +90,7 @@ const results = [
     <section class="border-t border-white/10">
       <div class="mx-auto max-w-6xl px-6 py-20">
         <p class="font-mono text-sm uppercase tracking-[0.2em] text-success">// proven results</p>
-        <h2 class="mt-5 text-3xl md:text-4xl">The work shows up in the numbers.</h2>
+        <h2 class="mt-5 text-3xl md:text-4xl">The results show up in the numbers.</h2>
         <div class="mt-10 grid gap-8 sm:grid-cols-3">
           {results.map((r) => (
             <div class="border-t-2 border-success/60 pt-5">
@@ -96,15 +100,15 @@ const results = [
             </div>
           ))}
         </div>
-        <a href="/case-studies" class="mt-8 inline-block font-mono text-sm text-impact hover:underline">See all case studies →</a>
+        <a href="/case-studies" class="mt-8 inline-block font-mono text-sm text-impact hover:underline">See all the case studies →</a>
       </div>
     </section>
 
     <!-- Closing CTA -->
     <section class="border-t border-white/10">
       <div class="mx-auto max-w-6xl px-6 py-24">
-        <h2 class="max-w-3xl text-4xl md:text-5xl">Find out what the agents see when they look for you.</h2>
-        <p class="mt-5 max-w-2xl text-lg text-canvas/70">It starts with the diagnosis: a clear read on where you're invisible, and what to fix first.</p>
+        <h2 class="max-w-3xl text-4xl md:text-5xl">Reveal what AI sees when it searches for you.</h2>
+        <p class="mt-5 max-w-2xl text-lg text-canvas/70">See where you&rsquo;re visible, where you&rsquo;re not, and why.</p>
         <div class="mt-8 flex flex-wrap gap-4">
           <a href="/contact" class="bg-impact-bg px-8 py-4 font-display text-lg font-bold text-canvas transition-opacity hover:opacity-90">Get the Diagnosis</a>
           <a href="/services" class="border border-white/30 px-8 py-4 font-display text-lg font-bold text-canvas transition-colors hover:border-impact">See how it works</a>
